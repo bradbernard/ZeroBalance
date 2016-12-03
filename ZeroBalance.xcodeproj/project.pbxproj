@@ -1,0 +1,782 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1BE31DB53AEA3DD00058E09F /* Pods_ZeroBalanceTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE5466F5613FB87A45E5596C /* Pods_ZeroBalanceTests.framework */; };
+		7F0F99C04CBDC3BFBCB59E60 /* Pods_ZeroBalanceUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57B8380866B7A6B299EC29F3 /* Pods_ZeroBalanceUITests.framework */; };
+		B830A3501DF384D3005688A1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B830A34F1DF384D3005688A1 /* main.m */; };
+		B830A3531DF384D3005688A1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B830A3521DF384D3005688A1 /* AppDelegate.m */; };
+		B830A35C1DF384D3005688A1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B830A35A1DF384D3005688A1 /* Main.storyboard */; };
+		B830A35E1DF384D3005688A1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B830A35D1DF384D3005688A1 /* Assets.xcassets */; };
+		B830A3611DF384D3005688A1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B830A35F1DF384D3005688A1 /* LaunchScreen.storyboard */; };
+		B830A36C1DF384D3005688A1 /* ZeroBalanceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B830A36B1DF384D3005688A1 /* ZeroBalanceTests.m */; };
+		B830A3771DF384D3005688A1 /* ZeroBalanceUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B830A3761DF384D3005688A1 /* ZeroBalanceUITests.m */; };
+		B830A3861DF38523005688A1 /* TransactionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B830A3851DF38523005688A1 /* TransactionsViewController.m */; };
+		B830A3891DF38ADA005688A1 /* ContainerNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = B830A3881DF38ADA005688A1 /* ContainerNavigationController.m */; };
+		B830A38E1DF38D28005688A1 /* TransactionCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B830A38D1DF38D28005688A1 /* TransactionCollectionViewCell.m */; };
+		B830A3911DF38F25005688A1 /* Transaction.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B830A38F1DF38F25005688A1 /* Transaction.xcdatamodeld */; };
+		BC23A73DDC53E3A26264CAD5 /* Pods_ZeroBalance.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2307CB63F8FFA47E963FA054 /* Pods_ZeroBalance.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B830A3681DF384D3005688A1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B830A3431DF384D3005688A1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B830A34A1DF384D3005688A1;
+			remoteInfo = ZeroBalance;
+		};
+		B830A3731DF384D3005688A1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B830A3431DF384D3005688A1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B830A34A1DF384D3005688A1;
+			remoteInfo = ZeroBalance;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2307CB63F8FFA47E963FA054 /* Pods_ZeroBalance.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZeroBalance.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E580EFB74536F25B095619B /* Pods-ZeroBalance.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZeroBalance.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZeroBalance/Pods-ZeroBalance.debug.xcconfig"; sourceTree = "<group>"; };
+		4E7811CF70AAFAA98AC3AAD0 /* Pods-ZeroBalanceTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZeroBalanceTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZeroBalanceTests/Pods-ZeroBalanceTests.debug.xcconfig"; sourceTree = "<group>"; };
+		57B8380866B7A6B299EC29F3 /* Pods_ZeroBalanceUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZeroBalanceUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		586BD240C10EC46C26A6F119 /* Pods-ZeroBalanceUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZeroBalanceUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZeroBalanceUITests/Pods-ZeroBalanceUITests.release.xcconfig"; sourceTree = "<group>"; };
+		9315B819EAD1E4427645D708 /* Pods-ZeroBalanceTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZeroBalanceTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZeroBalanceTests/Pods-ZeroBalanceTests.release.xcconfig"; sourceTree = "<group>"; };
+		A009F7FC2E3B6069695F7BC2 /* Pods-ZeroBalanceUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZeroBalanceUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZeroBalanceUITests/Pods-ZeroBalanceUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		B819544ABB44A4951F27E86C /* Pods-ZeroBalance.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZeroBalance.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZeroBalance/Pods-ZeroBalance.release.xcconfig"; sourceTree = "<group>"; };
+		B830A34B1DF384D3005688A1 /* ZeroBalance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZeroBalance.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B830A34F1DF384D3005688A1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B830A3511DF384D3005688A1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		B830A3521DF384D3005688A1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		B830A35B1DF384D3005688A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B830A35D1DF384D3005688A1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B830A3601DF384D3005688A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B830A3621DF384D3005688A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B830A3671DF384D3005688A1 /* ZeroBalanceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZeroBalanceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B830A36B1DF384D3005688A1 /* ZeroBalanceTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZeroBalanceTests.m; sourceTree = "<group>"; };
+		B830A36D1DF384D3005688A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B830A3721DF384D3005688A1 /* ZeroBalanceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZeroBalanceUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B830A3761DF384D3005688A1 /* ZeroBalanceUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZeroBalanceUITests.m; sourceTree = "<group>"; };
+		B830A3781DF384D3005688A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B830A3841DF38523005688A1 /* TransactionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionsViewController.h; sourceTree = "<group>"; };
+		B830A3851DF38523005688A1 /* TransactionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionsViewController.m; sourceTree = "<group>"; };
+		B830A3871DF38ADA005688A1 /* ContainerNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContainerNavigationController.h; sourceTree = "<group>"; };
+		B830A3881DF38ADA005688A1 /* ContainerNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContainerNavigationController.m; sourceTree = "<group>"; };
+		B830A38C1DF38D28005688A1 /* TransactionCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionCollectionViewCell.h; sourceTree = "<group>"; };
+		B830A38D1DF38D28005688A1 /* TransactionCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionCollectionViewCell.m; sourceTree = "<group>"; };
+		B830A3901DF38F25005688A1 /* Transaction.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transaction.xcdatamodel; sourceTree = "<group>"; };
+		CE5466F5613FB87A45E5596C /* Pods_ZeroBalanceTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZeroBalanceTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B830A3481DF384D3005688A1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BC23A73DDC53E3A26264CAD5 /* Pods_ZeroBalance.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B830A3641DF384D3005688A1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1BE31DB53AEA3DD00058E09F /* Pods_ZeroBalanceTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B830A36F1DF384D3005688A1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7F0F99C04CBDC3BFBCB59E60 /* Pods_ZeroBalanceUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0B3D2CD6AFCE6FD824AE46B9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2307CB63F8FFA47E963FA054 /* Pods_ZeroBalance.framework */,
+				CE5466F5613FB87A45E5596C /* Pods_ZeroBalanceTests.framework */,
+				57B8380866B7A6B299EC29F3 /* Pods_ZeroBalanceUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B830A3421DF384D3005688A1 = {
+			isa = PBXGroup;
+			children = (
+				B830A34D1DF384D3005688A1 /* ZeroBalance */,
+				B830A36A1DF384D3005688A1 /* ZeroBalanceTests */,
+				B830A3751DF384D3005688A1 /* ZeroBalanceUITests */,
+				B830A34C1DF384D3005688A1 /* Products */,
+				E9EF3E7E6524943A4F38B313 /* Pods */,
+				0B3D2CD6AFCE6FD824AE46B9 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		B830A34C1DF384D3005688A1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B830A34B1DF384D3005688A1 /* ZeroBalance.app */,
+				B830A3671DF384D3005688A1 /* ZeroBalanceTests.xctest */,
+				B830A3721DF384D3005688A1 /* ZeroBalanceUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B830A34D1DF384D3005688A1 /* ZeroBalance */ = {
+			isa = PBXGroup;
+			children = (
+				B830A38B1DF38CF8005688A1 /* ColCells */,
+				B830A38A1DF38CE7005688A1 /* VCs */,
+				B830A3511DF384D3005688A1 /* AppDelegate.h */,
+				B830A3521DF384D3005688A1 /* AppDelegate.m */,
+				B830A35A1DF384D3005688A1 /* Main.storyboard */,
+				B830A35D1DF384D3005688A1 /* Assets.xcassets */,
+				B830A35F1DF384D3005688A1 /* LaunchScreen.storyboard */,
+				B830A3621DF384D3005688A1 /* Info.plist */,
+				B830A34E1DF384D3005688A1 /* Supporting Files */,
+				B830A38F1DF38F25005688A1 /* Transaction.xcdatamodeld */,
+			);
+			path = ZeroBalance;
+			sourceTree = "<group>";
+		};
+		B830A34E1DF384D3005688A1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B830A34F1DF384D3005688A1 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B830A36A1DF384D3005688A1 /* ZeroBalanceTests */ = {
+			isa = PBXGroup;
+			children = (
+				B830A36B1DF384D3005688A1 /* ZeroBalanceTests.m */,
+				B830A36D1DF384D3005688A1 /* Info.plist */,
+			);
+			path = ZeroBalanceTests;
+			sourceTree = "<group>";
+		};
+		B830A3751DF384D3005688A1 /* ZeroBalanceUITests */ = {
+			isa = PBXGroup;
+			children = (
+				B830A3761DF384D3005688A1 /* ZeroBalanceUITests.m */,
+				B830A3781DF384D3005688A1 /* Info.plist */,
+			);
+			path = ZeroBalanceUITests;
+			sourceTree = "<group>";
+		};
+		B830A38A1DF38CE7005688A1 /* VCs */ = {
+			isa = PBXGroup;
+			children = (
+				B830A3841DF38523005688A1 /* TransactionsViewController.h */,
+				B830A3851DF38523005688A1 /* TransactionsViewController.m */,
+				B830A3871DF38ADA005688A1 /* ContainerNavigationController.h */,
+				B830A3881DF38ADA005688A1 /* ContainerNavigationController.m */,
+			);
+			name = VCs;
+			sourceTree = "<group>";
+		};
+		B830A38B1DF38CF8005688A1 /* ColCells */ = {
+			isa = PBXGroup;
+			children = (
+				B830A38C1DF38D28005688A1 /* TransactionCollectionViewCell.h */,
+				B830A38D1DF38D28005688A1 /* TransactionCollectionViewCell.m */,
+			);
+			name = ColCells;
+			sourceTree = "<group>";
+		};
+		E9EF3E7E6524943A4F38B313 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4E580EFB74536F25B095619B /* Pods-ZeroBalance.debug.xcconfig */,
+				B819544ABB44A4951F27E86C /* Pods-ZeroBalance.release.xcconfig */,
+				4E7811CF70AAFAA98AC3AAD0 /* Pods-ZeroBalanceTests.debug.xcconfig */,
+				9315B819EAD1E4427645D708 /* Pods-ZeroBalanceTests.release.xcconfig */,
+				A009F7FC2E3B6069695F7BC2 /* Pods-ZeroBalanceUITests.debug.xcconfig */,
+				586BD240C10EC46C26A6F119 /* Pods-ZeroBalanceUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B830A34A1DF384D3005688A1 /* ZeroBalance */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B830A37B1DF384D3005688A1 /* Build configuration list for PBXNativeTarget "ZeroBalance" */;
+			buildPhases = (
+				83C995C1313391348DBAC3FA /* [CP] Check Pods Manifest.lock */,
+				B830A3471DF384D3005688A1 /* Sources */,
+				B830A3481DF384D3005688A1 /* Frameworks */,
+				B830A3491DF384D3005688A1 /* Resources */,
+				D03C501F034E03DEF634EBAE /* [CP] Embed Pods Frameworks */,
+				7F8093268D8BBECE719FD1C8 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ZeroBalance;
+			productName = ZeroBalance;
+			productReference = B830A34B1DF384D3005688A1 /* ZeroBalance.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B830A3661DF384D3005688A1 /* ZeroBalanceTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B830A37E1DF384D3005688A1 /* Build configuration list for PBXNativeTarget "ZeroBalanceTests" */;
+			buildPhases = (
+				4E06217FB0508FFB8D9F7571 /* [CP] Check Pods Manifest.lock */,
+				B830A3631DF384D3005688A1 /* Sources */,
+				B830A3641DF384D3005688A1 /* Frameworks */,
+				B830A3651DF384D3005688A1 /* Resources */,
+				96DA13D92505F9325AB5B299 /* [CP] Embed Pods Frameworks */,
+				3B29C426E9E6D8616A224D18 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B830A3691DF384D3005688A1 /* PBXTargetDependency */,
+			);
+			name = ZeroBalanceTests;
+			productName = ZeroBalanceTests;
+			productReference = B830A3671DF384D3005688A1 /* ZeroBalanceTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		B830A3711DF384D3005688A1 /* ZeroBalanceUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B830A3811DF384D3005688A1 /* Build configuration list for PBXNativeTarget "ZeroBalanceUITests" */;
+			buildPhases = (
+				A0425833E1F226C9FF7E9B1A /* [CP] Check Pods Manifest.lock */,
+				B830A36E1DF384D3005688A1 /* Sources */,
+				B830A36F1DF384D3005688A1 /* Frameworks */,
+				B830A3701DF384D3005688A1 /* Resources */,
+				5DA82DB6FD466231CE930604 /* [CP] Embed Pods Frameworks */,
+				2BBFEE017625E22FC1CAB877 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B830A3741DF384D3005688A1 /* PBXTargetDependency */,
+			);
+			name = ZeroBalanceUITests;
+			productName = ZeroBalanceUITests;
+			productReference = B830A3721DF384D3005688A1 /* ZeroBalanceUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B830A3431DF384D3005688A1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0810;
+				ORGANIZATIONNAME = "Brad Bernard";
+				TargetAttributes = {
+					B830A34A1DF384D3005688A1 = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = RMJV5R42F5;
+						ProvisioningStyle = Automatic;
+					};
+					B830A3661DF384D3005688A1 = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = RMJV5R42F5;
+						ProvisioningStyle = Automatic;
+						TestTargetID = B830A34A1DF384D3005688A1;
+					};
+					B830A3711DF384D3005688A1 = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = RMJV5R42F5;
+						ProvisioningStyle = Automatic;
+						TestTargetID = B830A34A1DF384D3005688A1;
+					};
+				};
+			};
+			buildConfigurationList = B830A3461DF384D3005688A1 /* Build configuration list for PBXProject "ZeroBalance" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B830A3421DF384D3005688A1;
+			productRefGroup = B830A34C1DF384D3005688A1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B830A34A1DF384D3005688A1 /* ZeroBalance */,
+				B830A3661DF384D3005688A1 /* ZeroBalanceTests */,
+				B830A3711DF384D3005688A1 /* ZeroBalanceUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B830A3491DF384D3005688A1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B830A3611DF384D3005688A1 /* LaunchScreen.storyboard in Resources */,
+				B830A35E1DF384D3005688A1 /* Assets.xcassets in Resources */,
+				B830A35C1DF384D3005688A1 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B830A3651DF384D3005688A1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B830A3701DF384D3005688A1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2BBFEE017625E22FC1CAB877 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZeroBalanceUITests/Pods-ZeroBalanceUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3B29C426E9E6D8616A224D18 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZeroBalanceTests/Pods-ZeroBalanceTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4E06217FB0508FFB8D9F7571 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		5DA82DB6FD466231CE930604 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZeroBalanceUITests/Pods-ZeroBalanceUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7F8093268D8BBECE719FD1C8 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZeroBalance/Pods-ZeroBalance-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		83C995C1313391348DBAC3FA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		96DA13D92505F9325AB5B299 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZeroBalanceTests/Pods-ZeroBalanceTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A0425833E1F226C9FF7E9B1A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D03C501F034E03DEF634EBAE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZeroBalance/Pods-ZeroBalance-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B830A3471DF384D3005688A1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B830A3531DF384D3005688A1 /* AppDelegate.m in Sources */,
+				B830A3891DF38ADA005688A1 /* ContainerNavigationController.m in Sources */,
+				B830A3911DF38F25005688A1 /* Transaction.xcdatamodeld in Sources */,
+				B830A3501DF384D3005688A1 /* main.m in Sources */,
+				B830A3861DF38523005688A1 /* TransactionsViewController.m in Sources */,
+				B830A38E1DF38D28005688A1 /* TransactionCollectionViewCell.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B830A3631DF384D3005688A1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B830A36C1DF384D3005688A1 /* ZeroBalanceTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B830A36E1DF384D3005688A1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B830A3771DF384D3005688A1 /* ZeroBalanceUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B830A3691DF384D3005688A1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B830A34A1DF384D3005688A1 /* ZeroBalance */;
+			targetProxy = B830A3681DF384D3005688A1 /* PBXContainerItemProxy */;
+		};
+		B830A3741DF384D3005688A1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B830A34A1DF384D3005688A1 /* ZeroBalance */;
+			targetProxy = B830A3731DF384D3005688A1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B830A35A1DF384D3005688A1 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B830A35B1DF384D3005688A1 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		B830A35F1DF384D3005688A1 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B830A3601DF384D3005688A1 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B830A3791DF384D3005688A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B830A37A1DF384D3005688A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B830A37C1DF384D3005688A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4E580EFB74536F25B095619B /* Pods-ZeroBalance.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = RMJV5R42F5;
+				INFOPLIST_FILE = ZeroBalance/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bradbernard.ZeroBalance;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		B830A37D1DF384D3005688A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B819544ABB44A4951F27E86C /* Pods-ZeroBalance.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = RMJV5R42F5;
+				INFOPLIST_FILE = ZeroBalance/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bradbernard.ZeroBalance;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		B830A37F1DF384D3005688A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4E7811CF70AAFAA98AC3AAD0 /* Pods-ZeroBalanceTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = RMJV5R42F5;
+				INFOPLIST_FILE = ZeroBalanceTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bradbernard.ZeroBalanceTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ZeroBalance.app/ZeroBalance";
+			};
+			name = Debug;
+		};
+		B830A3801DF384D3005688A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9315B819EAD1E4427645D708 /* Pods-ZeroBalanceTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = RMJV5R42F5;
+				INFOPLIST_FILE = ZeroBalanceTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bradbernard.ZeroBalanceTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ZeroBalance.app/ZeroBalance";
+			};
+			name = Release;
+		};
+		B830A3821DF384D3005688A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A009F7FC2E3B6069695F7BC2 /* Pods-ZeroBalanceUITests.debug.xcconfig */;
+			buildSettings = {
+				DEVELOPMENT_TEAM = RMJV5R42F5;
+				INFOPLIST_FILE = ZeroBalanceUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bradbernard.ZeroBalanceUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = ZeroBalance;
+			};
+			name = Debug;
+		};
+		B830A3831DF384D3005688A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 586BD240C10EC46C26A6F119 /* Pods-ZeroBalanceUITests.release.xcconfig */;
+			buildSettings = {
+				DEVELOPMENT_TEAM = RMJV5R42F5;
+				INFOPLIST_FILE = ZeroBalanceUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bradbernard.ZeroBalanceUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = ZeroBalance;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B830A3461DF384D3005688A1 /* Build configuration list for PBXProject "ZeroBalance" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B830A3791DF384D3005688A1 /* Debug */,
+				B830A37A1DF384D3005688A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B830A37B1DF384D3005688A1 /* Build configuration list for PBXNativeTarget "ZeroBalance" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B830A37C1DF384D3005688A1 /* Debug */,
+				B830A37D1DF384D3005688A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B830A37E1DF384D3005688A1 /* Build configuration list for PBXNativeTarget "ZeroBalanceTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B830A37F1DF384D3005688A1 /* Debug */,
+				B830A3801DF384D3005688A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B830A3811DF384D3005688A1 /* Build configuration list for PBXNativeTarget "ZeroBalanceUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B830A3821DF384D3005688A1 /* Debug */,
+				B830A3831DF384D3005688A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		B830A38F1DF38F25005688A1 /* Transaction.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B830A3901DF38F25005688A1 /* Transaction.xcdatamodel */,
+			);
+			currentVersion = B830A3901DF38F25005688A1 /* Transaction.xcdatamodel */;
+			path = Transaction.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = B830A3431DF384D3005688A1 /* Project object */;
+}
