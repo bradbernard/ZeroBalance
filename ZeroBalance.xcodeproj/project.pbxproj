@@ -20,6 +20,7 @@
 		B830A3891DF38ADA005688A1 /* ContainerNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = B830A3881DF38ADA005688A1 /* ContainerNavigationController.m */; };
 		B830A38E1DF38D28005688A1 /* TransactionCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B830A38D1DF38D28005688A1 /* TransactionCollectionViewCell.m */; };
 		B830A3911DF38F25005688A1 /* Transaction.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B830A38F1DF38F25005688A1 /* Transaction.xcdatamodeld */; };
+		B830A3D51DF39486005688A1 /* DataController.m in Sources */ = {isa = PBXBuildFile; fileRef = B830A3D41DF39486005688A1 /* DataController.m */; };
 		BC23A73DDC53E3A26264CAD5 /* Pods_ZeroBalance.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2307CB63F8FFA47E963FA054 /* Pods_ZeroBalance.framework */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +71,8 @@
 		B830A38C1DF38D28005688A1 /* TransactionCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionCollectionViewCell.h; sourceTree = "<group>"; };
 		B830A38D1DF38D28005688A1 /* TransactionCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionCollectionViewCell.m; sourceTree = "<group>"; };
 		B830A3901DF38F25005688A1 /* Transaction.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Transaction.xcdatamodel; sourceTree = "<group>"; };
+		B830A3D41DF39486005688A1 /* DataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataController.m; sourceTree = "<group>"; };
+		B830A3D61DF394C1005688A1 /* DataController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataController.h; sourceTree = "<group>"; };
 		CE5466F5613FB87A45E5596C /* Pods_ZeroBalanceTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZeroBalanceTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -139,6 +142,8 @@
 				B830A38B1DF38CF8005688A1 /* ColCells */,
 				B830A38A1DF38CE7005688A1 /* VCs */,
 				B830A3511DF384D3005688A1 /* AppDelegate.h */,
+				B830A3D41DF39486005688A1 /* DataController.m */,
+				B830A3D61DF394C1005688A1 /* DataController.h */,
 				B830A3521DF384D3005688A1 /* AppDelegate.m */,
 				B830A35A1DF384D3005688A1 /* Main.storyboard */,
 				B830A35D1DF384D3005688A1 /* Assets.xcassets */,
@@ -496,6 +501,7 @@
 				B830A3891DF38ADA005688A1 /* ContainerNavigationController.m in Sources */,
 				B830A3911DF38F25005688A1 /* Transaction.xcdatamodeld in Sources */,
 				B830A3501DF384D3005688A1 /* main.m in Sources */,
+				B830A3D51DF39486005688A1 /* DataController.m in Sources */,
 				B830A3861DF38523005688A1 /* TransactionsViewController.m in Sources */,
 				B830A38E1DF38D28005688A1 /* TransactionCollectionViewCell.m in Sources */,
 			);
@@ -649,7 +655,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = RMJV5R42F5;
 				INFOPLIST_FILE = ZeroBalance/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bradbernard.ZeroBalance;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -663,7 +669,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = RMJV5R42F5;
 				INFOPLIST_FILE = ZeroBalance/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bradbernard.ZeroBalance;
 				PRODUCT_NAME = "$(TARGET_NAME)";
