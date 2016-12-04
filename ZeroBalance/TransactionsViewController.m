@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSManagedObjectContext* managedObjectContext;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *addButtonItem;
 
 @end
 
@@ -35,6 +36,10 @@
     self.fetchedResultsController = nil;
 }
 
+- (IBAction)addItemPressed:(UIBarButtonItem *)sender {
+//    [self presentViewController:<#(nonnull UIViewController *)#> animated:<#(BOOL)#> completion:<#^(void)completion#>]
+}
+
 - (void)initializeFetchedResultsController
 {
     NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:@"Transaction"];
@@ -42,7 +47,7 @@
     [request setSortDescriptors:@[sort]];
     
     NSManagedObjectContext* moc = self.managedObjectContext;
-    [self setFetchedResultsController:[[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:moc sectionNameKeyPath:nil cacheName:nil]];
+    [self setFetchedResultsController:[[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:moc sectionNameKeyPath:@"date" cacheName:@"RootTransVC"]];
     [[self fetchedResultsController] setDelegate:self];
     
     NSError *error = nil;
@@ -78,27 +83,12 @@
     [[self managedObjectContext] save:&error];
 }
 
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-//{
-//    return 5;
-//}
-//
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    static NSString *simpleTableIdentifier = @"TransactionTableCell";
-//    
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-//
-////    cell.textLabel.text = [recipes objectAtIndex:indexPath.row];
-//    return cell;
-//}
-
 - (void)configureCell:(TransactionTableCell*)cell atIndexPath:(NSIndexPath*)indexPath
 {
     TransactionMO *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
     cell.nameLabel.text = object.name;
     cell.dateLabel.text = [NSDateFormatter localizedStringFromDate:object.date dateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterShortStyle];
-    cell.amountLabel.text = [NSString stringWithFormat:@"$%f", object.total];
+    cell.amountLabel.text = [NSString stringWithFormat:@"$%.02f", object.total];
     cell.peopleLabel.text = object.people;
 }
 
@@ -123,7 +113,6 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    NSLog(@"%lu", [[[self fetchedResultsController] sections] count]);
     return [[[self fetchedResultsController] sections] count];
 }
 
@@ -137,16 +126,9 @@
     if ([[self.fetchedResultsController sections] count] > 0) {
         id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
         return [sectionInfo name];
-    } else
-        return @"Woww";
-}
-
-- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
-    return [self.fetchedResultsController sectionIndexTitles];
-}
-
-- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
-    return [self.fetchedResultsController sectionForSectionIndexTitle:title atIndex:index];
+    } else {
+        return nil;
+    }
 }
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
@@ -192,42 +174,5 @@
 {
     [[self tableView] endUpdates];
 }
-
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//    return [[<#Fetched results controller#> sections] count];
-//}
-//
-//- (NSInteger)tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section {
-//    if ([[<#Fetched results controller#> sections] count] > 0) {
-//        id <NSFetchedResultsSectionInfo> sectionInfo = [[<#Fetched results controller#> sections] objectAtIndex:section];
-//        return [sectionInfo numberOfObjects];
-//    } else
-//        return 0;
-//}
-//
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    
-//    UITableViewCell *cell = <#Get the cell#>;
-//    NSManagedObject *managedObject = [<#Fetched results controller#> objectAtIndexPath:indexPath];
-//        // Configure the cell with data from the managed object.
-//    return cell;
-//    
-//}
-//
-//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-//    if ([[<#Fetched results controller#> sections] count] > 0) {
-//        id <NSFetchedResultsSectionInfo> sectionInfo = [[<#Fetched results controller#> sections] objectAtIndex:section];
-//        return [sectionInfo name];
-//    } else
-//        return nil;
-//}
-//
-//- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
-//    return [<#Fetched results controller#> sectionIndexTitles];
-//}
-//
-//- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
-//    return [<#Fetched results controller#> sectionForSectionIndexTitle:title atIndex:index];
-//}
 
 @end
