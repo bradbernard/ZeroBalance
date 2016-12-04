@@ -18,16 +18,29 @@
 @property (nonatomic, strong) NSManagedObjectContext* managedObjectContext;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *addButtonItem;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *editButtonItem;
 
 @end
 
 @implementation TransactionsViewController
+
+bool deleteAll = true;
+
+static NSString *cellIdentifier = @"TransactionTableCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.title = @"Transactions";
     self.managedObjectContext = [[[DataController alloc] init] managedObjectContext];
+//    [self.addButtonItem setTitleTextAttributes:@{
+//                                              NSFontAttributeName: [UIFont fontWithName:@"SFCompactDisplay-Regular" size:17.0],
+//                                              NSForegroundColorAttributeName: [UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0]
+//                                              } forState:UIControlStateNormal];
+//    [self.editButtonItem setTitleTextAttributes:@{
+//                                                 NSFontAttributeName: [UIFont fontWithName:@"SFCompactDisplay-Regular" size:17.0],
+//                                                 NSForegroundColorAttributeName: [UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0]
+//                                                 } forState:UIControlStateNormal];
     [self initializeFetchedResultsController];
     [self test];
 }
@@ -36,8 +49,82 @@
     self.fetchedResultsController = nil;
 }
 
+- (IBAction)editItemPressed:(UIBarButtonItem *)sender {
+    [self editPressed];
+}
+
 - (IBAction)addItemPressed:(UIBarButtonItem *)sender {
-//    [self presentViewController:<#(nonnull UIViewController *)#> animated:<#(BOOL)#> completion:<#^(void)completion#>]
+    [self addPressed];
+}
+
+-(void) editPressed {
+    if(!self.tableView.editing) {
+        [self.tableView setEditing:UITableViewCellEditingStyleDelete animated:YES];
+        self.editButtonItem.title = @"Cancel";
+        self.tableView.editing = true;
+    } else {
+        [self.tableView setEditing:UITableViewCellEditingStyleNone animated:YES];
+        self.editButtonItem.title = @"Edit";
+        self.tableView.editing = false;
+    }
+    
+    [self updateDeleteButtonTitle];
+}
+
+-(void) addPressed {
+    if(self.tableView.editing) {
+        if(deleteAll) {
+            [self deleteAllTransactions];
+            [self editPressed];
+        } else {
+            [self deleteSelectedItems];
+            [self setToDeleteAll];
+        }
+    } else {
+        [self test];
+            //    [self presentViewController:<#(nonnull UIViewController *)#> animated:<#(BOOL)#> completion:<#^(void)completion#>]
+    }
+}
+
+-(void) setToDeleteAll {
+    self.addButtonItem.title = @"Delete all";
+    deleteAll = true;
+}
+
+- (void)updateDeleteButtonTitle
+{
+    NSLog(@"%@", @"calling Delete button");
+    NSArray *selectedRows = [self.tableView indexPathsForSelectedRows];
+    NSUInteger rowCount = [[[self fetchedResultsController] fetchedObjects] count];
+    
+    BOOL allItemsAreSelected = selectedRows.count == rowCount;
+    BOOL noItemsAreSelected = selectedRows.count == 0;
+    
+    if(self.tableView.editing) {
+        if (allItemsAreSelected || noItemsAreSelected) {
+            [self setToDeleteAll];
+        } else {
+            self.addButtonItem.title = [NSString stringWithFormat: @"Delete (%lu)", (unsigned long) selectedRows.count];
+            deleteAll = false;
+        }
+    } else {
+        self.addButtonItem.title = @"Add";
+    }
+    
+    if(rowCount > 0) {
+        self.editButtonItem.enabled = true;
+    } else {
+        self.editButtonItem.enabled = false;
+    }
+}
+
+- (void)deleteSelectedItems {
+    NSArray *selectedRows = [self.tableView indexPathsForSelectedRows];
+    NSIndexPath *indexPath = nil;
+    for (indexPath in selectedRows) {
+        TransactionMO *transaction = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+        [self.managedObjectContext deleteObject:transaction];
+    }
 }
 
 - (void)initializeFetchedResultsController
@@ -59,7 +146,7 @@
     }
 }
 
-- (void)deleteAll {
+- (void)deleteAllTransactions {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Transaction"];
     [fetchRequest setIncludesPropertyValues:NO];
     
@@ -92,9 +179,10 @@
     cell.peopleLabel.text = object.people;
 }
 
+// UITableViewController Methods
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellIdentifier = @"TransactionTableCell";
     
     TransactionTableCell *cell = (TransactionTableCell*)[tableView dequeueReusableCellWithIdentifier: cellIdentifier];
     [self configureCell:cell atIndexPath:indexPath];
@@ -104,11 +192,20 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.row % 2 == 1) {
-        [self deleteAll];
-    } else {
-        [self test];
+    if(!self.tableView.editing) {
+        return;
     }
+    
+    [self updateDeleteButtonTitle];
+}
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if(!self.tableView.editing) {
+        return;
+    }
+    
+    [self updateDeleteButtonTitle];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -130,6 +227,20 @@
         return nil;
     }
 }
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if(editingStyle == UITableViewCellEditingStyleDelete) {
+        TransactionMO *transaction = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+        [self.managedObjectContext deleteObject:transaction];
+    }
+}
+
+// NSFetchedResultsController Methods
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
 {

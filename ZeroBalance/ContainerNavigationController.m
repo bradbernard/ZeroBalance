@@ -18,7 +18,7 @@
     [super viewDidLoad];
     
     [self setStatusBarStyle:UIStatusBarStyleContrast];
-    [self.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName:FlatWhite, NSFontAttributeName:[UIFont fontWithName:@"SFUIDisplay-Bold" size:18]}];
+    [self.navigationBar setTitleTextAttributes: @{NSForegroundColorAttributeName:FlatBlack, NSFontAttributeName:[UIFont fontWithName:@"SFCompactDisplay-Regular" size:18]}];
 }
 
 @end
