@@ -25,8 +25,6 @@
 		B830A3E31DF3A46F005688A1 /* SFCompactDisplay-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B830A3E11DF3A46F005688A1 /* SFCompactDisplay-Semibold.ttf */; };
 		B830A3E41DF3A46F005688A1 /* SFCompactDisplay-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B830A3E21DF3A46F005688A1 /* SFCompactDisplay-Thin.ttf */; };
 		B830A3E61DF3A688005688A1 /* SFUIDisplay-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B830A3E51DF3A688005688A1 /* SFUIDisplay-Bold.ttf */; };
-		B830A3F81DF3AD8C005688A1 /* Transaction+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = B830A3F51DF3AD8C005688A1 /* Transaction+CoreDataClass.m */; };
-		B830A3F91DF3AD8C005688A1 /* Transaction+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = B830A3F71DF3AD8C005688A1 /* Transaction+CoreDataProperties.m */; };
 		BC23A73DDC53E3A26264CAD5 /* Pods_ZeroBalance.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2307CB63F8FFA47E963FA054 /* Pods_ZeroBalance.framework */; };
 /* End PBXBuildFile section */
 
@@ -83,10 +81,6 @@
 		B830A3E11DF3A46F005688A1 /* SFCompactDisplay-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFCompactDisplay-Semibold.ttf"; sourceTree = "<group>"; };
 		B830A3E21DF3A46F005688A1 /* SFCompactDisplay-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFCompactDisplay-Thin.ttf"; sourceTree = "<group>"; };
 		B830A3E51DF3A688005688A1 /* SFUIDisplay-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIDisplay-Bold.ttf"; sourceTree = "<group>"; };
-		B830A3F41DF3AD8C005688A1 /* Transaction+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Transaction+CoreDataClass.h"; sourceTree = "<group>"; };
-		B830A3F51DF3AD8C005688A1 /* Transaction+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Transaction+CoreDataClass.m"; sourceTree = "<group>"; };
-		B830A3F61DF3AD8C005688A1 /* Transaction+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Transaction+CoreDataProperties.h"; sourceTree = "<group>"; };
-		B830A3F71DF3AD8C005688A1 /* Transaction+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Transaction+CoreDataProperties.m"; sourceTree = "<group>"; };
 		CE5466F5613FB87A45E5596C /* Pods_ZeroBalanceTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZeroBalanceTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -197,10 +191,8 @@
 		B830A38A1DF38CE7005688A1 /* VCs */ = {
 			isa = PBXGroup;
 			children = (
-				B830A3841DF38523005688A1 /* TransactionsViewController.h */,
-				B830A3851DF38523005688A1 /* TransactionsViewController.m */,
-				B830A3871DF38ADA005688A1 /* ContainerNavigationController.h */,
-				B830A3881DF38ADA005688A1 /* ContainerNavigationController.m */,
+				B830A3FD1DF3AE76005688A1 /* Container */,
+				B830A3FC1DF3AE6E005688A1 /* Transactions */,
 			);
 			name = VCs;
 			sourceTree = "<group>";
@@ -247,12 +239,26 @@
 		B830A3FB1DF3ADD1005688A1 /* Transaction */ = {
 			isa = PBXGroup;
 			children = (
-				B830A3F41DF3AD8C005688A1 /* Transaction+CoreDataClass.h */,
-				B830A3F51DF3AD8C005688A1 /* Transaction+CoreDataClass.m */,
-				B830A3F61DF3AD8C005688A1 /* Transaction+CoreDataProperties.h */,
-				B830A3F71DF3AD8C005688A1 /* Transaction+CoreDataProperties.m */,
 			);
 			name = Transaction;
+			sourceTree = "<group>";
+		};
+		B830A3FC1DF3AE6E005688A1 /* Transactions */ = {
+			isa = PBXGroup;
+			children = (
+				B830A3841DF38523005688A1 /* TransactionsViewController.h */,
+				B830A3851DF38523005688A1 /* TransactionsViewController.m */,
+			);
+			name = Transactions;
+			sourceTree = "<group>";
+		};
+		B830A3FD1DF3AE76005688A1 /* Container */ = {
+			isa = PBXGroup;
+			children = (
+				B830A3871DF38ADA005688A1 /* ContainerNavigationController.h */,
+				B830A3881DF38ADA005688A1 /* ContainerNavigationController.m */,
+			);
+			name = Container;
 			sourceTree = "<group>";
 		};
 		E9EF3E7E6524943A4F38B313 /* Pods */ = {
@@ -555,14 +561,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B830A3F81DF3AD8C005688A1 /* Transaction+CoreDataClass.m in Sources */,
 				B830A3531DF384D3005688A1 /* AppDelegate.m in Sources */,
 				B830A3891DF38ADA005688A1 /* ContainerNavigationController.m in Sources */,
 				B830A3501DF384D3005688A1 /* main.m in Sources */,
 				B830A3D51DF39486005688A1 /* DataController.m in Sources */,
 				B830A3861DF38523005688A1 /* TransactionsViewController.m in Sources */,
 				B830A3D91DF3979C005688A1 /* ZeroBalance.xcdatamodeld in Sources */,
-				B830A3F91DF3AD8C005688A1 /* Transaction+CoreDataProperties.m in Sources */,
 				B830A3DD1DF3A0CA005688A1 /* TransactionTableCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
