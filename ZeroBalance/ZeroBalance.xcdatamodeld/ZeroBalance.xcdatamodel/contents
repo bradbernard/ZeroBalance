@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11542" systemVersion="16B2555" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+    <entity name="Person" representedClassName="PersonMO" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="Transaction" representedClassName="TransactionMO" syncable="YES" codeGenerationType="class">
-        <attribute name="date" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="date" attributeType="Date" minDateTimeInterval="-2398140" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="formattedDay" attributeType="String" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
-        <attribute name="people" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="people" attributeType="String" syncable="YES"/>
         <attribute name="total" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Transaction" positionX="-63" positionY="-18" width="128" height="103"/>
+        <element name="Transaction" positionX="-63" positionY="-18" width="128" height="118"/>
+        <element name="Person" positionX="-54" positionY="27" width="128" height="60"/>
     </elements>
 </model>

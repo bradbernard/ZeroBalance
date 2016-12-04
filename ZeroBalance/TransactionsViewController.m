@@ -33,16 +33,8 @@ static NSString *cellIdentifier = @"TransactionTableCell";
     
     self.title = @"Transactions";
     self.managedObjectContext = [[[DataController alloc] init] managedObjectContext];
-//    [self.addButtonItem setTitleTextAttributes:@{
-//                                              NSFontAttributeName: [UIFont fontWithName:@"SFCompactDisplay-Regular" size:17.0],
-//                                              NSForegroundColorAttributeName: [UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0]
-//                                              } forState:UIControlStateNormal];
-//    [self.editButtonItem setTitleTextAttributes:@{
-//                                                 NSFontAttributeName: [UIFont fontWithName:@"SFCompactDisplay-Regular" size:17.0],
-//                                                 NSForegroundColorAttributeName: [UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:1.0]
-//                                                 } forState:UIControlStateNormal];
+    
     [self initializeFetchedResultsController];
-    [self test];
 }
 
 - (void)viewDidUnload {
@@ -93,7 +85,6 @@ static NSString *cellIdentifier = @"TransactionTableCell";
 
 - (void)updateDeleteButtonTitle
 {
-    NSLog(@"%@", @"calling Delete button");
     NSArray *selectedRows = [self.tableView indexPathsForSelectedRows];
     NSUInteger rowCount = [[[self fetchedResultsController] fetchedObjects] count];
     
@@ -141,8 +132,6 @@ static NSString *cellIdentifier = @"TransactionTableCell";
     if (![[self fetchedResultsController] performFetch:&error]) {
         NSLog(@"Failed to initialize FetchedResultsController: %@\n%@", [error localizedDescription], [error userInfo]);
         abort();
-    } else {
-        NSLog(@"WOrked");
     }
 }
 
