@@ -116,16 +116,19 @@ static NSString *cellIdentifier = @"TransactionTableCell";
         TransactionMO *transaction = [[self fetchedResultsController] objectAtIndexPath:indexPath];
         [self.managedObjectContext deleteObject:transaction];
     }
+    
+    NSError *error = nil;
+    [[self managedObjectContext] save:&error];
 }
 
 - (void)initializeFetchedResultsController
 {
     NSFetchRequest* request = [NSFetchRequest fetchRequestWithEntityName:@"Transaction"];
-    NSSortDescriptor* sort = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO];
-    [request setSortDescriptors:@[sort]];
+    NSSortDescriptor* sortDate = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO];
+    [request setSortDescriptors:@[sortDate]];
     
     NSManagedObjectContext* moc = self.managedObjectContext;
-    [self setFetchedResultsController:[[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:moc sectionNameKeyPath:@"date" cacheName:@"RootTransVC"]];
+    [self setFetchedResultsController:[[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:moc sectionNameKeyPath:@"formattedDate" cacheName:@"RootTransVC"]];
     [[self fetchedResultsController] setDelegate:self];
     
     NSError *error = nil;
@@ -154,7 +157,9 @@ static NSString *cellIdentifier = @"TransactionTableCell";
     transaction.name = @"Woodstocks Pizza";
     transaction.total = 25.44;
     transaction.date = [NSDate date];
-    transaction.people = @"Travis, Steve, Bennett";
+    transaction.formattedDate = [NSDateFormatter localizedStringFromDate:transaction.date dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterNoStyle];
+    
+    transaction.people = @"Billy, Bob, Joe, Barry";
     NSError *error = nil;
     [[self managedObjectContext] save:&error];
 }
@@ -226,6 +231,8 @@ static NSString *cellIdentifier = @"TransactionTableCell";
     if(editingStyle == UITableViewCellEditingStyleDelete) {
         TransactionMO *transaction = [[self fetchedResultsController] objectAtIndexPath:indexPath];
         [self.managedObjectContext deleteObject:transaction];
+        NSError *error = nil;
+        [[self managedObjectContext] save:&error];
     }
 }
 

@@ -5,7 +5,7 @@
     </entity>
     <entity name="Transaction" representedClassName="TransactionMO" syncable="YES" codeGenerationType="class">
         <attribute name="date" attributeType="Date" minDateTimeInterval="-2398140" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="formattedDay" attributeType="String" syncable="YES"/>
+        <attribute name="formattedDate" attributeType="String" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="people" attributeType="String" syncable="YES"/>
         <attribute name="total" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
