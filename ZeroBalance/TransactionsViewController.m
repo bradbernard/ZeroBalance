@@ -25,7 +25,6 @@
 @implementation TransactionsViewController
 
 bool deleteAll = true;
-
 static NSString *cellIdentifier = @"TransactionTableCell";
 
 - (void)viewDidLoad {
@@ -33,13 +32,14 @@ static NSString *cellIdentifier = @"TransactionTableCell";
     
     self.title = @"Transactions";
     self.managedObjectContext = [[[DataController alloc] init] managedObjectContext];
-    
     [self initializeFetchedResultsController];
 }
 
 - (void)viewDidUnload {
     self.fetchedResultsController = nil;
 }
+
+#pragma mark - IBAction
 
 - (IBAction)editItemPressed:(UIBarButtonItem *)sender {
     [self editPressed];
@@ -48,6 +48,8 @@ static NSString *cellIdentifier = @"TransactionTableCell";
 - (IBAction)addItemPressed:(UIBarButtonItem *)sender {
     [self addPressed];
 }
+
+#pragma mark - Button Events
 
 -(void) editPressed {
     if(!self.tableView.editing) {
@@ -59,7 +61,6 @@ static NSString *cellIdentifier = @"TransactionTableCell";
         self.editButtonItem.title = @"Edit";
         self.tableView.editing = false;
     }
-    
     [self updateDeleteButtonTitle];
 }
 
@@ -78,9 +79,27 @@ static NSString *cellIdentifier = @"TransactionTableCell";
     }
 }
 
+- (void)test {
+    TransactionMO *transaction = [NSEntityDescription insertNewObjectForEntityForName:@"Transaction" inManagedObjectContext: self.managedObjectContext];
+    transaction.name = @"Woodstocks Pizza";
+    transaction.total = 25.44;
+    transaction.date = [NSDate date];
+    transaction.formattedDate = [NSDateFormatter localizedStringFromDate:transaction.date dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterNoStyle];
+    transaction.people = @"Billy, Bob, Joe, Barry";
+    NSError *error = nil;
+    [[self managedObjectContext] save:&error];
+}
+
+#pragma mark - Deletion
+
 -(void) setToDeleteAll {
     self.addButtonItem.title = @"Delete all";
     deleteAll = true;
+}
+
+-(void) setToDeleteSome: (NSArray*)selectedRows {
+    self.addButtonItem.title = [NSString stringWithFormat: @"Delete (%lu)", (unsigned long) selectedRows.count];
+    deleteAll = false;
 }
 
 - (void)updateDeleteButtonTitle
@@ -95,8 +114,7 @@ static NSString *cellIdentifier = @"TransactionTableCell";
         if (allItemsAreSelected || noItemsAreSelected) {
             [self setToDeleteAll];
         } else {
-            self.addButtonItem.title = [NSString stringWithFormat: @"Delete (%lu)", (unsigned long) selectedRows.count];
-            deleteAll = false;
+            [self setToDeleteSome:selectedRows];
         }
     } else {
         self.addButtonItem.title = @"Add";
@@ -112,6 +130,7 @@ static NSString *cellIdentifier = @"TransactionTableCell";
 - (void)deleteSelectedItems {
     NSArray *selectedRows = [self.tableView indexPathsForSelectedRows];
     NSIndexPath *indexPath = nil;
+    
     for (indexPath in selectedRows) {
         TransactionMO *transaction = [[self fetchedResultsController] objectAtIndexPath:indexPath];
         [self.managedObjectContext deleteObject:transaction];
@@ -119,6 +138,21 @@ static NSString *cellIdentifier = @"TransactionTableCell";
     
     NSError *error = nil;
     [[self managedObjectContext] save:&error];
+}
+
+- (void)deleteAllTransactions {
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Transaction"];
+    [fetchRequest setIncludesPropertyValues:NO];
+    
+    NSError *error;
+    NSArray *fetchedObjects = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    
+    for (NSManagedObject *object in fetchedObjects) {
+        [self.managedObjectContext deleteObject:object];
+    }
+    
+    error = nil;
+    [self.managedObjectContext save:&error];
 }
 
 - (void)initializeFetchedResultsController
@@ -138,42 +172,17 @@ static NSString *cellIdentifier = @"TransactionTableCell";
     }
 }
 
-- (void)deleteAllTransactions {
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Transaction"];
-    [fetchRequest setIncludesPropertyValues:NO];
-    
-    NSError *error;
-    NSArray *fetchedObjects = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-    for (NSManagedObject *object in fetchedObjects) {
-        [self.managedObjectContext deleteObject:object];
-    }
-    
-    error = nil;
-    [self.managedObjectContext save:&error];
-}
-
-- (void)test {
-    TransactionMO *transaction = [NSEntityDescription insertNewObjectForEntityForName:@"Transaction" inManagedObjectContext: self.managedObjectContext];
-    transaction.name = @"Woodstocks Pizza";
-    transaction.total = 25.44;
-    transaction.date = [NSDate date];
-    transaction.formattedDate = [NSDateFormatter localizedStringFromDate:transaction.date dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterNoStyle];
-    
-    transaction.people = @"Billy, Bob, Joe, Barry";
-    NSError *error = nil;
-    [[self managedObjectContext] save:&error];
-}
+#pragma mark - UITableView
 
 - (void)configureCell:(TransactionTableCell*)cell atIndexPath:(NSIndexPath*)indexPath
 {
     TransactionMO *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+    
     cell.nameLabel.text = object.name;
     cell.dateLabel.text = [NSDateFormatter localizedStringFromDate:object.date dateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterShortStyle];
     cell.amountLabel.text = [NSString stringWithFormat:@"$%.02f", object.total];
     cell.peopleLabel.text = object.people;
 }
-
-// UITableViewController Methods
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -236,7 +245,7 @@ static NSString *cellIdentifier = @"TransactionTableCell";
     }
 }
 
-// NSFetchedResultsController Methods
+#pragma mark - NSFetchedResultsController
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
 {

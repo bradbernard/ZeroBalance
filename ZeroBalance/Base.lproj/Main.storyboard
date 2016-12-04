@@ -24,6 +24,8 @@
         <scene sceneID="ntw-zH-4tc">
             <objects>
                 <navigationController storyboardIdentifier="ContainerNavigationController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="v16-PE-9oi" customClass="ContainerNavigationController" sceneMemberID="viewController">
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="667"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="k2z-iC-QQU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -116,12 +118,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="xlE-na-Nb6">
-                        <barButtonItem key="leftBarButtonItem" title="Edit" style="plain" id="Qiy-Eb-gsO">
+                        <barButtonItem key="leftBarButtonItem" title="Edit" id="Qiy-Eb-gsO">
                             <connections>
                                 <action selector="editItemPressed:" destination="WZa-R5-Lfd" id="t5f-ir-JyR"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Add" style="plain" id="r97-35-sOX">
+                        <barButtonItem key="rightBarButtonItem" title="Add" id="r97-35-sOX">
                             <connections>
                                 <action selector="addItemPressed:" destination="WZa-R5-Lfd" id="4Uc-pR-jEY"/>
                             </connections>
