@@ -24,6 +24,7 @@
 		B830A3E01DF3A418005688A1 /* SFCompactDisplay-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B830A3DF1DF3A418005688A1 /* SFCompactDisplay-Regular.ttf */; };
 		B830A3E31DF3A46F005688A1 /* SFCompactDisplay-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B830A3E11DF3A46F005688A1 /* SFCompactDisplay-Semibold.ttf */; };
 		B830A3E41DF3A46F005688A1 /* SFCompactDisplay-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B830A3E21DF3A46F005688A1 /* SFCompactDisplay-Thin.ttf */; };
+		B830A3E61DF3A688005688A1 /* SFUIDisplay-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B830A3E51DF3A688005688A1 /* SFUIDisplay-Bold.ttf */; };
 		BC23A73DDC53E3A26264CAD5 /* Pods_ZeroBalance.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2307CB63F8FFA47E963FA054 /* Pods_ZeroBalance.framework */; };
 /* End PBXBuildFile section */
 
@@ -79,6 +80,7 @@
 		B830A3DF1DF3A418005688A1 /* SFCompactDisplay-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFCompactDisplay-Regular.ttf"; sourceTree = "<group>"; };
 		B830A3E11DF3A46F005688A1 /* SFCompactDisplay-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFCompactDisplay-Semibold.ttf"; sourceTree = "<group>"; };
 		B830A3E21DF3A46F005688A1 /* SFCompactDisplay-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFCompactDisplay-Thin.ttf"; sourceTree = "<group>"; };
+		B830A3E51DF3A688005688A1 /* SFUIDisplay-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIDisplay-Bold.ttf"; sourceTree = "<group>"; };
 		CE5466F5613FB87A45E5596C /* Pods_ZeroBalanceTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZeroBalanceTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -211,6 +213,7 @@
 		B830A3DE1DF3A40F005688A1 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				B830A3E51DF3A688005688A1 /* SFUIDisplay-Bold.ttf */,
 				B830A3E11DF3A46F005688A1 /* SFCompactDisplay-Semibold.ttf */,
 				B830A3E21DF3A46F005688A1 /* SFCompactDisplay-Thin.ttf */,
 				B830A3DF1DF3A418005688A1 /* SFCompactDisplay-Regular.ttf */,
@@ -352,6 +355,7 @@
 				B830A3611DF384D3005688A1 /* LaunchScreen.storyboard in Resources */,
 				B830A3E01DF3A418005688A1 /* SFCompactDisplay-Regular.ttf in Resources */,
 				B830A35E1DF384D3005688A1 /* Assets.xcassets in Resources */,
+				B830A3E61DF3A688005688A1 /* SFUIDisplay-Bold.ttf in Resources */,
 				B830A3E41DF3A46F005688A1 /* SFCompactDisplay-Thin.ttf in Resources */,
 				B830A3E31DF3A46F005688A1 /* SFCompactDisplay-Semibold.ttf in Resources */,
 				B830A35C1DF384D3005688A1 /* Main.storyboard in Resources */,

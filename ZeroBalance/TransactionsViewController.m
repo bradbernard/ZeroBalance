@@ -20,6 +20,7 @@
     [super viewDidLoad];
     
     [self setStatusBarStyle:UIStatusBarStyleContrast];
+    self.title = @"Transactions";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
