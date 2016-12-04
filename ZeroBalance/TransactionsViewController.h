@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <ChameleonFramework/Chameleon.h>
 
-@interface TransactionsViewController : UIViewController<UICollectionViewDelegate, UICollectionViewDataSource>
+@interface TransactionsViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
 
 @end

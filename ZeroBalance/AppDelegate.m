@@ -16,8 +16,9 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [Chameleon setGlobalThemeUsingPrimaryColor:FlatNavyBlue withSecondaryColor:FlatWhite andContentStyle:UIContentStyleContrast];
+    [Chameleon setGlobalThemeUsingPrimaryColor:FlatNavyBlue withSecondaryColor:FlatWhite usingFontName:@"SFCompactDisplay-Regular" andContentStyle:UIContentStyleContrast];
     [self setDataController:[[DataController alloc] init]];
+    
     return YES;
 }
 

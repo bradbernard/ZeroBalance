@@ -1,5 +1,5 @@
 //
-//  TransactionCollectionViewCell.h
+//  TransactionTableCell.h
 //  ZeroBalance
 //
 //  Created by Brad Bernard on 12/3/16.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TransactionCollectionViewCell : UICollectionViewCell
+@interface TransactionTableCell : UITableViewCell
 
 @end
