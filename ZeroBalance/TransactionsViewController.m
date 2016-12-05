@@ -8,9 +8,11 @@
 
 #import <CoreData/CoreData.h>
 #import "TransactionsViewController.h"
-#import "TransactionMO+CoreDataClass.h"
 #import "TransactionTableCell.h"
 #import "DataController.h"
+#import "PaymentMO+CoreDataClass.h"
+#import "TransactionMO+CoreDataClass.h"
+#import "PersonMO+CoreDataClass.h"
 
 @interface TransactionsViewController ()
 
@@ -80,14 +82,29 @@ static NSString *cellIdentifier = @"TransactionTableCell";
 }
 
 - (void)test {
+    PersonMO *person = [NSEntityDescription insertNewObjectForEntityForName:@"Person" inManagedObjectContext:self.managedObjectContext];
+    person.firstName = @"Billy";
+    person.lastName = @"Bob";
+    person.name = @"Billy Bob";
+    person.phoneNumber = @"5556667777";
+    
+    PaymentMO *payment1 = [NSEntityDescription insertNewObjectForEntityForName:@"Payment" inManagedObjectContext:self.managedObjectContext];
+    payment1.paid = 10.00;
+    
     TransactionMO *transaction = [NSEntityDescription insertNewObjectForEntityForName:@"Transaction" inManagedObjectContext: self.managedObjectContext];
     transaction.name = @"Woodstocks Pizza";
     transaction.total = 25.44;
     transaction.date = [NSDate date];
     transaction.formattedDate = [NSDateFormatter localizedStringFromDate:transaction.date dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterNoStyle];
-    transaction.people = @"Billy, Bob, Joe, Barry";
+    
+    NSMutableSet *payments = [[NSMutableSet alloc] init];
+    [payments addObject:payment1];
+    transaction.payments = payments;
+    
     NSError *error = nil;
-    [[self managedObjectContext] save:&error];
+    if ([[self managedObjectContext] save:&error] == NO) {
+        NSAssert(NO, @"Error saving context: %@\n%@", [error localizedDescription], [error userInfo]);
+    }
 }
 
 #pragma mark - Deletion
@@ -137,7 +154,9 @@ static NSString *cellIdentifier = @"TransactionTableCell";
     }
     
     NSError *error = nil;
-    [[self managedObjectContext] save:&error];
+    if ([[self managedObjectContext] save:&error] == NO) {
+        NSAssert(NO, @"Error saving context: %@\n%@", [error localizedDescription], [error userInfo]);
+    }
 }
 
 - (void)deleteAllTransactions {
@@ -152,7 +171,9 @@ static NSString *cellIdentifier = @"TransactionTableCell";
     }
     
     error = nil;
-    [self.managedObjectContext save:&error];
+    if ([[self managedObjectContext] save:&error] == NO) {
+        NSAssert(NO, @"Error saving context: %@\n%@", [error localizedDescription], [error userInfo]);
+    }
 }
 
 - (void)initializeFetchedResultsController
@@ -181,7 +202,7 @@ static NSString *cellIdentifier = @"TransactionTableCell";
     cell.nameLabel.text = object.name;
     cell.dateLabel.text = [NSDateFormatter localizedStringFromDate:object.date dateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterShortStyle];
     cell.amountLabel.text = [NSString stringWithFormat:@"$%.02f", object.total];
-    cell.peopleLabel.text = object.people;
+//    cell.peopleLabel.text = object.people;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -240,8 +261,11 @@ static NSString *cellIdentifier = @"TransactionTableCell";
     if(editingStyle == UITableViewCellEditingStyleDelete) {
         TransactionMO *transaction = [[self fetchedResultsController] objectAtIndexPath:indexPath];
         [self.managedObjectContext deleteObject:transaction];
+        
         NSError *error = nil;
-        [[self managedObjectContext] save:&error];
+        if ([[self managedObjectContext] save:&error] == NO) {
+            NSAssert(NO, @"Error saving context: %@\n%@", [error localizedDescription], [error userInfo]);
+        }
     }
 }
 

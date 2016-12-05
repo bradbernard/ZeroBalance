@@ -223,24 +223,8 @@
 				B830A3D71DF3979C005688A1 /* ZeroBalance.xcdatamodeld */,
 				B830A3D61DF394C1005688A1 /* DataController.h */,
 				B830A3D41DF39486005688A1 /* DataController.m */,
-				B830A3FA1DF3ADC9005688A1 /* Models */,
 			);
 			name = CoreData;
-			sourceTree = "<group>";
-		};
-		B830A3FA1DF3ADC9005688A1 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				B830A3FB1DF3ADD1005688A1 /* Transaction */,
-			);
-			name = Models;
-			sourceTree = "<group>";
-		};
-		B830A3FB1DF3ADD1005688A1 /* Transaction */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Transaction;
 			sourceTree = "<group>";
 		};
 		B830A3FC1DF3AE6E005688A1 /* Transactions */ = {
