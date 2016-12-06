@@ -77,6 +77,7 @@ static NSString *cellIdentifier = @"TransactionTableCell";
         }
     } else {
         [self test];
+        [self updateDeleteButtonTitle];
             //    [self presentViewController:<#(nonnull UIViewController *)#> animated:<#(BOOL)#> completion:<#^(void)completion#>]
     }
 }
@@ -90,6 +91,11 @@ static NSString *cellIdentifier = @"TransactionTableCell";
     
     PaymentMO *payment1 = [NSEntityDescription insertNewObjectForEntityForName:@"Payment" inManagedObjectContext:self.managedObjectContext];
     payment1.paid = 10.00;
+    payment1.person = person;
+    
+    NSMutableSet *personPayments = [[NSMutableSet alloc] init];
+    [personPayments addObject:payment1];
+    person.payments = personPayments;
     
     TransactionMO *transaction = [NSEntityDescription insertNewObjectForEntityForName:@"Transaction" inManagedObjectContext: self.managedObjectContext];
     transaction.name = @"Woodstocks Pizza";
@@ -100,6 +106,7 @@ static NSString *cellIdentifier = @"TransactionTableCell";
     NSMutableSet *payments = [[NSMutableSet alloc] init];
     [payments addObject:payment1];
     transaction.payments = payments;
+    payment1.transaction = transaction;
     
     NSError *error = nil;
     if ([[self managedObjectContext] save:&error] == NO) {
@@ -202,7 +209,14 @@ static NSString *cellIdentifier = @"TransactionTableCell";
     cell.nameLabel.text = object.name;
     cell.dateLabel.text = [NSDateFormatter localizedStringFromDate:object.date dateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterShortStyle];
     cell.amountLabel.text = [NSString stringWithFormat:@"$%.02f", object.total];
-//    cell.peopleLabel.text = object.people;
+
+    NSString *people = @"";
+    PaymentMO *payment;
+    for (payment in object.payments) {
+        people = [people stringByAppendingString:payment.person.name];
+    }
+    
+    cell.peopleLabel.text = people;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
