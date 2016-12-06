@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1BE31DB53AEA3DD00058E09F /* Pods_ZeroBalanceTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE5466F5613FB87A45E5596C /* Pods_ZeroBalanceTests.framework */; };
 		7F0F99C04CBDC3BFBCB59E60 /* Pods_ZeroBalanceUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57B8380866B7A6B299EC29F3 /* Pods_ZeroBalanceUITests.framework */; };
+		B81396F51DF661960018E699 /* NewTransactionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B81396F41DF661960018E699 /* NewTransactionViewController.m */; };
 		B830A3501DF384D3005688A1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B830A34F1DF384D3005688A1 /* main.m */; };
 		B830A3531DF384D3005688A1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B830A3521DF384D3005688A1 /* AppDelegate.m */; };
 		B830A35C1DF384D3005688A1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B830A35A1DF384D3005688A1 /* Main.storyboard */; };
@@ -53,6 +54,8 @@
 		586BD240C10EC46C26A6F119 /* Pods-ZeroBalanceUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZeroBalanceUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZeroBalanceUITests/Pods-ZeroBalanceUITests.release.xcconfig"; sourceTree = "<group>"; };
 		9315B819EAD1E4427645D708 /* Pods-ZeroBalanceTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZeroBalanceTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZeroBalanceTests/Pods-ZeroBalanceTests.release.xcconfig"; sourceTree = "<group>"; };
 		A009F7FC2E3B6069695F7BC2 /* Pods-ZeroBalanceUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZeroBalanceUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZeroBalanceUITests/Pods-ZeroBalanceUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		B81396F31DF661960018E699 /* NewTransactionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewTransactionViewController.h; sourceTree = "<group>"; };
+		B81396F41DF661960018E699 /* NewTransactionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewTransactionViewController.m; sourceTree = "<group>"; };
 		B819544ABB44A4951F27E86C /* Pods-ZeroBalance.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZeroBalance.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZeroBalance/Pods-ZeroBalance.release.xcconfig"; sourceTree = "<group>"; };
 		B830A34B1DF384D3005688A1 /* ZeroBalance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZeroBalance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B830A34F1DF384D3005688A1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -122,6 +125,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		B81396F61DF6619F0018E699 /* NewTransaction */ = {
+			isa = PBXGroup;
+			children = (
+				B81396F31DF661960018E699 /* NewTransactionViewController.h */,
+				B81396F41DF661960018E699 /* NewTransactionViewController.m */,
+			);
+			name = NewTransaction;
+			sourceTree = "<group>";
+		};
+		B81396F71DF6626A0018E699 /* CollectionCells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = CollectionCells;
+			sourceTree = "<group>";
+		};
 		B830A3421DF384D3005688A1 = {
 			isa = PBXGroup;
 			children = (
@@ -147,6 +166,7 @@
 		B830A34D1DF384D3005688A1 /* ZeroBalance */ = {
 			isa = PBXGroup;
 			children = (
+				B81396F71DF6626A0018E699 /* CollectionCells */,
 				B830A3E91DF3ABAF005688A1 /* CoreData */,
 				B830A3DE1DF3A40F005688A1 /* Fonts */,
 				B830A3DA1DF3A0B4005688A1 /* TableCells */,
@@ -193,6 +213,7 @@
 			children = (
 				B830A3FD1DF3AE76005688A1 /* Container */,
 				B830A3FC1DF3AE6E005688A1 /* Transactions */,
+				B81396F61DF6619F0018E699 /* NewTransaction */,
 			);
 			name = VCs;
 			sourceTree = "<group>";
@@ -545,6 +566,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B81396F51DF661960018E699 /* NewTransactionViewController.m in Sources */,
 				B830A3531DF384D3005688A1 /* AppDelegate.m in Sources */,
 				B830A3891DF38ADA005688A1 /* ContainerNavigationController.m in Sources */,
 				B830A3501DF384D3005688A1 /* main.m in Sources */,

@@ -139,5 +139,56 @@
             </objects>
             <point key="canvasLocation" x="8.8000000000000007" y="-298.2008995502249"/>
         </scene>
+        <!--New Transaction View Controller-->
+        <scene sceneID="E8A-gL-JoH">
+            <objects>
+                <viewController storyboardIdentifier="NewTransactionViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="HfB-sW-WYd" customClass="NewTransactionViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ByJ-vB-YPX"/>
+                        <viewControllerLayoutGuide type="bottom" id="Its-J5-wZR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1Cd-3R-p6a">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="OMS-aQ-Xmp">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="rGM-z9-md8">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="c1Z-cY-bWj">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="HfB-sW-WYd" id="hso-l6-7c9"/>
+                                    <outlet property="delegate" destination="HfB-sW-WYd" id="gqt-it-jP2"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="OMS-aQ-Xmp" firstAttribute="centerX" secondItem="1Cd-3R-p6a" secondAttribute="centerX" id="Khe-U2-LSS"/>
+                            <constraint firstItem="OMS-aQ-Xmp" firstAttribute="height" secondItem="1Cd-3R-p6a" secondAttribute="height" id="NFK-Ol-CbK"/>
+                            <constraint firstItem="OMS-aQ-Xmp" firstAttribute="centerY" secondItem="1Cd-3R-p6a" secondAttribute="centerY" id="btv-ab-r0o"/>
+                            <constraint firstItem="OMS-aQ-Xmp" firstAttribute="width" secondItem="1Cd-3R-p6a" secondAttribute="width" id="ilb-7q-IlQ"/>
+                        </constraints>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wlQ-Vb-EVc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="733.60000000000002" y="-298.2008995502249"/>
+        </scene>
     </scenes>
 </document>

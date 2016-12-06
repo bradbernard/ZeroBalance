@@ -16,11 +16,11 @@
 
 @interface TransactionsViewController ()
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *addButtonItem;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *editButtonItem;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSManagedObjectContext* managedObjectContext;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *addButtonItem;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *editButtonItem;
 
 @end
 
@@ -44,16 +44,16 @@ static NSString *cellIdentifier = @"TransactionTableCell";
 #pragma mark - IBAction
 
 - (IBAction)editItemPressed:(UIBarButtonItem *)sender {
-    [self editPressed];
+    [self toggleEditing];
 }
 
 - (IBAction)addItemPressed:(UIBarButtonItem *)sender {
-    [self addPressed];
+    [self deleteOrAddRecord];
 }
 
 #pragma mark - Button Events
 
--(void) editPressed {
+-(void) toggleEditing {
     if(!self.tableView.editing) {
         [self.tableView setEditing:UITableViewCellEditingStyleDelete animated:YES];
         self.editButtonItem.title = @"Cancel";
@@ -66,14 +66,14 @@ static NSString *cellIdentifier = @"TransactionTableCell";
     [self updateDeleteButtonTitle];
 }
 
--(void) addPressed {
+-(void) deleteOrAddRecord {
     if(self.tableView.editing) {
         if(deleteAll) {
             [self deleteAllTransactions];
-            [self editPressed];
+            [self toggleEditing];
         } else {
             [self deleteSelectedItems];
-            [self setToDeleteAll];
+            [self addButtonDeleteAll];
         }
     } else {
         [self test];
@@ -116,13 +116,13 @@ static NSString *cellIdentifier = @"TransactionTableCell";
 
 #pragma mark - Deletion
 
--(void) setToDeleteAll {
+-(void) addButtonDeleteAll {
     self.addButtonItem.title = @"Delete all";
     deleteAll = true;
 }
 
--(void) setToDeleteSome: (NSArray*)selectedRows {
-    self.addButtonItem.title = [NSString stringWithFormat: @"Delete (%lu)", (unsigned long) selectedRows.count];
+-(void) addButtonDeleteSelected: (NSUInteger)count {
+    self.addButtonItem.title = [NSString stringWithFormat: @"Delete (%lu)", (unsigned long) count];
     deleteAll = false;
 }
 
@@ -136,9 +136,9 @@ static NSString *cellIdentifier = @"TransactionTableCell";
     
     if(self.tableView.editing) {
         if (allItemsAreSelected || noItemsAreSelected) {
-            [self setToDeleteAll];
+            [self addButtonDeleteAll];
         } else {
-            [self setToDeleteSome:selectedRows];
+            [self addButtonDeleteSelected:selectedRows.count];
         }
     } else {
         self.addButtonItem.title = @"Add";
