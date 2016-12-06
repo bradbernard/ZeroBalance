@@ -33,7 +33,7 @@ static NSString *cellIdentifier = @"TransactionTableCell";
     [super viewDidLoad];
     
     self.title = @"Transactions";
-    self.managedObjectContext = [[[DataController alloc] init] managedObjectContext];
+//    self.managedObjectContext = [[[DataController alloc] init] managedObjectContext];
     [self initializeFetchedResultsController];
 }
 

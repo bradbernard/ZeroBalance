@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface NewTransactionViewController : UIViewController
+@interface NewTransactionViewController : BaseViewController<UICollectionViewDelegate, UICollectionViewDataSource>
 
 @end

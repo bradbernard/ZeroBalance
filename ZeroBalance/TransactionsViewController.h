@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <ChameleonFramework/Chameleon.h>
+#import "BaseViewController.h"
 
-@interface TransactionsViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate>
+@interface TransactionsViewController : BaseViewController<UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate>
 
 
 @end
