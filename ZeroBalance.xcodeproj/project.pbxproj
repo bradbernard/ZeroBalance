@@ -12,6 +12,7 @@
 		B81396F51DF661960018E699 /* NewTransactionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B81396F41DF661960018E699 /* NewTransactionViewController.m */; };
 		B81396FB1DF6656A0018E699 /* BaseViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = B81396FA1DF6656A0018E699 /* BaseViewController.h */; };
 		B81396FD1DF665A40018E699 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B81396FC1DF665A40018E699 /* BaseViewController.m */; };
+		B81397001DF669990018E699 /* PaymentCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B81396FF1DF669990018E699 /* PaymentCollectionCell.m */; };
 		B830A3501DF384D3005688A1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B830A34F1DF384D3005688A1 /* main.m */; };
 		B830A3531DF384D3005688A1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B830A3521DF384D3005688A1 /* AppDelegate.m */; };
 		B830A35C1DF384D3005688A1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B830A35A1DF384D3005688A1 /* Main.storyboard */; };
@@ -60,6 +61,8 @@
 		B81396F41DF661960018E699 /* NewTransactionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewTransactionViewController.m; sourceTree = "<group>"; };
 		B81396FA1DF6656A0018E699 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		B81396FC1DF665A40018E699 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		B81396FE1DF669990018E699 /* PaymentCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentCollectionCell.h; sourceTree = "<group>"; };
+		B81396FF1DF669990018E699 /* PaymentCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentCollectionCell.m; sourceTree = "<group>"; };
 		B819544ABB44A4951F27E86C /* Pods-ZeroBalance.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZeroBalance.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZeroBalance/Pods-ZeroBalance.release.xcconfig"; sourceTree = "<group>"; };
 		B830A34B1DF384D3005688A1 /* ZeroBalance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZeroBalance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B830A34F1DF384D3005688A1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -141,15 +144,10 @@
 		B81396F71DF6626A0018E699 /* CollectionCells */ = {
 			isa = PBXGroup;
 			children = (
+				B81396FE1DF669990018E699 /* PaymentCollectionCell.h */,
+				B81396FF1DF669990018E699 /* PaymentCollectionCell.m */,
 			);
 			name = CollectionCells;
-			sourceTree = "<group>";
-		};
-		B81396F81DF6647A0018E699 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Protocols;
 			sourceTree = "<group>";
 		};
 		B81396F91DF665430018E699 /* Interfaces */ = {
@@ -187,7 +185,6 @@
 			isa = PBXGroup;
 			children = (
 				B81396F91DF665430018E699 /* Interfaces */,
-				B81396F81DF6647A0018E699 /* Protocols */,
 				B81396F71DF6626A0018E699 /* CollectionCells */,
 				B830A3E91DF3ABAF005688A1 /* CoreData */,
 				B830A3DE1DF3A40F005688A1 /* Fonts */,
@@ -593,6 +590,7 @@
 				B81396FB1DF6656A0018E699 /* BaseViewController.h in Sources */,
 				B830A3531DF384D3005688A1 /* AppDelegate.m in Sources */,
 				B830A3891DF38ADA005688A1 /* ContainerNavigationController.m in Sources */,
+				B81397001DF669990018E699 /* PaymentCollectionCell.m in Sources */,
 				B830A3501DF384D3005688A1 /* main.m in Sources */,
 				B830A3D51DF39486005688A1 /* DataController.m in Sources */,
 				B830A3861DF38523005688A1 /* TransactionsViewController.m in Sources */,

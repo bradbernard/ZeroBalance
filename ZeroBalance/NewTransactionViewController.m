@@ -19,9 +19,12 @@
 @implementation NewTransactionViewController
 
 static NSString *cellIdentifier = @"PaymentCollectionCell";
+static unsigned int cellHeight = 70;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.title = @"New Transaction";
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -35,6 +38,10 @@ static NSString *cellIdentifier = @"PaymentCollectionCell";
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
     
     return cell;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    return CGSizeMake(collectionView.bounds.size.width, cellHeight);
 }
 
 

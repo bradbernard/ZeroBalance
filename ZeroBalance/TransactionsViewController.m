@@ -33,7 +33,6 @@ static NSString *cellIdentifier = @"TransactionTableCell";
     [super viewDidLoad];
     
     self.title = @"Transactions";
-//    self.managedObjectContext = [[[DataController alloc] init] managedObjectContext];
     [self initializeFetchedResultsController];
 }
 
@@ -210,13 +209,13 @@ static NSString *cellIdentifier = @"TransactionTableCell";
     cell.dateLabel.text = [NSDateFormatter localizedStringFromDate:object.date dateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterShortStyle];
     cell.amountLabel.text = [NSString stringWithFormat:@"$%.02f", object.total];
 
-    NSString *people = @"";
     PaymentMO *payment;
+    NSMutableArray *peopleCollection = [[NSMutableArray alloc] init];
     for (payment in object.payments) {
-        people = [people stringByAppendingString:payment.person.name];
+        [peopleCollection addObject:payment.person];
     }
     
-    cell.peopleLabel.text = people;
+    cell.peopleLabel.text = [[peopleCollection valueForKey:@"name"] componentsJoinedByString:@","];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
