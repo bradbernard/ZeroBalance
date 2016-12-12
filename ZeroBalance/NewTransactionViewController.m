@@ -14,6 +14,9 @@
 
 @interface NewTransactionViewController ()
 
+@property (weak, nonatomic) IBOutlet UITextField *nameText;
+@property (weak, nonatomic) IBOutlet UITextField *moneyText;
+
 @end
 
 @implementation NewTransactionViewController
@@ -24,7 +27,22 @@ static unsigned int cellHeight = 70;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"New Transaction";
+    self.title = @"Add Transaction";
+    
+    UIBarButtonItem *close = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(closeModal:)];
+    UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveTransaction:)];
+    
+    self.navigationItem.leftBarButtonItem = close;
+    self.navigationItem.rightBarButtonItem = done;
+}
+
+- (IBAction)closeModal:(id)sender {
+    NSLog(@"Wow");
+    [self dismissViewControllerAnimated:true completion:nil];
+}
+
+- (IBAction)saveTransaction:(id)sender {
+    NSLog(@"Saved");
 }
 
 #pragma mark - UICollectionViewDataSource

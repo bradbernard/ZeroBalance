@@ -13,6 +13,7 @@
 #import "PaymentMO+CoreDataClass.h"
 #import "TransactionMO+CoreDataClass.h"
 #import "PersonMO+CoreDataClass.h"
+#import "NewTransactionNavigationController.h"
 
 @interface TransactionsViewController ()
 
@@ -28,12 +29,14 @@
 
 bool deleteAll = true;
 static NSString *cellIdentifier = @"TransactionTableCell";
+static NSString *storyboardName = @"Main";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.title = @"Transactions";
     [self initializeFetchedResultsController];
+    [self updateDeleteButtonTitle];
 }
 
 - (void)viewDidUnload {
@@ -75,42 +78,54 @@ static NSString *cellIdentifier = @"TransactionTableCell";
             [self addButtonDeleteAll];
         }
     } else {
-        [self test];
-        [self updateDeleteButtonTitle];
-            //    [self presentViewController:<#(nonnull UIViewController *)#> animated:<#(BOOL)#> completion:<#^(void)completion#>]
+        [self presentAddTransaction];
     }
 }
 
+- (void)presentAddTransaction {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle: nil];
+        NewTransactionNavigationController *viewController = (NewTransactionNavigationController*)[storyboard instantiateViewControllerWithIdentifier:@"NewTransactionNavigationController"];
+        [self.navigationController presentViewController:viewController animated:true completion:nil];
+}
+
 - (void)test {
-    PersonMO *person = [NSEntityDescription insertNewObjectForEntityForName:@"Person" inManagedObjectContext:self.managedObjectContext];
-    person.firstName = @"Billy";
-    person.lastName = @"Bob";
-    person.name = @"Billy Bob";
-    person.phoneNumber = @"5556667777";
     
-    PaymentMO *payment1 = [NSEntityDescription insertNewObjectForEntityForName:@"Payment" inManagedObjectContext:self.managedObjectContext];
-    payment1.paid = 10.00;
-    payment1.person = person;
+//    NewTransactionViewController *viewController = [[NewTransactionViewController alloc] initWithNibName:@"NewTransactionViewController" bundle:nil];
     
-    NSMutableSet *personPayments = [[NSMutableSet alloc] init];
-    [personPayments addObject:payment1];
-    person.payments = personPayments;
-    
-    TransactionMO *transaction = [NSEntityDescription insertNewObjectForEntityForName:@"Transaction" inManagedObjectContext: self.managedObjectContext];
-    transaction.name = @"Woodstocks Pizza";
-    transaction.total = 25.44;
-    transaction.date = [NSDate date];
-    transaction.formattedDate = [NSDateFormatter localizedStringFromDate:transaction.date dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterNoStyle];
-    
-    NSMutableSet *payments = [[NSMutableSet alloc] init];
-    [payments addObject:payment1];
-    transaction.payments = payments;
-    payment1.transaction = transaction;
-    
-    NSError *error = nil;
-    if ([[self managedObjectContext] save:&error] == NO) {
-        NSAssert(NO, @"Error saving context: %@\n%@", [error localizedDescription], [error userInfo]);
-    }
+        //UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle: nil];
+        //NewTransactionViewController *viewController = (NewTransactionViewController*)[storyboard instantiateViewControllerWithIdentifier:@"NewTransactionViewController"];
+        //[self.navigationController pushViewController:viewController animated:true];
+
+
+//    PersonMO *person = [NSEntityDescription insertNewObjectForEntityForName:@"Person" inManagedObjectContext:self.managedObjectContext];
+//    person.firstName = @"Billy";
+//    person.lastName = @"Bob";
+//    person.name = @"Billy Bob";
+//    person.phoneNumber = @"5556667777";
+//    
+//    PaymentMO *payment1 = [NSEntityDescription insertNewObjectForEntityForName:@"Payment" inManagedObjectContext:self.managedObjectContext];
+//    payment1.paid = 10.00;
+//    payment1.person = person;
+//    
+//    NSMutableSet *personPayments = [[NSMutableSet alloc] init];
+//    [personPayments addObject:payment1];
+//    person.payments = personPayments;
+//    
+//    TransactionMO *transaction = [NSEntityDescription insertNewObjectForEntityForName:@"Transaction" inManagedObjectContext: self.managedObjectContext];
+//    transaction.name = @"Woodstocks Pizza";
+//    transaction.total = 25.44;
+//    transaction.date = [NSDate date];
+//    transaction.formattedDate = [NSDateFormatter localizedStringFromDate:transaction.date dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterNoStyle];
+//    
+//    NSMutableSet *payments = [[NSMutableSet alloc] init];
+//    [payments addObject:payment1];
+//    transaction.payments = payments;
+//    payment1.transaction = transaction;
+//
+//    NSError *error = nil;
+//    if ([[self managedObjectContext] save:&error] == NO) {
+//        NSAssert(NO, @"Error saving context: %@\n%@", [error localizedDescription], [error userInfo]);
+//    }
 }
 
 #pragma mark - Deletion
