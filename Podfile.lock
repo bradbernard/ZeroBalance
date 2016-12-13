@@ -2,13 +2,16 @@ PODS:
   - ChameleonFramework (2.1.0):
     - ChameleonFramework/Default (= 2.1.0)
   - ChameleonFramework/Default (2.1.0)
+  - HSDatePickerViewController (1.0.4)
 
 DEPENDENCIES:
   - ChameleonFramework
+  - HSDatePickerViewController (~> 1.0)
 
 SPEC CHECKSUMS:
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
+  HSDatePickerViewController: 5a72b71f8c3b10e76f2c28a898f8572b551432a6
 
-PODFILE CHECKSUM: 88f9de4e55383d308f8ba4771c3dcdcf7822a570
+PODFILE CHECKSUM: 3365f38cf824941ff352713c3acbaa77d5098d18
 
 COCOAPODS: 1.1.1

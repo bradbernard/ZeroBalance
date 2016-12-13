@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
+#import "HSDatePickerViewController.h"
 
-@interface NewTransactionViewController : BaseViewController<UICollectionViewDelegate, UICollectionViewDataSource>
+@interface NewTransactionViewController : BaseViewController<UICollectionViewDelegate, UICollectionViewDataSource, HSDatePickerViewControllerDelegate, UITextFieldDelegate>
 
 @end

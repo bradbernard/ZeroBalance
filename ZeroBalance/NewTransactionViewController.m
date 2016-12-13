@@ -16,25 +16,33 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *nameText;
 @property (weak, nonatomic) IBOutlet UITextField *moneyText;
+@property (weak, nonatomic) IBOutlet UITextField *dateText;
 
 @end
 
 @implementation NewTransactionViewController
 
 static NSString *cellIdentifier = @"PaymentCollectionCell";
+static NSString *currencySymbol = @"$";
 static unsigned int cellHeight = 70;
+
+NSDate *date = nil;
+HSDatePickerViewController *picker = nil;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.title = @"Add Transaction";
     
-    UIBarButtonItem *close = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(closeModal:)];
-    UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveTransaction:)];
+    date = [NSDate date];
+    picker = [[HSDatePickerViewController alloc] init];
+    picker.delegate = self;
     
-    self.navigationItem.leftBarButtonItem = close;
-    self.navigationItem.rightBarButtonItem = done;
+    [self navigationItems];
+    [self displayDate];
 }
+
+#pragma mark - IBActions
 
 - (IBAction)closeModal:(id)sender {
     NSLog(@"Wow");
@@ -43,6 +51,50 @@ static unsigned int cellHeight = 70;
 
 - (IBAction)saveTransaction:(id)sender {
     NSLog(@"Saved");
+}
+
+
+- (IBAction)datePressed:(id)sender {
+    [self presentViewController:picker animated:YES completion:nil];
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    if (textField.text.length  == 0) {
+        textField.text = currencySymbol;
+    }
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    NSString *newText = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    
+    if (![newText hasPrefix:currencySymbol]) {
+        return false;
+    }
+    
+    return true;
+}
+
+#pragma Mark - Void Methods
+
+- (void)navigationItems {
+    UIBarButtonItem *close = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(closeModal:)];
+    UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveTransaction:)];
+    
+    self.navigationItem.leftBarButtonItem = close;
+    self.navigationItem.rightBarButtonItem = done;
+}
+
+- (void)displayDate {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"MMMM dd, yyyy h:mm a";
+    NSString *string = [formatter stringFromDate:date];
+    
+    self.dateText.text = string;
+}
+
+- (void)hsDatePickerPickedDate:(NSDate *)selectedDate {
+    date = selectedDate;
+    [self displayDate];
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -58,7 +110,7 @@ static unsigned int cellHeight = 70;
     return cell;
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     return CGSizeMake(collectionView.bounds.size.width, cellHeight);
 }
 

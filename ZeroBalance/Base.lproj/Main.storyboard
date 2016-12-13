@@ -187,7 +187,7 @@
                                 <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="$$" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mpm-CS-v2A">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="$" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mpm-CS-v2A">
                                 <rect key="frame" x="285" y="79" width="75" height="30"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -196,6 +196,22 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="HfB-sW-WYd" id="cbi-5L-rqS"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wZX-gQ-CxS">
+                                <rect key="frame" x="15" y="117" width="345" height="30"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="B0k-LP-Gdk"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="datePressed:" destination="HfB-sW-WYd" eventType="touchDown" id="zm8-F3-1Rv"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -207,20 +223,24 @@
                             <constraint firstItem="zVb-X5-i16" firstAttribute="leading" secondItem="1Cd-3R-p6a" secondAttribute="leading" constant="15" id="Ene-fD-EEw"/>
                             <constraint firstItem="OMS-aQ-Xmp" firstAttribute="centerX" secondItem="1Cd-3R-p6a" secondAttribute="centerX" id="Khe-U2-LSS"/>
                             <constraint firstItem="Mpm-CS-v2A" firstAttribute="top" secondItem="ByJ-vB-YPX" secondAttribute="bottom" constant="15" id="RJe-cL-EaL"/>
+                            <constraint firstItem="wZX-gQ-CxS" firstAttribute="top" secondItem="zVb-X5-i16" secondAttribute="bottom" constant="8" id="T2c-lf-IQ5"/>
+                            <constraint firstAttribute="trailing" secondItem="wZX-gQ-CxS" secondAttribute="trailing" constant="15" id="X64-3q-P4t"/>
                             <constraint firstItem="Its-J5-wZR" firstAttribute="top" secondItem="OMS-aQ-Xmp" secondAttribute="bottom" id="fR9-Jg-aNv"/>
+                            <constraint firstItem="wZX-gQ-CxS" firstAttribute="leading" secondItem="1Cd-3R-p6a" secondAttribute="leading" constant="15" id="gdJ-id-hlK"/>
                             <constraint firstAttribute="trailing" secondItem="Mpm-CS-v2A" secondAttribute="trailing" constant="15" id="hn0-N8-YJm"/>
                             <constraint firstItem="OMS-aQ-Xmp" firstAttribute="width" secondItem="1Cd-3R-p6a" secondAttribute="width" id="ilb-7q-IlQ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="SvT-4b-n9T"/>
                     <connections>
+                        <outlet property="dateText" destination="wZX-gQ-CxS" id="fyf-Ft-dKH"/>
                         <outlet property="moneyText" destination="Mpm-CS-v2A" id="Gsp-jx-Mbi"/>
                         <outlet property="nameText" destination="zVb-X5-i16" id="6Ab-6I-tjN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wlQ-Vb-EVc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1346" y="-298"/>
+            <point key="canvasLocation" x="1344.8" y="-298.2008995502249"/>
         </scene>
         <!--New Transaction Navigation Controller-->
         <scene sceneID="T4k-MI-Hio">

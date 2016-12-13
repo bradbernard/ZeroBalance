@@ -6,7 +6,7 @@ target 'ZeroBalance' do
 
   # Pods for ZeroBalance
   pod 'ChameleonFramework'
-
+  pod 'HSDatePickerViewController', '~> 1.0'
 
   target 'ZeroBalanceTests' do
     inherit! :search_paths
