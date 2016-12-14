@@ -21,14 +21,5 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
-//
-//- (void)dismissButtons {
-//    UIBarButtonItem *yourButton = [[UIBarButtonItem alloc]
-//                                   initWithTitle:@"Cancel"
-//                                   style:UIBarButtonSystemItemCancel
-//                                   target:self
-//                                   action:@selector(methodName:)];
-//    self.navigationItem.rightBarButtonItem = yourButton;
-//}
 
 @end

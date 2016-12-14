@@ -86,8 +86,10 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/ChameleonFramework/ChameleonFramework.framework"
   install_framework "$BUILT_PRODUCTS_DIR/HSDatePickerViewController/HSDatePickerViewController.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/mopub-ios-sdk/MoPub.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/ChameleonFramework/ChameleonFramework.framework"
   install_framework "$BUILT_PRODUCTS_DIR/HSDatePickerViewController/HSDatePickerViewController.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/mopub-ios-sdk/MoPub.framework"
 fi

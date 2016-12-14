@@ -2,16 +2,28 @@ PODS:
   - ChameleonFramework (2.1.0):
     - ChameleonFramework/Default (= 2.1.0)
   - ChameleonFramework/Default (2.1.0)
+  - Crashlytics (3.8.3):
+    - Fabric (~> 1.6.3)
+  - Fabric (1.6.11)
   - HSDatePickerViewController (1.0.4)
+  - mopub-ios-sdk (4.11.1):
+    - mopub-ios-sdk/MoPubSDK (= 4.11.1)
+  - mopub-ios-sdk/MoPubSDK (4.11.1)
 
 DEPENDENCIES:
   - ChameleonFramework
+  - Crashlytics
+  - Fabric
   - HSDatePickerViewController (~> 1.0)
+  - mopub-ios-sdk
 
 SPEC CHECKSUMS:
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
+  Crashlytics: 2b6dbe138a42395577cfa73dfa1aa7248cadf39e
+  Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   HSDatePickerViewController: 5a72b71f8c3b10e76f2c28a898f8572b551432a6
+  mopub-ios-sdk: 099068378872b60ae5be882dbcfbaa3a8a2b1c36
 
-PODFILE CHECKSUM: 3365f38cf824941ff352713c3acbaa77d5098d18
+PODFILE CHECKSUM: 9a0bf58071a40c88b8321caab7d976f8950c400d
 
 COCOAPODS: 1.1.1
