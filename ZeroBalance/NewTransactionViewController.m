@@ -51,7 +51,7 @@ TransactionMO *transaction = nil;
     picker.delegate = self;
     rows = [[NSMutableArray alloc] init];
     
-    [self toggleHidden:true];
+        //[self toggleHidden:true];
     
     [self navigationItems];
     [self displayDate];
@@ -60,7 +60,9 @@ TransactionMO *transaction = nil;
 #pragma mark - IBActions
 
 - (IBAction)addPayeePressed:(id)sender {
+    
     ++rowTotal;
+    [[self collectionView] reloadData];
 }
 
 - (IBAction)closeModal:(id)sender {
@@ -144,7 +146,7 @@ TransactionMO *transaction = nil;
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return rowCount;
+    return rowTotal;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
