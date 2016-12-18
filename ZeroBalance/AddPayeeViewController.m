@@ -14,15 +14,13 @@
 
 @interface AddPayeeViewController ()
 
-
 @end
 
 @implementation AddPayeeViewController
 
-TransactionMO *transaction = nil;
-
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSLog(@"%@", self.transaction);
 }
 
 @end

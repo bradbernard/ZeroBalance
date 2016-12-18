@@ -19,9 +19,10 @@
 @property (weak, nonatomic) IBOutlet UITextField *nameText;
 @property (weak, nonatomic) IBOutlet UITextField *moneyText;
 @property (weak, nonatomic) IBOutlet UITextField *dateText;
-@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UILabel *peopleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *perPersonLabel;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIButton *payeeButton;
 
 @end
 
@@ -41,6 +42,7 @@ HSDatePickerViewController *picker = nil;
 NSMutableArray<PaymentMO *> *rows = nil;
 NSMutableArray<PersonMO *> *people = nil;
 TransactionMO *transaction = nil;
+UIStoryboard *storyboard = nil;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -50,7 +52,9 @@ TransactionMO *transaction = nil;
     date = [NSDate date];
     picker = [[HSDatePickerViewController alloc] init];
     picker.delegate = self;
+    
     rows = [[NSMutableArray alloc] init];
+    storyboard = [UIStoryboard storyboardWithName:storyboardName bundle: nil];
     
     // [self toggleHidden:true];
     
@@ -61,9 +65,8 @@ TransactionMO *transaction = nil;
 #pragma mark - IBActions
 
 - (IBAction)addPayeePressed:(id)sender {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle: nil];
     AddPayeeViewController *viewController = (AddPayeeViewController*)[storyboard instantiateViewControllerWithIdentifier:@"AddPayeeViewController"];
-    viewController.transaction =
+    viewController.transaction = transaction;
     [self.navigationController pushViewController:viewController animated:true];
 }
 
@@ -75,6 +78,9 @@ TransactionMO *transaction = nil;
     NSLog(@"Saved");
 }
 
+- (IBAction)textChanged:(id)sender {
+    self.payeeButton.enabled = [self transactionFilledOut];
+}
 
 - (IBAction)datePressed:(id)sender {
     [self presentViewController:picker animated:YES completion:nil];
@@ -83,12 +89,23 @@ TransactionMO *transaction = nil;
 # pragma mark - UITextFieldDelegate
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
-    if (textField.text.length  == 0) {
+    
+    self.payeeButton.enabled = [self transactionFilledOut];
+    
+    if (textField == self.moneyText && textField.text.length  == 0) {
         textField.text = @"$0.00";
     }
 }
 
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    self.payeeButton.enabled = [self transactionFilledOut];
+}
+
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    
+    if(textField != self.moneyText) {
+        return true;
+    }
     
     NSString *cleanCentString = [[textField.text componentsSeparatedByCharactersInSet: [[NSCharacterSet decimalDigitCharacterSet] invertedSet]] componentsJoinedByString:@""];
     NSInteger centValue = [cleanCentString intValue];
@@ -113,7 +130,7 @@ TransactionMO *transaction = nil;
     [currencyFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
     textField.text = [currencyFormatter stringFromNumber:formattedValue];
     
-    return NO;
+    return false;
 }
 
 #pragma Mark - Void Methods
@@ -129,7 +146,14 @@ TransactionMO *transaction = nil;
 - (void)toggleHidden:(BOOL)toggle {
     self.peopleLabel.hidden = toggle;
     self.perPersonLabel.hidden = toggle;
-    self.collectionView.hidden = toggle;
+    self.tableView.hidden = toggle;
+}
+
+- (BOOL)transactionFilledOut {
+    return (self.moneyText.text.length > 0) &&
+            (self.nameText.text.length > 0) &&
+            (self.dateText.text.length > 0) &&
+            (date != nil);
 }
 
 - (void)displayDate {

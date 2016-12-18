@@ -165,6 +165,12 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="textChanged:" destination="HfB-sW-WYd" eventType="editingChanged" id="N5e-g0-mKG"/>
+                                    <action selector="textChanged:" destination="HfB-sW-WYd" eventType="editingDidEnd" id="n4W-bB-4Hw"/>
+                                    <action selector="textChanged:" destination="HfB-sW-WYd" eventType="valueChanged" id="ucb-8A-Ue2"/>
+                                    <outlet property="delegate" destination="HfB-sW-WYd" id="cjp-KN-p4v"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="$0.00" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mpm-CS-v2A">
                                 <rect key="frame" x="237" y="79" width="123" height="30"/>
@@ -176,6 +182,8 @@
                                 <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
+                                    <action selector="textChanged:" destination="HfB-sW-WYd" eventType="editingChanged" id="0Tl-Qd-xGB"/>
+                                    <action selector="textChanged:" destination="HfB-sW-WYd" eventType="editingDidEnd" id="Jfx-OT-0ab"/>
                                     <outlet property="delegate" destination="HfB-sW-WYd" id="cbi-5L-rqS"/>
                                 </connections>
                             </textField>
@@ -190,6 +198,9 @@
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <action selector="datePressed:" destination="HfB-sW-WYd" eventType="touchDown" id="zm8-F3-1Rv"/>
+                                    <action selector="textChanged:" destination="HfB-sW-WYd" eventType="editingDidEnd" id="jBa-lA-HFg"/>
+                                    <action selector="textChanged:" destination="HfB-sW-WYd" eventType="editingChanged" id="tHa-iG-bsc"/>
+                                    <outlet property="delegate" destination="HfB-sW-WYd" id="lz3-6T-cUd"/>
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="People: {count}" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bb7-7a-98z">
@@ -201,7 +212,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JVY-jo-hzu">
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JVY-jo-hzu">
                                 <rect key="frame" x="15" y="155" width="345" height="33"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="SFCompactDisplay-Semibold" family="SF Compact Display" pointSize="17"/>
@@ -269,8 +280,10 @@
                         <outlet property="dateText" destination="wZX-gQ-CxS" id="fyf-Ft-dKH"/>
                         <outlet property="moneyText" destination="Mpm-CS-v2A" id="Gsp-jx-Mbi"/>
                         <outlet property="nameText" destination="zVb-X5-i16" id="6Ab-6I-tjN"/>
+                        <outlet property="payeeButton" destination="JVY-jo-hzu" id="s5w-wY-3jr"/>
                         <outlet property="peopleLabel" destination="bb7-7a-98z" id="ghd-P3-JrQ"/>
                         <outlet property="perPersonLabel" destination="sZO-8E-RSJ" id="0xT-it-GvM"/>
+                        <outlet property="tableView" destination="lat-gV-dj8" id="AKg-dt-dPK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wlQ-Vb-EVc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -289,34 +302,42 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Person's Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JkN-C6-tzg">
-                                <rect key="frame" x="16" y="131" width="204" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Person's Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JkN-C6-tzg">
+                                <rect key="frame" x="16" y="131" width="206.5" height="30"/>
                                 <color key="backgroundColor" red="0.92538958790000003" green="0.92554813619999998" blue="0.92537957429999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Y8n-y4-p7v"/>
+                                </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Person's Phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PyD-Pu-Mt3">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Person's Phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PyD-Pu-Mt3">
                                 <rect key="frame" x="16" y="169" width="343" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.92538958790000003" green="0.92554813619999998" blue="0.92537957429999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Hmi-oG-bI7"/>
+                                </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="$0.00" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tjq-dJ-ltx">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="$0.00" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tjq-dJ-ltx">
                                 <rect key="frame" x="228" y="130" width="131" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.92538958790000003" green="0.92554813619999998" blue="0.92537957429999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="VtL-Id-qvt"/>
+                                </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nzm-i0-nku">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nzm-i0-nku">
                                 <rect key="frame" x="16" y="82" width="343" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="vS5-uc-opW"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="SFCompactDisplay-Semibold" family="SF Compact Display" pointSize="17"/>
                                 <state key="normal" title="Import from Contacts">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -324,6 +345,22 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="PyD-Pu-Mt3" firstAttribute="trailing" secondItem="1TZ-Nz-5q3" secondAttribute="trailingMargin" id="3Pn-Jc-ZXC"/>
+                            <constraint firstItem="nzm-i0-nku" firstAttribute="top" secondItem="jYb-jX-FC0" secondAttribute="bottom" constant="18" id="8by-kl-KWa"/>
+                            <constraint firstItem="nzm-i0-nku" firstAttribute="trailing" secondItem="1TZ-Nz-5q3" secondAttribute="trailingMargin" id="JnZ-7s-z5R"/>
+                            <constraint firstItem="JkN-C6-tzg" firstAttribute="top" secondItem="nzm-i0-nku" secondAttribute="bottom" constant="9" id="Occ-Py-9m3"/>
+                            <constraint firstItem="tjq-dJ-ltx" firstAttribute="width" secondItem="1TZ-Nz-5q3" secondAttribute="width" multiplier="0.35" id="QLi-cm-vzT"/>
+                            <constraint firstItem="tjq-dJ-ltx" firstAttribute="trailing" secondItem="1TZ-Nz-5q3" secondAttribute="trailingMargin" id="XwI-hg-W9Y"/>
+                            <constraint firstItem="JkN-C6-tzg" firstAttribute="leading" secondItem="1TZ-Nz-5q3" secondAttribute="leadingMargin" id="cOa-1r-ZrP"/>
+                            <constraint firstItem="tjq-dJ-ltx" firstAttribute="top" secondItem="nzm-i0-nku" secondAttribute="bottom" constant="8" id="dGG-54-7I1"/>
+                            <constraint firstItem="nzm-i0-nku" firstAttribute="centerX" secondItem="1TZ-Nz-5q3" secondAttribute="centerX" id="hgN-LK-i9X"/>
+                            <constraint firstItem="nzm-i0-nku" firstAttribute="leading" secondItem="1TZ-Nz-5q3" secondAttribute="leadingMargin" id="iEO-p3-nvN"/>
+                            <constraint firstItem="PyD-Pu-Mt3" firstAttribute="top" secondItem="JkN-C6-tzg" secondAttribute="bottom" constant="8" id="oF6-RF-rQh"/>
+                            <constraint firstItem="PyD-Pu-Mt3" firstAttribute="leading" secondItem="1TZ-Nz-5q3" secondAttribute="leadingMargin" id="peo-J9-VIq"/>
+                            <constraint firstItem="PyD-Pu-Mt3" firstAttribute="width" secondItem="nzm-i0-nku" secondAttribute="width" id="qx2-9a-qFg"/>
+                            <constraint firstItem="JkN-C6-tzg" firstAttribute="width" secondItem="1TZ-Nz-5q3" secondAttribute="width" multiplier="0.55" id="rIR-ko-yPb"/>
+                        </constraints>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </viewController>

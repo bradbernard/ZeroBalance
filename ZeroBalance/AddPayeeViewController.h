@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
+#import "TransactionMO+CoreDataClass.h"
 
 @interface AddPayeeViewController : BaseViewController
+
+@property (weak, nonatomic) TransactionMO *transaction;
 
 @end
