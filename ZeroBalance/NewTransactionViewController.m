@@ -11,7 +11,8 @@
 #import "PaymentMO+CoreDataClass.h"
 #import "TransactionMO+CoreDataClass.h"
 #import "PersonMO+CoreDataClass.h"
-#import "PaymentCollectionCell.h"
+#import "PaymentTableCell.h"
+#import "AddPayeeViewController.h"
 
 @interface NewTransactionViewController ()
 
@@ -26,8 +27,8 @@
 
 @implementation NewTransactionViewController
 
-static NSString *cellIdentifier = @"PaymentCollectionCell";
-static unsigned int cellHeight = 70;
+static NSString *storyboardName = @"Main";
+static NSString *cellIdentifier = @"PaymentTableCell";
 
 static NSString *peopleText = @"People: ";
 static NSString *perPersonText = @"Per person: ";
@@ -51,7 +52,7 @@ TransactionMO *transaction = nil;
     picker.delegate = self;
     rows = [[NSMutableArray alloc] init];
     
-        //[self toggleHidden:true];
+    // [self toggleHidden:true];
     
     [self navigationItems];
     [self displayDate];
@@ -60,9 +61,10 @@ TransactionMO *transaction = nil;
 #pragma mark - IBActions
 
 - (IBAction)addPayeePressed:(id)sender {
-    
-    ++rowTotal;
-    [[self collectionView] reloadData];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle: nil];
+    AddPayeeViewController *viewController = (AddPayeeViewController*)[storyboard instantiateViewControllerWithIdentifier:@"AddPayeeViewController"];
+    viewController.transaction =
+    [self.navigationController pushViewController:viewController animated:true];
 }
 
 - (IBAction)closeModal:(id)sender {
@@ -143,21 +145,38 @@ TransactionMO *transaction = nil;
     [self displayDate];
 }
 
-#pragma mark - UICollectionViewDataSource
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return rowTotal;
-}
+#pragma mark - UITableViewDataSource
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     
-    PaymentCollectionCell *cell = (PaymentCollectionCell *)[collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
+    PaymentTableCell *cell = (PaymentTableCell*)[tableView dequeueReusableCellWithIdentifier: cellIdentifier];
+    [self configureCell:cell atIndexPath:indexPath];
     
     return cell;
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(collectionView.bounds.size.width, cellHeight);
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [rows count];
+}
+
+#pragma mark - UITableViewDelegate
+
+- (void)configureCell:(PaymentTableCell*)cell atIndexPath:(NSIndexPath*)indexPath
+{
+    PaymentMO *object = [rows objectAtIndex:indexPath.row];
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if(editingStyle == UITableViewCellEditingStyleDelete) {
+        [rows removeObjectAtIndex:indexPath.row];
+    }
 }
 
 @end
