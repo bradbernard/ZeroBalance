@@ -11,6 +11,7 @@
 		7F0F99C04CBDC3BFBCB59E60 /* Pods_ZeroBalanceUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57B8380866B7A6B299EC29F3 /* Pods_ZeroBalanceUITests.framework */; };
 		B80B2EDC1E061A9600FB8474 /* PaymentTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B80B2EDB1E061A9600FB8474 /* PaymentTableCell.m */; };
 		B80B2EDF1E061CA500FB8474 /* AddPayeeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B80B2EDE1E061CA500FB8474 /* AddPayeeViewController.m */; };
+		B80B2EE11E07678500FB8474 /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B80B2EE01E07678500FB8474 /* Contacts.framework */; };
 		B81396F51DF661960018E699 /* NewTransactionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B81396F41DF661960018E699 /* NewTransactionViewController.m */; };
 		B81396FB1DF6656A0018E699 /* BaseViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = B81396FA1DF6656A0018E699 /* BaseViewController.h */; };
 		B81396FD1DF665A40018E699 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B81396FC1DF665A40018E699 /* BaseViewController.m */; };
@@ -63,6 +64,7 @@
 		B80B2EDB1E061A9600FB8474 /* PaymentTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentTableCell.m; sourceTree = "<group>"; };
 		B80B2EDD1E061CA500FB8474 /* AddPayeeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPayeeViewController.h; sourceTree = "<group>"; };
 		B80B2EDE1E061CA500FB8474 /* AddPayeeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPayeeViewController.m; sourceTree = "<group>"; };
+		B80B2EE01E07678500FB8474 /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
 		B81396F31DF661960018E699 /* NewTransactionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewTransactionViewController.h; sourceTree = "<group>"; };
 		B81396F41DF661960018E699 /* NewTransactionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewTransactionViewController.m; sourceTree = "<group>"; };
 		B81396FA1DF6656A0018E699 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B80B2EE11E07678500FB8474 /* Contacts.framework in Frameworks */,
 				BC23A73DDC53E3A26264CAD5 /* Pods_ZeroBalance.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -131,6 +134,7 @@
 		0B3D2CD6AFCE6FD824AE46B9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B80B2EE01E07678500FB8474 /* Contacts.framework */,
 				2307CB63F8FFA47E963FA054 /* Pods_ZeroBalance.framework */,
 				CE5466F5613FB87A45E5596C /* Pods_ZeroBalanceTests.framework */,
 				57B8380866B7A6B299EC29F3 /* Pods_ZeroBalanceUITests.framework */,

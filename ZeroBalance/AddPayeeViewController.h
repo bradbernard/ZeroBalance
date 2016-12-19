@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
 #import "TransactionMO+CoreDataClass.h"
+#import <ContactsUI/ContactsUI.h>
+#import <Contacts/Contacts.h>
 
-@interface AddPayeeViewController : BaseViewController
+@interface AddPayeeViewController : BaseViewController<CNContactPickerDelegate>
 
 @property (weak, nonatomic) TransactionMO *transaction;
 

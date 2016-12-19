@@ -23,4 +23,25 @@
     NSLog(@"%@", self.transaction);
 }
 
+# pragma mark - IBAction
+
+- (IBAction)contactsPressed:(id)sender {
+    CNContactPickerViewController *contactPicker = [[CNContactPickerViewController alloc] init];
+    
+    contactPicker.delegate = self;
+    contactPicker.displayedPropertyKeys = (NSArray *)CNContactGivenNameKey;
+    
+    [self presentViewController:contactPicker animated:YES completion:nil];
+}
+
+# pragma mark - CNContactPickerDelegate
+
+- (void)contactPicker:(CNContactPickerViewController *)picker didSelectContact:(CNContact *)contact {
+    NSLog(@"%@", contact);
+}
+
+- (void)contactPicker:(CNContactPickerViewController *)picker didSelectContactProperty:(CNContactProperty *)contactProperty {
+    NSLog(@"%@", contactProperty);
+}
+
 @end

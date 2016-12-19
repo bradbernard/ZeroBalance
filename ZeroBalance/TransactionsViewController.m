@@ -83,9 +83,11 @@ static NSString *storyboardName = @"Main";
 }
 
 - (void)presentAddTransaction {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle: nil];
-        NewTransactionNavigationController *viewController = (NewTransactionNavigationController*)[storyboard instantiateViewControllerWithIdentifier:@"NewTransactionNavigationController"];
-        [self.navigationController presentViewController:viewController animated:true completion:nil];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle: nil];
+    NewTransactionNavigationController *viewController = (NewTransactionNavigationController*)[storyboard instantiateViewControllerWithIdentifier:@"NewTransactionViewController"];
+//        [self.navigationController presentViewController:viewController animated:true completion:nil];
+    [self.navigationController pushViewController:viewController animated:true];
+    
 }
 
 - (void)test {
