@@ -13,7 +13,7 @@
 #import "PaymentMO+CoreDataClass.h"
 #import "TransactionMO+CoreDataClass.h"
 #import "PersonMO+CoreDataClass.h"
-#import "NewTransactionNavigationController.h"
+#import "NewTransactionViewController.h"
 
 @interface TransactionsViewController ()
 
@@ -84,8 +84,7 @@ static NSString *storyboardName = @"Main";
 
 - (void)presentAddTransaction {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle: nil];
-    NewTransactionNavigationController *viewController = (NewTransactionNavigationController*)[storyboard instantiateViewControllerWithIdentifier:@"NewTransactionViewController"];
-//        [self.navigationController presentViewController:viewController animated:true completion:nil];
+    NewTransactionViewController *viewController = (NewTransactionViewController*)[storyboard instantiateViewControllerWithIdentifier:@"NewTransactionViewController"];
     [self.navigationController pushViewController:viewController animated:true];
     
 }

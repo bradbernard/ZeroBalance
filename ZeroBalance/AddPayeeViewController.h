@@ -12,7 +12,7 @@
 #import <ContactsUI/ContactsUI.h>
 #import <Contacts/Contacts.h>
 
-@interface AddPayeeViewController : BaseViewController<CNContactPickerDelegate>
+@interface AddPayeeViewController : BaseViewController<CNContactPickerDelegate, UITextFieldDelegate>
 
 @property (weak, nonatomic) TransactionMO *transaction;
 

@@ -71,7 +71,7 @@ UIStoryboard *storyboard = nil;
 }
 
 - (IBAction)closeModal:(id)sender {
-    [self dismissViewControllerAnimated:true completion:nil];
+    [self.navigationController popViewControllerAnimated:true];
 }
 
 - (IBAction)saveTransaction:(id)sender {
@@ -174,7 +174,6 @@ UIStoryboard *storyboard = nil;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     PaymentTableCell *cell = (PaymentTableCell*)[tableView dequeueReusableCellWithIdentifier: cellIdentifier];
     [self configureCell:cell atIndexPath:indexPath];
     
