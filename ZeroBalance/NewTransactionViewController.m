@@ -39,7 +39,6 @@ unsigned int rowSaved = 0;
 NSDate *date = nil;
 HSDatePickerViewController *picker = nil;
 NSMutableArray<PaymentMO *> *rows = nil;
-//NSMutableArray<PersonMO *> *people = nil;
 TransactionMO *transaction = nil;
 UIStoryboard *storyboard = nil;
 

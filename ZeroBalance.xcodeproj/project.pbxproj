@@ -13,7 +13,6 @@
 		B80B2EDF1E061CA500FB8474 /* AddPayeeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B80B2EDE1E061CA500FB8474 /* AddPayeeViewController.m */; };
 		B80B2EE11E07678500FB8474 /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B80B2EE01E07678500FB8474 /* Contacts.framework */; };
 		B81396F51DF661960018E699 /* NewTransactionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B81396F41DF661960018E699 /* NewTransactionViewController.m */; };
-		B81396FB1DF6656A0018E699 /* BaseViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = B81396FA1DF6656A0018E699 /* BaseViewController.h */; };
 		B81396FD1DF665A40018E699 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B81396FC1DF665A40018E699 /* BaseViewController.m */; };
 		B830A3501DF384D3005688A1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B830A34F1DF384D3005688A1 /* main.m */; };
 		B830A3531DF384D3005688A1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B830A3521DF384D3005688A1 /* AppDelegate.m */; };
@@ -602,7 +601,6 @@
 			files = (
 				B81396F51DF661960018E699 /* NewTransactionViewController.m in Sources */,
 				B81396FD1DF665A40018E699 /* BaseViewController.m in Sources */,
-				B81396FB1DF6656A0018E699 /* BaseViewController.h in Sources */,
 				B80B2EDC1E061A9600FB8474 /* PaymentTableCell.m in Sources */,
 				B830A3531DF384D3005688A1 /* AppDelegate.m in Sources */,
 				B830A3891DF38ADA005688A1 /* ContainerNavigationController.m in Sources */,
@@ -690,7 +688,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
