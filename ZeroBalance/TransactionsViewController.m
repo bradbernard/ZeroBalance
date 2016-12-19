@@ -12,7 +12,6 @@
 #import "DataController.h"
 #import "PaymentMO+CoreDataClass.h"
 #import "TransactionMO+CoreDataClass.h"
-#import "PersonMO+CoreDataClass.h"
 #import "NewTransactionViewController.h"
 
 @interface TransactionsViewController ()
@@ -228,10 +227,10 @@ static NSString *storyboardName = @"Main";
     PaymentMO *payment;
     NSMutableArray *peopleCollection = [[NSMutableArray alloc] init];
     for (payment in object.payments) {
-        [peopleCollection addObject:payment.person];
+        [peopleCollection addObject:payment.name];
     }
     
-    cell.peopleLabel.text = [[peopleCollection valueForKey:@"name"] componentsJoinedByString:@","];
+    cell.peopleLabel.text = [peopleCollection componentsJoinedByString:@","];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

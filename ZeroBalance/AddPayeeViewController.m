@@ -10,7 +10,6 @@
 #import "DataController.h"
 #import "PaymentMO+CoreDataClass.h"
 #import "TransactionMO+CoreDataClass.h"
-#import "PersonMO+CoreDataClass.h"
 
 @interface AddPayeeViewController ()
 
