@@ -1,25 +1,26 @@
 //
-//  AddPayeeViewController.m
+//  AddPayerViewController.m
 //  ZeroBalance
 //
 //  Created by Brad Bernard on 12/17/16.
 //  Copyright © 2016 Brad Bernard. All rights reserved.
 //
 
-#import "AddPayeeViewController.h"
+#import "AddPayerViewController.h"
 #import "DataController.h"
 #import "PaymentMO+CoreDataClass.h"
 #import "TransactionMO+CoreDataClass.h"
 
-@interface AddPayeeViewController ()
+@interface AddPayerViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextField *nameText;
 @property (weak, nonatomic) IBOutlet UITextField *phoneText;
 @property (weak, nonatomic) IBOutlet UITextField *paidText;
+@property (nonatomic, strong) NSManagedObjectContext* managedObjectContext;
 
 @end
 
-@implementation AddPayeeViewController
+@implementation AddPayerViewController
 
 CNContactPickerViewController *contactPicker = nil;
 
@@ -28,7 +29,7 @@ CNContactPickerViewController *contactPicker = nil;
     
     contactPicker = [[CNContactPickerViewController alloc] init];
     contactPicker.delegate = self;
-        
+    
     NSLog(@"%@", self.transaction);
 }
 
@@ -36,6 +37,17 @@ CNContactPickerViewController *contactPicker = nil;
 
 - (IBAction)contactsPressed:(id)sender {
     [self presentViewController:contactPicker animated:YES completion:nil];
+}
+
+- (IBAction)savePressed:(id)sender {
+    NSLog(@"What");
+    PaymentMO *payment = [NSEntityDescription insertNewObjectForEntityForName:@"Payment" inManagedObjectContext:self.managedObjectContext];
+    payment.paid = [self.paidText.text doubleValue];
+    payment.name = self.nameText.text;
+    payment.phoneNumber = self.phoneText.text;
+    
+    [self.delegate newPaymentMO:payment];
+    [self.navigationController popViewControllerAnimated:true];
 }
 
 # pragma mark - CNContactPickerDelegate

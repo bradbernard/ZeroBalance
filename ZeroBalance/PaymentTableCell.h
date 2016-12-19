@@ -10,4 +10,8 @@
 
 @interface PaymentTableCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *nameText;
+@property (weak, nonatomic) IBOutlet UILabel *phoneText;
+@property (weak, nonatomic) IBOutlet UILabel *moneyText;
+
 @end

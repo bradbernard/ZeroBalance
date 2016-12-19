@@ -46,7 +46,7 @@
             </objects>
             <point key="canvasLocation" x="-708" y="-298"/>
         </scene>
-        <!--Transactions View Controller-->
+        <!--Transactions-->
         <scene sceneID="ZdA-ce-MPn">
             <objects>
                 <viewController storyboardIdentifier="TransactionsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="WZa-R5-Lfd" customClass="TransactionsViewController" sceneMemberID="viewController">
@@ -122,7 +122,7 @@
                             <constraint firstItem="07P-aV-cHf" firstAttribute="height" secondItem="2oH-2i-HBN" secondAttribute="height" id="u7N-W1-dPg"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="xlE-na-Nb6">
+                    <navigationItem key="navigationItem" title="Transactions" id="xlE-na-Nb6">
                         <barButtonItem key="leftBarButtonItem" title="Edit" id="Qiy-Eb-gsO">
                             <connections>
                                 <action selector="editItemPressed:" destination="WZa-R5-Lfd" id="t5f-ir-JyR"/>
@@ -144,10 +144,10 @@
             </objects>
             <point key="canvasLocation" x="8.8000000000000007" y="-298.2008995502249"/>
         </scene>
-        <!--New Transaction View Controller-->
+        <!--New Transaction-->
         <scene sceneID="E8A-gL-JoH">
             <objects>
-                <viewController storyboardIdentifier="NewTransactionViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="HfB-sW-WYd" customClass="NewTransactionViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NewTransactionViewController" title="New Transaction" useStoryboardIdentifierAsRestorationIdentifier="YES" id="HfB-sW-WYd" customClass="NewTransactionViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ByJ-vB-YPX"/>
                         <viewControllerLayoutGuide type="bottom" id="Its-J5-wZR"/>
@@ -157,7 +157,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Transaction Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="zVb-X5-i16">
-                                <rect key="frame" x="15" y="79" width="206.5" height="30"/>
+                                <rect key="frame" x="15" y="79" width="207" height="30"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="8aI-v1-R7Q"/>
@@ -173,7 +173,7 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="$0.00" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Mpm-CS-v2A">
-                                <rect key="frame" x="232.5" y="79" width="127.5" height="30"/>
+                                <rect key="frame" x="233" y="79" width="127" height="30"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="RN4-Ay-M3E"/>
@@ -233,9 +233,10 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lat-gV-dj8">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="70" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lat-gV-dj8">
                                 <rect key="frame" x="0.0" y="226" width="375" height="441"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <inset key="separatorInset" minX="7" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PaymentTableCell" rowHeight="70" id="hwX-yj-rRp" customClass="PaymentTableCell">
                                         <rect key="frame" x="0.0" y="28" width="375" height="70"/>
@@ -243,7 +244,35 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hwX-yj-rRp" id="ZFD-Nq-IC0">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="69"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="{Name}" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JZE-lu-u7M">
+                                                    <rect key="frame" x="17" y="8" width="202" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="{Name}" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kjy-F9-t6B">
+                                                    <rect key="frame" x="17" y="37" width="202" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="SFCompactDisplay-Thin" family="SF Compact Display" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="{$$$$$}" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cXl-5D-JDM">
+                                                    <rect key="frame" x="227" y="8" width="124" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="SFCompactDisplay-Semibold" family="SF Compact Display" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="moneyText" destination="cXl-5D-JDM" id="kIF-53-ykc"/>
+                                            <outlet property="nameText" destination="JZE-lu-u7M" id="qr4-SB-fFt"/>
+                                            <outlet property="phoneText" destination="Kjy-F9-t6B" id="eoc-we-hHx"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -276,7 +305,6 @@
                             <constraint firstItem="JVY-jo-hzu" firstAttribute="centerX" secondItem="1Cd-3R-p6a" secondAttribute="centerX" id="y8W-HW-D1B"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="SvT-4b-n9T"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="dateText" destination="wZX-gQ-CxS" id="fyf-Ft-dKH"/>
@@ -290,12 +318,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wlQ-Vb-EVc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="670" y="-298"/>
+            <point key="canvasLocation" x="669.60000000000002" y="-298.2008995502249"/>
         </scene>
-        <!--Add Payee View Controller-->
+        <!--New Payer-->
         <scene sceneID="Pcj-ux-RiU">
             <objects>
-                <viewController storyboardIdentifier="AddPayeeViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="i5p-09-hC7" customClass="AddPayeeViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddPayerViewController" title="New Payer" useStoryboardIdentifierAsRestorationIdentifier="YES" id="i5p-09-hC7" customClass="AddPayerViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jYb-jX-FC0"/>
                         <viewControllerLayoutGuide type="bottom" id="PUp-v6-x2a"/>
@@ -331,7 +359,7 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="$0.00" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="tjq-dJ-ltx">
-                                <rect key="frame" x="231.5" y="130" width="127.5" height="30"/>
+                                <rect key="frame" x="232" y="130" width="127" height="30"/>
                                 <color key="backgroundColor" red="0.92538958790000003" green="0.92554813619999998" blue="0.92537957429999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="VtL-Id-qvt"/>
@@ -357,7 +385,7 @@
                                     <action selector="contactsPressed:" destination="i5p-09-hC7" eventType="touchUpInside" id="Q81-6x-UhD"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TIj-sB-XrS">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TIj-sB-XrS">
                                 <rect key="frame" x="16" y="207" width="343" height="40"/>
                                 <color key="backgroundColor" red="0.66640005940000002" green="0.0" blue="0.68582307450000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="SFCompactDisplay-Semibold" family="SF Compact Display" pointSize="17"/>
@@ -365,6 +393,9 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <state key="disabled" title="Required: name, paid"/>
+                                <connections>
+                                    <action selector="savePressed:" destination="i5p-09-hC7" eventType="touchUpInside" id="9zW-w2-K9z"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

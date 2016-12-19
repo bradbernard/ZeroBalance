@@ -1,5 +1,5 @@
 //
-//  AddPayeeViewController.h
+//  AddPayerViewController.h
 //  ZeroBalance
 //
 //  Created by Brad Bernard on 12/17/16.
@@ -12,8 +12,18 @@
 #import <ContactsUI/ContactsUI.h>
 #import <Contacts/Contacts.h>
 
-@interface AddPayeeViewController : BaseViewController<CNContactPickerDelegate, UITextFieldDelegate>
+@class AddPayerViewController;
+
+@protocol AddPayerViewControllerDelegate <NSObject>
+
+- (void)newPaymentMO:(PaymentMO *)payment;
+
+@end
+
+@interface AddPayerViewController : BaseViewController<CNContactPickerDelegate, UITextFieldDelegate>
 
 @property (weak, nonatomic) TransactionMO *transaction;
+@property (nonatomic, weak) id <AddPayerViewControllerDelegate> delegate;
+
 
 @end

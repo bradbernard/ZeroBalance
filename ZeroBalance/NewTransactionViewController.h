@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
 #import "HSDatePickerViewController.h"
+#import "AddPayerViewController.h"
 
-@interface NewTransactionViewController : BaseViewController<UITableViewDelegate, UITableViewDataSource, HSDatePickerViewControllerDelegate, UITextFieldDelegate>
+@interface NewTransactionViewController : BaseViewController<UITableViewDelegate, UITableViewDataSource, HSDatePickerViewControllerDelegate, UITextFieldDelegate, AddPayerViewControllerDelegate>
 
 @end

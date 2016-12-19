@@ -11,7 +11,7 @@
 #import "PaymentMO+CoreDataClass.h"
 #import "TransactionMO+CoreDataClass.h"
 #import "PaymentTableCell.h"
-#import "AddPayeeViewController.h"
+#import "AddPayerViewController.h"
 
 @interface NewTransactionViewController ()
 
@@ -45,7 +45,7 @@ UIStoryboard *storyboard = nil;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"Add Transaction";
+    self.title = @"New Transaction";
     
     date = [NSDate date];
     picker = [[HSDatePickerViewController alloc] init];
@@ -53,6 +53,8 @@ UIStoryboard *storyboard = nil;
     
     rows = [[NSMutableArray alloc] init];
     storyboard = [UIStoryboard storyboardWithName:storyboardName bundle: nil];
+    
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
     
     // [self toggleHidden:true];
     
@@ -63,8 +65,9 @@ UIStoryboard *storyboard = nil;
 #pragma mark - IBActions
 
 - (IBAction)addPayeePressed:(id)sender {
-    AddPayeeViewController *viewController = (AddPayeeViewController*)[storyboard instantiateViewControllerWithIdentifier:@"AddPayeeViewController"];
+    AddPayerViewController *viewController = (AddPayerViewController*)[storyboard instantiateViewControllerWithIdentifier:@"AddPayerViewController"];
     viewController.transaction = transaction;
+    viewController.delegate = self;
     [self.navigationController pushViewController:viewController animated:true];
 }
 
@@ -82,6 +85,15 @@ UIStoryboard *storyboard = nil;
 
 - (IBAction)datePressed:(id)sender {
     [self presentViewController:picker animated:YES completion:nil];
+}
+
+# pragma mark - AddPayerViewControllerDelegate
+
+- (void)newPaymentMO:(PaymentMO *)payment {
+    [rows addObject:payment];
+    [self.tableView beginUpdates];
+    [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForItem:([rows count] - 1) inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+    [self.tableView endUpdates];
 }
 
 # pragma mark - UITextFieldDelegate
@@ -186,7 +198,11 @@ UIStoryboard *storyboard = nil;
 
 - (void)configureCell:(PaymentTableCell*)cell atIndexPath:(NSIndexPath*)indexPath
 {
-    PaymentMO *object = [rows objectAtIndex:indexPath.row];
+    PaymentMO *payment = [rows objectAtIndex:indexPath.row];
+    cell.nameText.text = payment.name;
+    cell.phoneText.text = payment.phoneNumber;
+    cell.phoneText.hidden = ([payment.phoneNumber length] == 0);
+    cell.moneyText.text = [NSString stringWithFormat:@"$%.2lf", payment.paid];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -197,6 +213,7 @@ UIStoryboard *storyboard = nil;
 {
     if(editingStyle == UITableViewCellEditingStyleDelete) {
         [rows removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
 }
 
