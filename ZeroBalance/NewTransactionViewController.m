@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *perPersonLabel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIButton *payeeButton;
+@property (nonatomic, strong) NSManagedObjectContext* managedObjectContext;
 
 @end
 
@@ -31,7 +32,7 @@ static NSString *storyboardName = @"Main";
 static NSString *cellIdentifier = @"PaymentTableCell";
 
 static NSString *peopleText = @"People: ";
-static NSString *perPersonText = @"Per person: ";
+static NSString *perPersonText = @"$/person: ";
 
 unsigned int rowTotal = 0;
 unsigned int rowSaved = 0;
@@ -62,9 +63,14 @@ UIStoryboard *storyboard = nil;
     [self displayDate];
 }
 
+-(void)viewWillAppear:(BOOL)animated {
+    [self.nameText becomeFirstResponder];
+}
+
 #pragma mark - IBActions
 
 - (IBAction)addPayeePressed:(id)sender {
+    [self.view endEditing:true];
     AddPayerViewController *viewController = (AddPayerViewController*)[storyboard instantiateViewControllerWithIdentifier:@"AddPayerViewController"];
     viewController.transaction = transaction;
     viewController.delegate = self;
@@ -73,6 +79,7 @@ UIStoryboard *storyboard = nil;
 
 - (IBAction)closeModal:(id)sender {
     [self.navigationController popViewControllerAnimated:true];
+    [self deleteTemporaryObjects];
 }
 
 - (IBAction)saveTransaction:(id)sender {
@@ -89,11 +96,13 @@ UIStoryboard *storyboard = nil;
 
 # pragma mark - AddPayerViewControllerDelegate
 
-- (void)newPaymentMO:(PaymentMO *)payment {
+- (void)newPaymentMO:(NSManagedObjectID *)objectID {
+    PaymentMO* payment = [self.managedObjectContext objectWithID:objectID];
     [rows addObject:payment];
     [self.tableView beginUpdates];
     [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForItem:([rows count] - 1) inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
     [self.tableView endUpdates];
+    [self updateDisplayTotals];
 }
 
 # pragma mark - UITextFieldDelegate
@@ -159,11 +168,27 @@ UIStoryboard *storyboard = nil;
     self.tableView.hidden = toggle;
 }
 
+- (void)updateDisplayTotals {
+    double perPerson = [[self.moneyText.text substringFromIndex:1] doubleValue]/[rows count];
+    self.perPersonLabel.text = [perPersonText stringByAppendingString:[NSString stringWithFormat:@"$%.2lf", perPerson]];
+    self.peopleLabel.text = [peopleText stringByAppendingString:[NSString stringWithFormat:@"%lu", (unsigned long)[rows count]]];
+}
+
 - (BOOL)transactionFilledOut {
     return (self.moneyText.text.length > 0) &&
             (self.nameText.text.length > 0) &&
             (self.dateText.text.length > 0) &&
             (date != nil);
+}
+
+- (void)deleteTemporaryObjects {
+    for(unsigned int i = 0; i < [rows count]; ++i) {
+        [self.managedObjectContext deleteObject:[rows objectAtIndex:i]];
+    }
+    
+    if(transaction != nil) {
+        [self.managedObjectContext deleteObject:transaction];
+    }
 }
 
 - (void)displayDate {
@@ -199,14 +224,19 @@ UIStoryboard *storyboard = nil;
 - (void)configureCell:(PaymentTableCell*)cell atIndexPath:(NSIndexPath*)indexPath
 {
     PaymentMO *payment = [rows objectAtIndex:indexPath.row];
+    
     cell.nameText.text = payment.name;
     cell.phoneText.text = payment.phoneNumber;
     cell.phoneText.hidden = ([payment.phoneNumber length] == 0);
     cell.moneyText.text = [NSString stringWithFormat:@"$%.2lf", payment.paid];
 }
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
+    return true;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -214,6 +244,7 @@ UIStoryboard *storyboard = nil;
     if(editingStyle == UITableViewCellEditingStyleDelete) {
         [rows removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [self updateDisplayTotals];
     }
 }
 

@@ -82,7 +82,6 @@ static NSString *storyboardName = @"Main";
 }
 
 - (void)presentAddTransaction {
-    [self.view endEditing:true];
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle: nil];
     NewTransactionViewController *viewController = (NewTransactionViewController*)[storyboard instantiateViewControllerWithIdentifier:@"NewTransactionViewController"];
     [self.navigationController pushViewController:viewController animated:true];

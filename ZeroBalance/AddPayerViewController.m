@@ -33,6 +33,10 @@ CNContactPickerViewController *contactPicker = nil;
     NSLog(@"%@", self.transaction);
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [self.paidText becomeFirstResponder];
+}
+
 # pragma mark - IBAction
 
 - (IBAction)contactsPressed:(id)sender {
@@ -40,13 +44,17 @@ CNContactPickerViewController *contactPicker = nil;
 }
 
 - (IBAction)savePressed:(id)sender {
-    NSLog(@"What");
     PaymentMO *payment = [NSEntityDescription insertNewObjectForEntityForName:@"Payment" inManagedObjectContext:self.managedObjectContext];
-    payment.paid = [self.paidText.text doubleValue];
+    payment.paid = [[self.paidText.text substringFromIndex:1] doubleValue];
     payment.name = self.nameText.text;
     payment.phoneNumber = self.phoneText.text;
     
-    [self.delegate newPaymentMO:payment];
+    NSError *error = nil;
+    if ([[self managedObjectContext] save:&error] == NO) {
+        NSAssert(NO, @"Error saving context: %@\n%@", [error localizedDescription], [error userInfo]);
+    }
+    
+    [self.delegate newPaymentMO:payment.objectID];
     [self.navigationController popViewControllerAnimated:true];
 }
 
@@ -54,8 +62,8 @@ CNContactPickerViewController *contactPicker = nil;
 
 - (void)contactPicker:(CNContactPickerViewController *)picker didSelectContact:(CNContact *)contact {
     
-    unsigned int firstLength = [contact.givenName length];
-    unsigned int lastLength = [contact.familyName length];
+    unsigned long firstLength = [contact.givenName length];
+    unsigned long lastLength = [contact.familyName length];
     
     if(firstLength > 0 && lastLength > 0) {
         self.nameText.text = [NSString stringWithFormat:@"%@%@%@", contact.givenName, @" ", contact.familyName];
@@ -68,6 +76,8 @@ CNContactPickerViewController *contactPicker = nil;
     if([contact.phoneNumbers count] > 0) {
         self.phoneText.text = [[[contact.phoneNumbers objectAtIndex:0] value] stringValue];
     }
+    
+    [self.paidText becomeFirstResponder];
 }
 
 # pragma mark - UITextFieldDelegate

@@ -16,7 +16,7 @@
 
 @protocol AddPayerViewControllerDelegate <NSObject>
 
-- (void)newPaymentMO:(PaymentMO *)payment;
+- (void)newPaymentMO:(NSManagedObjectID *)objectID;
 
 @end
 
