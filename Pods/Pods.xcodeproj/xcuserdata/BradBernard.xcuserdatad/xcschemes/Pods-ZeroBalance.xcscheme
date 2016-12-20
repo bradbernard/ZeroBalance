@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0820"
+   LastUpgradeVersion = "0700"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "61F82746C44CD8793F0227F32A7EFC6E"
+               BlueprintIdentifier = "3B8D9719B2DD40FE77822640E83EC8F6"
                BuildableName = "Pods_ZeroBalance.framework"
                BlueprintName = "Pods-ZeroBalance"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "61F82746C44CD8793F0227F32A7EFC6E"
+            BlueprintIdentifier = "3B8D9719B2DD40FE77822640E83EC8F6"
             BuildableName = "Pods_ZeroBalance.framework"
             BlueprintName = "Pods-ZeroBalance"
             ReferencedContainer = "container:Pods.xcodeproj">

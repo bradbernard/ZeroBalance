@@ -10,7 +10,7 @@
 //#import <ChameleonFramework/Chameleon.h>
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
-#import "MoPub.h"
+//#import "MoPub.h"
 
 
 
@@ -23,7 +23,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 //    [Chameleon setGlobalThemeUsingPrimaryColor:FlatNavyBlue withSecondaryColor:FlatWhite usingFontName:@"SFCompactDisplay-Regular" andContentStyle:UIContentStyleContrast];
-    [Fabric with:@[[Crashlytics class], [MoPub class]]];
+//    [Fabric with:@[[Crashlytics class], [MoPub class]]];
+    [Fabric with:@[[Crashlytics class]]];
     [self setDataController:[[DataController alloc] init]];
     return YES;
 }

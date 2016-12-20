@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>IQKeyboardManager.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-ZeroBalance.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -25,11 +30,6 @@
 			<false/>
 		</dict>
 		<key>Pods-ZeroBalanceUITests.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>mopub-ios-sdk.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -47,17 +47,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>518E5A122F8BE5C56262F616108E98A2</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>61F82746C44CD8793F0227F32A7EFC6E</key>
+		<key>3B8D9719B2DD40FE77822640E83EC8F6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>8A267660E1AD4832DE75665F2F87AEA3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C36CB2CB977A4E7D954935096D00A1ED</key>
 		<dict>
 			<key>primary</key>
 			<true/>

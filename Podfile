@@ -5,7 +5,8 @@ target 'ZeroBalance' do
   use_frameworks!
 
   # Pods for ZeroBalance
-  pod 'mopub-ios-sdk'
+  pod 'IQKeyboardManager'
+  # pod 'mopub-ios-sdk'
   pod 'Fabric'
   pod 'Crashlytics'
   pod 'ChameleonFramework'

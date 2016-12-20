@@ -55,7 +55,7 @@ UIStoryboard *storyboard = nil;
     rows = [[NSMutableArray alloc] init];
     storyboard = [UIStoryboard storyboardWithName:storyboardName bundle: nil];
     
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:nil action:nil];
     
     // [self toggleHidden:true];
     
