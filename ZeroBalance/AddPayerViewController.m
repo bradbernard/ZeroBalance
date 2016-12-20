@@ -33,7 +33,7 @@ CNContactPickerViewController *contactPicker = nil;
     NSLog(@"%@", self.transaction);
 }
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewDidAppear:(BOOL)animated {
     [self.paidText becomeFirstResponder];
 }
 

@@ -32,16 +32,21 @@ static NSString *storyboardName = @"Main";
 static NSString *cellIdentifier = @"PaymentTableCell";
 
 static NSString *peopleText = @"People: ";
-static NSString *perPersonText = @"$/person: ";
+static NSString *perPersonText = @"Average: ";
 
 unsigned int rowTotal = 0;
 unsigned int rowSaved = 0;
 
 NSDate *date = nil;
 HSDatePickerViewController *picker = nil;
+
 NSMutableArray<PaymentMO *> *rows = nil;
 TransactionMO *transaction = nil;
+
 UIStoryboard *storyboard = nil;
+
+UIColor *moneyColor = nil;
+UIColor *redColor = nil;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -55,6 +60,9 @@ UIStoryboard *storyboard = nil;
     rows = [[NSMutableArray alloc] init];
     storyboard = [UIStoryboard storyboardWithName:storyboardName bundle: nil];
     
+    moneyColor = [UIColor colorWithRed:33.0/255.0 green:108.0/255.0 blue:42.0/255.0 alpha:1.0];
+    redColor = [UIColor redColor];
+    
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:nil action:nil];
     
     // [self toggleHidden:true];
@@ -63,8 +71,10 @@ UIStoryboard *storyboard = nil;
     [self displayDate];
 }
 
--(void)viewWillAppear:(BOOL)animated {
-    [self.nameText becomeFirstResponder];
+-(void)viewDidAppear:(BOOL)animated {
+    if([rows count] == 0) {
+        [self.nameText becomeFirstResponder];
+    }
 }
 
 #pragma mark - IBActions
@@ -168,8 +178,12 @@ UIStoryboard *storyboard = nil;
     self.tableView.hidden = toggle;
 }
 
+-(double)perPersonTotal {
+    return [[self.moneyText.text substringFromIndex:1] doubleValue]/[rows count];
+}
+
 - (void)updateDisplayTotals {
-    double perPerson = [[self.moneyText.text substringFromIndex:1] doubleValue]/[rows count];
+    double perPerson = [self perPersonTotal];
     self.perPersonLabel.text = [perPersonText stringByAppendingString:[NSString stringWithFormat:@"$%.2lf", perPerson]];
     self.peopleLabel.text = [peopleText stringByAppendingString:[NSString stringWithFormat:@"%lu", (unsigned long)[rows count]]];
 }
@@ -228,7 +242,12 @@ UIStoryboard *storyboard = nil;
     cell.nameText.text = payment.name;
     cell.phoneText.text = payment.phoneNumber;
     cell.phoneText.hidden = ([payment.phoneNumber length] == 0);
-    cell.moneyText.text = [NSString stringWithFormat:@"$%.2lf", payment.paid];
+    NSString *paid = [NSString stringWithFormat:@"$%.2lf", payment.paid];
+    
+    bool equalOrAboveAvg = payment.paid >= [self perPersonTotal];
+    NSMutableAttributedString *money = [[NSMutableAttributedString alloc] initWithString:paid];
+    [money addAttribute:NSForegroundColorAttributeName value:(equalOrAboveAvg ? moneyColor : redColor) range:NSMakeRange(0, [paid length])];
+    [cell.moneyText setAttributedText:money];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -242,6 +261,7 @@ UIStoryboard *storyboard = nil;
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if(editingStyle == UITableViewCellEditingStyleDelete) {
+        [self.managedObjectContext deleteObject:[rows objectAtIndex:indexPath.row]];
         [rows removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         [self updateDisplayTotals];

@@ -31,7 +31,7 @@
                 <navigationController storyboardIdentifier="ContainerNavigationController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="v16-PE-9oi" customClass="ContainerNavigationController" sceneMemberID="viewController">
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="k2z-iC-QQU">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="k2z-iC-QQU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
@@ -224,8 +224,8 @@
                                     <action selector="addPayeePressed:" destination="HfB-sW-WYd" eventType="touchUpInside" id="NRL-QM-DS1"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$/person: {$1,000,000.00}" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sZO-8E-RSJ">
-                                <rect key="frame" x="174" y="226" width="186" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Average: {$1,000,000.00}" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sZO-8E-RSJ">
+                                <rect key="frame" x="181.5" y="226" width="178.5" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="i3D-QV-shl"/>
                                 </constraints>
