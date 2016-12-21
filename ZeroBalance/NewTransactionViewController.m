@@ -37,23 +37,36 @@ static NSString *perPersonText = @"Average: ";
 NSDate *date = nil;
 HSDatePickerViewController *picker = nil;
 
-UIStoryboard *storyboard = nil;
-
+UIStoryboard *storyboardInstance = nil;
 UIColor *moneyColor = nil;
 UIColor *redColor = nil;
+UIBarButtonItem *closeButton = nil;
+UIBarButtonItem *doneButton = nil;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    date = [NSDate date];
     picker = [[HSDatePickerViewController alloc] init];
+    picker.backButtonTitle = @"Cancel";
+    picker.confirmButtonTitle = @"Select";
     picker.delegate = self;
     
-    self.rows = [[NSMutableArray alloc] init];
-    storyboard = [UIStoryboard storyboardWithName:storyboardName bundle: nil];
-    
+    date = [NSDate date];
+    storyboardInstance = [UIStoryboard storyboardWithName:storyboardName bundle: nil];
     moneyColor = [UIColor colorWithRed:33.0/255.0 green:108.0/255.0 blue:42.0/255.0 alpha:1.0];
     redColor = [UIColor redColor];
+    
+    if(self.transaction != nil) {
+        TransactionMO *pointer = (TransactionMO *) [self.managedObjectContext objectWithID:self.transaction.objectID];
+//        self.transaction = [self.managedObjectContext objectWithID:self.transaction.objectID];
+        self.nameText.text = pointer.name;
+        self.moneyText.text = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithDouble:pointer.total] numberStyle:NSNumberFormatterCurrencyStyle];
+        date = pointer.date;
+        picker.date = date;
+        self.rows = [NSMutableArray arrayWithArray:[self.transaction.payments allObjects]];
+    } else {
+        self.rows = [[NSMutableArray alloc] init];
+    }
     
     [self navigationItems];
     [self displayDate];
@@ -70,19 +83,19 @@ UIColor *redColor = nil;
 
 - (IBAction)addPayeePressed:(id)sender {
     [self.view endEditing:true];
-    AddPayerViewController *viewController = (AddPayerViewController*)[storyboard instantiateViewControllerWithIdentifier:@"AddPayerViewController"];
+    AddPayerViewController *viewController = (AddPayerViewController*)[storyboardInstance instantiateViewControllerWithIdentifier:@"AddPayerViewController"];
     viewController.transaction = self.transaction;
     viewController.delegate = self;
     [self.navigationController pushViewController:viewController animated:true];
 }
 
 - (IBAction)closeModal:(id)sender {
-    [self.navigationController popViewControllerAnimated:true];
     [self deleteTemporaryObjects];
+    [self.navigationController popViewControllerAnimated:true];
 }
 
 - (IBAction)saveTransaction:(id)sender {
-    NSLog(@"Saved");
+    [self insertTransaction];
 }
 
 - (IBAction)textChanged:(id)sender {
@@ -159,11 +172,11 @@ UIColor *redColor = nil;
 #pragma Mark - Void Methods
 
 - (void)navigationItems {
-    UIBarButtonItem *close = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(closeModal:)];
-    UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveTransaction:)];
+    closeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(closeModal:)];
+    doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveTransaction:)];
     
-    self.navigationItem.leftBarButtonItem = close;
-    self.navigationItem.rightBarButtonItem = done;
+    self.navigationItem.leftBarButtonItem = closeButton;
+    self.navigationItem.rightBarButtonItem = doneButton;
     
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:nil action:nil];
 }
@@ -174,7 +187,38 @@ UIColor *redColor = nil;
     self.tableView.hidden = toggle;
 }
 
--(double)perPersonTotal {
+- (void)insertTransaction {
+    if(![self transactionFilledOut]) {
+        return;
+    }
+    
+    if(!self.editing) {
+        self.transaction = [NSEntityDescription insertNewObjectForEntityForName:@"Transaction" inManagedObjectContext: self.managedObjectContext];
+    }
+    
+    self.transaction.name = self.nameText.text;
+    self.transaction.total = [[[self.moneyText.text substringFromIndex:1] stringByReplacingOccurrencesOfString:@"," withString:@""] doubleValue];
+    self.transaction.date = date;
+    self.transaction.formattedDate = [NSDateFormatter localizedStringFromDate:self.transaction.date dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterNoStyle];
+
+    for(unsigned int i = 0; i < [self.rows count]; ++i) {
+        [self.rows objectAtIndex:i].transaction = self.transaction;
+    }
+    
+    NSMutableSet *payments = [[NSMutableSet alloc] initWithArray:self.rows];
+    self.transaction.payments = payments;
+    
+    NSError *error = nil;
+    if ([[self managedObjectContext] save:&error] == NO) {
+        NSAssert(NO, @"Error saving context: %@\n%@", [error localizedDescription], [error userInfo]);
+    }
+    
+    [self.delegate newTransactionMO:self.transaction.objectID];
+    
+    [self.navigationController popViewControllerAnimated:true];
+}
+
+- (double)perPersonTotal {
     return [[self.moneyText.text substringFromIndex:1] doubleValue]/[self.rows count];
 }
 
@@ -199,12 +243,22 @@ UIColor *redColor = nil;
 }
 
 - (void)deleteTemporaryObjects {
+    
+    if(self.editing) {
+        return;
+    }
+    
     for(unsigned int i = 0; i < [self.rows count]; ++i) {
         [self.managedObjectContext deleteObject:[self.rows objectAtIndex:i]];
     }
     
     if(self.transaction != nil) {
         [self.managedObjectContext deleteObject:self.transaction];
+    }
+    
+    NSError *error = nil;
+    if ([[self managedObjectContext] save:&error] == NO) {
+        NSAssert(NO, @"Error saving context: %@\n%@", [error localizedDescription], [error userInfo]);
     }
 }
 
@@ -253,15 +307,18 @@ UIColor *redColor = nil;
     [cell.moneyText setAttributedText:money];
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    PaymentMO *payment = [self.rows objectAtIndex:indexPath.row];
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    AddPayerViewController *viewController = (AddPayerViewController*)[storyboard instantiateViewControllerWithIdentifier:@"AddPayerViewController"];
+    [self.tableView deselectRowAtIndexPath:indexPath animated:true];
+    PaymentMO *payment = [self.rows objectAtIndex:indexPath.row];
+
+    AddPayerViewController *viewController = (AddPayerViewController*)[storyboardInstance instantiateViewControllerWithIdentifier:@"AddPayerViewController"];
     viewController.transaction = self.transaction;
     viewController.delegate = self;
     viewController.payment = payment;
     viewController.rowIndex = indexPath.row;
     viewController.title = @"Edit Payer";
+    
     [self.navigationController pushViewController:viewController animated:true];
 }
 

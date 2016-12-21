@@ -20,7 +20,7 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *editButtonItem;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSManagedObjectContext* managedObjectContext;
-@property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 
 @end
 
@@ -30,17 +30,25 @@ bool deleteAll = true;
 static NSString *cellIdentifier = @"TransactionTableCell";
 static NSString *storyboardName = @"Main";
 
+UIStoryboard *storyboard = nil;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    storyboard = [UIStoryboard storyboardWithName:storyboardName bundle: nil];
     
     self.title = @"Transactions";
     [self initializeFetchedResultsController];
     [self updateDeleteButtonTitle];
 }
 
-- (void)viewDidUnload {
-    self.fetchedResultsController = nil;
-}
+//- (void)viewDidUnload {
+//    self.fetchedResultsController = nil;
+//}
+
+//- (void)viewWillAppear:(BOOL)animated {
+//    [self initializeFetchedResultsController];
+//}
 
 #pragma mark - IBAction
 
@@ -82,50 +90,8 @@ static NSString *storyboardName = @"Main";
 }
 
 - (void)presentAddTransaction {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle: nil];
     NewTransactionViewController *viewController = (NewTransactionViewController*)[storyboard instantiateViewControllerWithIdentifier:@"NewTransactionViewController"];
     [self.navigationController pushViewController:viewController animated:true];
-    
-}
-
-- (void)test {
-    
-//    NewTransactionViewController *viewController = [[NewTransactionViewController alloc] initWithNibName:@"NewTransactionViewController" bundle:nil];
-    
-        //UIStoryboard *storyboard = [UIStoryboard storyboardWithName:storyboardName bundle: nil];
-        //NewTransactionViewController *viewController = (NewTransactionViewController*)[storyboard instantiateViewControllerWithIdentifier:@"NewTransactionViewController"];
-        //[self.navigationController pushViewController:viewController animated:true];
-
-
-//    PersonMO *person = [NSEntityDescription insertNewObjectForEntityForName:@"Person" inManagedObjectContext:self.managedObjectContext];
-//    person.firstName = @"Billy";
-//    person.lastName = @"Bob";
-//    person.name = @"Billy Bob";
-//    person.phoneNumber = @"5556667777";
-//    
-//    PaymentMO *payment1 = [NSEntityDescription insertNewObjectForEntityForName:@"Payment" inManagedObjectContext:self.managedObjectContext];
-//    payment1.paid = 10.00;
-//    payment1.person = person;
-//    
-//    NSMutableSet *personPayments = [[NSMutableSet alloc] init];
-//    [personPayments addObject:payment1];
-//    person.payments = personPayments;
-//    
-//    TransactionMO *transaction = [NSEntityDescription insertNewObjectForEntityForName:@"Transaction" inManagedObjectContext: self.managedObjectContext];
-//    transaction.name = @"Woodstocks Pizza";
-//    transaction.total = 25.44;
-//    transaction.date = [NSDate date];
-//    transaction.formattedDate = [NSDateFormatter localizedStringFromDate:transaction.date dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterNoStyle];
-//    
-//    NSMutableSet *payments = [[NSMutableSet alloc] init];
-//    [payments addObject:payment1];
-//    transaction.payments = payments;
-//    payment1.transaction = transaction;
-//
-//    NSError *error = nil;
-//    if ([[self managedObjectContext] save:&error] == NO) {
-//        NSAssert(NO, @"Error saving context: %@\n%@", [error localizedDescription], [error userInfo]);
-//    }
 }
 
 #pragma mark - Deletion
@@ -204,8 +170,9 @@ static NSString *storyboardName = @"Main";
     [request setSortDescriptors:@[sortDate]];
     
     NSManagedObjectContext* moc = self.managedObjectContext;
+    [moc setStalenessInterval:0];
     [self setFetchedResultsController:[[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:moc sectionNameKeyPath:@"formattedDate" cacheName:@"RootTransVC"]];
-    [[self fetchedResultsController] setDelegate:self];
+    [self.fetchedResultsController setDelegate:self];
     
     NSError *error = nil;
     if (![[self fetchedResultsController] performFetch:&error]) {
@@ -244,20 +211,25 @@ static NSString *storyboardName = @"Main";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(!self.tableView.editing) {
-        return;
+    if(self.tableView.editing) {
+        return [self updateDeleteButtonTitle];;
     }
     
-    [self updateDeleteButtonTitle];
+    TransactionMO *transaction = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+    NewTransactionViewController *viewController = (NewTransactionViewController*)[storyboard instantiateViewControllerWithIdentifier:@"NewTransactionViewController"];
+    viewController.transactionId = transaction.objectID;
+    viewController.transaction = transaction;
+    viewController.editing = true;
+    viewController.delegate = self;
+    
+    [self.navigationController pushViewController:viewController animated:true];
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(!self.tableView.editing) {
-        return;
+    if(self.tableView.editing) {
+        return [self updateDeleteButtonTitle];;
     }
-    
-    [self updateDeleteButtonTitle];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -341,6 +313,28 @@ static NSString *storyboardName = @"Main";
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
     [[self tableView] endUpdates];
+}
+
+# pragma mark - NewTransactionViewControllerDelegate
+
+- (void)newTransactionMO:(NSManagedObjectID *)objectID {
+    NSLog(@"newTrans");
+    NSError *error = nil;
+    [self.fetchedResultsController performFetch:&error];
+//    self.fetchedResultsController fet
+//    PaymentMO* payment = [self.managedObjectContext objectWithID:objectID];
+//    [self.rows addObject:payment];
+//    [self.tableView beginUpdates];
+//    [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForItem:([self.rows count] - 1) inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+//    [self.tableView endUpdates];
+}
+
+-(void)updatedTransactionMO:(NSManagedObjectID *)objectID rowIndex:(NSUInteger)rowIndex {
+    NSLog(@"newTrans");
+//    [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForItem:rowIndex inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+//    [self updateDisplayTotals];
+    NSError *error = nil;
+    [self.fetchedResultsController performFetch:&error];
 }
 
 @end

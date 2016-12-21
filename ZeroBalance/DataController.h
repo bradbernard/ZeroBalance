@@ -14,7 +14,7 @@
 
 @interface DataController : NSObject
 
-@property (strong) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 
 - (void)initializeCoreData;
 

@@ -11,9 +11,21 @@
 #import "HSDatePickerViewController.h"
 #import "AddPayerViewController.h"
 
+@class NewTransactionViewController;
+
+@protocol NewTransactionViewControllerDelegate <NSObject>
+
+- (void)newTransactionMO:(NSManagedObjectID *)objectID;
+- (void)updatedTransactionMO:(NSManagedObjectID *)objectID rowIndex:(NSUInteger)rowIndex;
+
+@end
+
 @interface NewTransactionViewController : BaseViewController<UITableViewDelegate, UITableViewDataSource, HSDatePickerViewControllerDelegate, UITextFieldDelegate, AddPayerViewControllerDelegate>
 
-@property NSMutableArray<PaymentMO *> *rows;
-@property TransactionMO *transaction;
+@property (weak, nonatomic) id <NewTransactionViewControllerDelegate> delegate;
+@property (strong, nonatomic) NSMutableArray<PaymentMO *> *rows;
+@property (strong, nonatomic) TransactionMO *transaction;
+@property (strong, atomic) NSManagedObjectID *transactionId;
+@property bool editing;
 
 @end
