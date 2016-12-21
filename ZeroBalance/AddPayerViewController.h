@@ -17,13 +17,15 @@
 @protocol AddPayerViewControllerDelegate <NSObject>
 
 - (void)newPaymentMO:(NSManagedObjectID *)objectID;
+- (void)updatedPaymentMO:(NSManagedObjectID *)objectID rowIndex:(NSUInteger)rowIndex;
 
 @end
 
 @interface AddPayerViewController : BaseViewController<CNContactPickerDelegate, UITextFieldDelegate>
 
+@property (weak, nonatomic) id <AddPayerViewControllerDelegate> delegate;
 @property (weak, nonatomic) TransactionMO *transaction;
-@property (nonatomic, weak) id <AddPayerViewControllerDelegate> delegate;
-
+@property (weak, nonatomic) PaymentMO *payment;
+@property NSUInteger rowIndex;
 
 @end

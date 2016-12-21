@@ -13,4 +13,7 @@
 
 @interface NewTransactionViewController : BaseViewController<UITableViewDelegate, UITableViewDataSource, HSDatePickerViewControllerDelegate, UITextFieldDelegate, AddPayerViewControllerDelegate>
 
+@property NSMutableArray<PaymentMO *> *rows;
+@property TransactionMO *transaction;
+
 @end

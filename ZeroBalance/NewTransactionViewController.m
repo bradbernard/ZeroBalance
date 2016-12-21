@@ -22,7 +22,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *perPersonLabel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIButton *payeeButton;
-@property (nonatomic, strong) NSManagedObjectContext* managedObjectContext;
+@property (strong, nonatomic) NSManagedObjectContext* managedObjectContext;
 
 @end
 
@@ -34,14 +34,8 @@ static NSString *cellIdentifier = @"PaymentTableCell";
 static NSString *peopleText = @"People: ";
 static NSString *perPersonText = @"Average: ";
 
-unsigned int rowTotal = 0;
-unsigned int rowSaved = 0;
-
 NSDate *date = nil;
 HSDatePickerViewController *picker = nil;
-
-NSMutableArray<PaymentMO *> *rows = nil;
-TransactionMO *transaction = nil;
 
 UIStoryboard *storyboard = nil;
 
@@ -51,28 +45,23 @@ UIColor *redColor = nil;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"New Transaction";
-    
     date = [NSDate date];
     picker = [[HSDatePickerViewController alloc] init];
     picker.delegate = self;
     
-    rows = [[NSMutableArray alloc] init];
+    self.rows = [[NSMutableArray alloc] init];
     storyboard = [UIStoryboard storyboardWithName:storyboardName bundle: nil];
     
     moneyColor = [UIColor colorWithRed:33.0/255.0 green:108.0/255.0 blue:42.0/255.0 alpha:1.0];
     redColor = [UIColor redColor];
     
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:nil action:nil];
-    
-    // [self toggleHidden:true];
-    
     [self navigationItems];
     [self displayDate];
+    [self updateDisplayTotals];
 }
 
 -(void)viewDidAppear:(BOOL)animated {
-    if([rows count] == 0) {
+    if([self.rows count] == 0) {
         [self.nameText becomeFirstResponder];
     }
 }
@@ -82,7 +71,7 @@ UIColor *redColor = nil;
 - (IBAction)addPayeePressed:(id)sender {
     [self.view endEditing:true];
     AddPayerViewController *viewController = (AddPayerViewController*)[storyboard instantiateViewControllerWithIdentifier:@"AddPayerViewController"];
-    viewController.transaction = transaction;
+    viewController.transaction = self.transaction;
     viewController.delegate = self;
     [self.navigationController pushViewController:viewController animated:true];
 }
@@ -108,10 +97,15 @@ UIColor *redColor = nil;
 
 - (void)newPaymentMO:(NSManagedObjectID *)objectID {
     PaymentMO* payment = [self.managedObjectContext objectWithID:objectID];
-    [rows addObject:payment];
+    [self.rows addObject:payment];
     [self.tableView beginUpdates];
-    [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForItem:([rows count] - 1) inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+    [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForItem:([self.rows count] - 1) inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
     [self.tableView endUpdates];
+    [self updateDisplayTotals];
+}
+
+-(void)updatedPaymentMO:(NSManagedObjectID *)objectID rowIndex:(NSUInteger)rowIndex {
+    [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForItem:rowIndex inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
     [self updateDisplayTotals];
 }
 
@@ -170,6 +164,8 @@ UIColor *redColor = nil;
     
     self.navigationItem.leftBarButtonItem = close;
     self.navigationItem.rightBarButtonItem = done;
+    
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:nil action:nil];
 }
 
 - (void)toggleHidden:(BOOL)toggle {
@@ -179,13 +175,20 @@ UIColor *redColor = nil;
 }
 
 -(double)perPersonTotal {
-    return [[self.moneyText.text substringFromIndex:1] doubleValue]/[rows count];
+    return [[self.moneyText.text substringFromIndex:1] doubleValue]/[self.rows count];
 }
 
 - (void)updateDisplayTotals {
-    double perPerson = [self perPersonTotal];
-    self.perPersonLabel.text = [perPersonText stringByAppendingString:[NSString stringWithFormat:@"$%.2lf", perPerson]];
-    self.peopleLabel.text = [peopleText stringByAppendingString:[NSString stringWithFormat:@"%lu", (unsigned long)[rows count]]];
+    if([self.rows count] > 0) {
+        double perPerson = [self perPersonTotal];
+        self.perPersonLabel.text = [perPersonText stringByAppendingString:[NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithDouble:perPerson] numberStyle:NSNumberFormatterCurrencyStyle]];
+        [self toggleHidden:false];
+    } else {
+        self.perPersonLabel.text = perPersonText;
+        [self toggleHidden:true];
+    }
+    
+    self.peopleLabel.text = [peopleText stringByAppendingString:[NSString stringWithFormat:@"%lu", (unsigned long)[self.rows count]]];
 }
 
 - (BOOL)transactionFilledOut {
@@ -196,12 +199,12 @@ UIColor *redColor = nil;
 }
 
 - (void)deleteTemporaryObjects {
-    for(unsigned int i = 0; i < [rows count]; ++i) {
-        [self.managedObjectContext deleteObject:[rows objectAtIndex:i]];
+    for(unsigned int i = 0; i < [self.rows count]; ++i) {
+        [self.managedObjectContext deleteObject:[self.rows objectAtIndex:i]];
     }
     
-    if(transaction != nil) {
-        [self.managedObjectContext deleteObject:transaction];
+    if(self.transaction != nil) {
+        [self.managedObjectContext deleteObject:self.transaction];
     }
 }
 
@@ -230,24 +233,36 @@ UIColor *redColor = nil;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [rows count];
+    return [self.rows count];
 }
 
 #pragma mark - UITableViewDelegate
 
 - (void)configureCell:(PaymentTableCell*)cell atIndexPath:(NSIndexPath*)indexPath
 {
-    PaymentMO *payment = [rows objectAtIndex:indexPath.row];
+    PaymentMO *payment = [self.rows objectAtIndex:indexPath.row];
     
     cell.nameText.text = payment.name;
     cell.phoneText.text = payment.phoneNumber;
     cell.phoneText.hidden = ([payment.phoneNumber length] == 0);
-    NSString *paid = [NSString stringWithFormat:@"$%.2lf", payment.paid];
-    
+    NSString *paid = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithDouble:payment.paid] numberStyle:NSNumberFormatterCurrencyStyle];
+
     bool equalOrAboveAvg = payment.paid >= [self perPersonTotal];
     NSMutableAttributedString *money = [[NSMutableAttributedString alloc] initWithString:paid];
     [money addAttribute:NSForegroundColorAttributeName value:(equalOrAboveAvg ? moneyColor : redColor) range:NSMakeRange(0, [paid length])];
     [cell.moneyText setAttributedText:money];
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    PaymentMO *payment = [self.rows objectAtIndex:indexPath.row];
+    
+    AddPayerViewController *viewController = (AddPayerViewController*)[storyboard instantiateViewControllerWithIdentifier:@"AddPayerViewController"];
+    viewController.transaction = self.transaction;
+    viewController.delegate = self;
+    viewController.payment = payment;
+    viewController.rowIndex = indexPath.row;
+    viewController.title = @"Edit Payer";
+    [self.navigationController pushViewController:viewController animated:true];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -261,8 +276,8 @@ UIColor *redColor = nil;
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if(editingStyle == UITableViewCellEditingStyleDelete) {
-        [self.managedObjectContext deleteObject:[rows objectAtIndex:indexPath.row]];
-        [rows removeObjectAtIndex:indexPath.row];
+        [self.managedObjectContext deleteObject:[self.rows objectAtIndex:indexPath.row]];
+        [self.rows removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         [self updateDisplayTotals];
     }

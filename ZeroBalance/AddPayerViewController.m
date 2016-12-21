@@ -30,7 +30,11 @@ CNContactPickerViewController *contactPicker = nil;
     contactPicker = [[CNContactPickerViewController alloc] init];
     contactPicker.delegate = self;
     
-    NSLog(@"%@", self.transaction);
+    if(self.payment != nil) {
+        self.nameText.text = self.payment.name;
+        self.phoneText.text = self.payment.phoneNumber;
+        self.paidText.text = [NSString stringWithFormat:@"$%.2lf", self.payment.paid];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -44,8 +48,15 @@ CNContactPickerViewController *contactPicker = nil;
 }
 
 - (IBAction)savePressed:(id)sender {
-    PaymentMO *payment = [NSEntityDescription insertNewObjectForEntityForName:@"Payment" inManagedObjectContext:self.managedObjectContext];
-    payment.paid = [[self.paidText.text substringFromIndex:1] doubleValue];
+    PaymentMO *payment = nil;
+    
+    if(self.payment == nil) {
+        payment = [NSEntityDescription insertNewObjectForEntityForName:@"Payment" inManagedObjectContext:self.managedObjectContext];
+    } else {
+        payment = self.payment;
+    }
+    
+    payment.paid = [[[self.paidText.text substringFromIndex:1] stringByReplacingOccurrencesOfString:@"," withString:@""] doubleValue];
     payment.name = self.nameText.text;
     payment.phoneNumber = self.phoneText.text;
     
@@ -54,7 +65,12 @@ CNContactPickerViewController *contactPicker = nil;
         NSAssert(NO, @"Error saving context: %@\n%@", [error localizedDescription], [error userInfo]);
     }
     
-    [self.delegate newPaymentMO:payment.objectID];
+    if(self.payment == nil) {
+        [self.delegate newPaymentMO:payment.objectID];
+    } else {
+        [self.delegate updatedPaymentMO:payment.objectID rowIndex:self.rowIndex];
+    }
+    
     [self.navigationController popViewControllerAnimated:true];
 }
 
