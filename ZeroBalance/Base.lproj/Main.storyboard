@@ -59,15 +59,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="70" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="07P-aV-cHf">
-                                <rect key="frame" x="-1" y="0.0" width="376" height="667"/>
+                                <rect key="frame" x="-0.5" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="7" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TransactionTableCell" rowHeight="70" id="4YM-1S-Qh6" customClass="TransactionTableCell">
-                                        <rect key="frame" x="0.0" y="28" width="376" height="70"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4YM-1S-Qh6" id="N4l-fd-Txo">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="69"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="69.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="{Name}" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="40l-cV-a7U">
@@ -166,9 +166,6 @@
                                 <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                                 <connections>
-                                    <action selector="textChanged:" destination="HfB-sW-WYd" eventType="editingChanged" id="N5e-g0-mKG"/>
-                                    <action selector="textChanged:" destination="HfB-sW-WYd" eventType="editingDidEnd" id="n4W-bB-4Hw"/>
-                                    <action selector="textChanged:" destination="HfB-sW-WYd" eventType="valueChanged" id="ucb-8A-Ue2"/>
                                     <outlet property="delegate" destination="HfB-sW-WYd" id="cjp-KN-p4v"/>
                                 </connections>
                             </textField>
@@ -182,8 +179,6 @@
                                 <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
                                 <connections>
-                                    <action selector="textChanged:" destination="HfB-sW-WYd" eventType="editingChanged" id="0Tl-Qd-xGB"/>
-                                    <action selector="textChanged:" destination="HfB-sW-WYd" eventType="editingDidEnd" id="Jfx-OT-0ab"/>
                                     <outlet property="delegate" destination="HfB-sW-WYd" id="cbi-5L-rqS"/>
                                 </connections>
                             </textField>
@@ -198,8 +193,6 @@
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                 <connections>
                                     <action selector="datePressed:" destination="HfB-sW-WYd" eventType="touchDown" id="zm8-F3-1Rv"/>
-                                    <action selector="textChanged:" destination="HfB-sW-WYd" eventType="editingDidEnd" id="jBa-lA-HFg"/>
-                                    <action selector="textChanged:" destination="HfB-sW-WYd" eventType="editingChanged" id="tHa-iG-bsc"/>
                                     <outlet property="delegate" destination="HfB-sW-WYd" id="lz3-6T-cUd"/>
                                 </connections>
                             </textField>
@@ -242,7 +235,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hwX-yj-rRp" id="ZFD-Nq-IC0">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="69"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="69.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="{Name}" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JZE-lu-u7M">

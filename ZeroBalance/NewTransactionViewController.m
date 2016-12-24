@@ -101,10 +101,6 @@ double moneyAmount = 0;
     [self insertTransaction];
 }
 
-- (IBAction)textChanged:(id)sender {
-    self.payeeButton.enabled = [self transactionFilledOut];
-}
-
 - (IBAction)datePressed:(id)sender {
     [self presentViewController:picker animated:YES completion:nil];
 }
@@ -126,23 +122,14 @@ double moneyAmount = 0;
 # pragma mark - UITextFieldDelegate
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
-    
-    self.payeeButton.enabled = [self transactionFilledOut];
-    
     if (textField == self.moneyText && textField.text.length  == 0) {
         textField.text = @"$0.00";
     }
 }
 
-- (void)textFieldDidEndEditing:(UITextField *)textField {
-    self.payeeButton.enabled = [self transactionFilledOut];
-}
-
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
     
-    if(textField != self.moneyText) {
-        return true;
-    }
+    self.payeeButton.enabled = [self transactionFilledOut];
     
     NSString *cleanCentString = [[textField.text componentsSeparatedByCharactersInSet: [[NSCharacterSet decimalDigitCharacterSet] invertedSet]] componentsJoinedByString:@""];
     NSInteger centValue = [cleanCentString intValue];
