@@ -43,6 +43,8 @@ UIColor *redColor = nil;
 UIBarButtonItem *closeButton = nil;
 UIBarButtonItem *doneButton = nil;
 
+double moneyAmount = 0;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -56,14 +58,14 @@ UIBarButtonItem *doneButton = nil;
     moneyColor = [UIColor colorWithRed:33.0/255.0 green:108.0/255.0 blue:42.0/255.0 alpha:1.0];
     redColor = [UIColor redColor];
     
-    if(self.transaction != nil) {
-        TransactionMO *pointer = (TransactionMO *) [self.managedObjectContext objectWithID:self.transaction.objectID];
-//        self.transaction = [self.managedObjectContext objectWithID:self.transaction.objectID];
-        self.nameText.text = pointer.name;
-        self.moneyText.text = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithDouble:pointer.total] numberStyle:NSNumberFormatterCurrencyStyle];
-        date = pointer.date;
+    if(self.transactionId != nil) {
+        self.transaction = [self.managedObjectContext objectWithID:self.transactionId];
+        self.nameText.text = self.transaction.name;
+        self.moneyText.text = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithDouble:self.transaction.total] numberStyle:NSNumberFormatterCurrencyStyle];
+        date = self.transaction.date;
         picker.date = date;
         self.rows = [NSMutableArray arrayWithArray:[self.transaction.payments allObjects]];
+        moneyAmount = self.transaction.total;
     } else {
         self.rows = [[NSMutableArray alloc] init];
     }
@@ -74,7 +76,7 @@ UIBarButtonItem *doneButton = nil;
 }
 
 -(void)viewDidAppear:(BOOL)animated {
-    if([self.rows count] == 0) {
+    if(self.rows.count == 0) {
         [self.nameText becomeFirstResponder];
     }
 }
@@ -86,6 +88,7 @@ UIBarButtonItem *doneButton = nil;
     AddPayerViewController *viewController = (AddPayerViewController*)[storyboardInstance instantiateViewControllerWithIdentifier:@"AddPayerViewController"];
     viewController.transaction = self.transaction;
     viewController.delegate = self;
+    viewController.title = @"New Payer";
     [self.navigationController pushViewController:viewController animated:true];
 }
 
@@ -111,14 +114,12 @@ UIBarButtonItem *doneButton = nil;
 - (void)newPaymentMO:(NSManagedObjectID *)objectID {
     PaymentMO* payment = [self.managedObjectContext objectWithID:objectID];
     [self.rows addObject:payment];
-    [self.tableView beginUpdates];
-    [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForItem:([self.rows count] - 1) inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
-    [self.tableView endUpdates];
+    [self.tableView reloadData];
     [self updateDisplayTotals];
 }
 
 -(void)updatedPaymentMO:(NSManagedObjectID *)objectID rowIndex:(NSUInteger)rowIndex {
-    [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForItem:rowIndex inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+    [self.tableView reloadData];
     [self updateDisplayTotals];
 }
 
@@ -160,11 +161,16 @@ UIBarButtonItem *doneButton = nil;
     }
         
     myNumber = result;
-    NSNumber *formattedValue = [[NSNumber alloc] initWithDouble:[myNumber doubleValue]/ 100.0f];
+    NSNumber *formattedValue = [[NSNumber alloc] initWithDouble:[myNumber doubleValue]/ 100.0];
     
     NSNumberFormatter *currencyFormatter = [[NSNumberFormatter alloc] init];
     [currencyFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+    
     textField.text = [currencyFormatter stringFromNumber:formattedValue];
+    moneyAmount = [[currencyFormatter numberFromString:textField.text] doubleValue];
+    
+    [self updateDisplayTotals];
+    [self.tableView reloadData];
     
     return false;
 }
@@ -219,13 +225,20 @@ UIBarButtonItem *doneButton = nil;
 }
 
 - (double)perPersonTotal {
-    return [[self.moneyText.text substringFromIndex:1] doubleValue]/[self.rows count];
+    return moneyAmount/[self.rows count];
 }
 
 - (void)updateDisplayTotals {
     if([self.rows count] > 0) {
         double perPerson = [self perPersonTotal];
-        self.perPersonLabel.text = [perPersonText stringByAppendingString:[NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithDouble:perPerson] numberStyle:NSNumberFormatterCurrencyStyle]];
+        
+        NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+        [formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+        [formatter setMaximumFractionDigits:2];
+        [formatter setMinimumFractionDigits:2];
+        [formatter setRoundingMode: NSNumberFormatterRoundUp];
+        
+        self.perPersonLabel.text = [perPersonText stringByAppendingString:[formatter stringFromNumber:[NSNumber numberWithDouble:perPerson]]];
         [self toggleHidden:false];
     } else {
         self.perPersonLabel.text = perPersonText;
@@ -235,17 +248,17 @@ UIBarButtonItem *doneButton = nil;
     self.peopleLabel.text = [peopleText stringByAppendingString:[NSString stringWithFormat:@"%lu", (unsigned long)[self.rows count]]];
 }
 
-- (BOOL)transactionFilledOut {
-    return (self.moneyText.text.length > 0) &&
-            (self.nameText.text.length > 0) &&
-            (self.dateText.text.length > 0) &&
+- (bool)transactionFilledOut {
+    return  (self.moneyText.text.length > 0) &&
+            (self.nameText.text.length  > 0) &&
+            (self.dateText.text.length  > 0) &&
             (date != nil);
 }
 
 - (void)deleteTemporaryObjects {
     
     if(self.editing) {
-        return;
+        return ([self.managedObjectContext hasChanges] ? [self.managedObjectContext rollback] : nil);
     }
     
     for(unsigned int i = 0; i < [self.rows count]; ++i) {
@@ -335,7 +348,7 @@ UIBarButtonItem *doneButton = nil;
     if(editingStyle == UITableViewCellEditingStyleDelete) {
         [self.managedObjectContext deleteObject:[self.rows objectAtIndex:indexPath.row]];
         [self.rows removeObjectAtIndex:indexPath.row];
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [self.tableView reloadData];
         [self updateDisplayTotals];
     }
 }

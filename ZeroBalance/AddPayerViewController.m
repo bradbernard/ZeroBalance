@@ -48,6 +48,11 @@ CNContactPickerViewController *contactPicker = nil;
 }
 
 - (IBAction)savePressed:(id)sender {
+    
+    if(![self paymentFilledOut]) {
+        return;
+    }
+    
     PaymentMO *payment = nil;
     
     if(self.payment == nil) {
@@ -58,6 +63,7 @@ CNContactPickerViewController *contactPicker = nil;
     
     payment.paid = [[[self.paidText.text substringFromIndex:1] stringByReplacingOccurrencesOfString:@"," withString:@""] doubleValue];
     payment.name = self.nameText.text;
+    payment.firstName = [self.nameText.text componentsSeparatedByString:@" "][0];
     payment.phoneNumber = self.phoneText.text;
     
     NSError *error = nil;
@@ -72,6 +78,14 @@ CNContactPickerViewController *contactPicker = nil;
     }
     
     [self.navigationController popViewControllerAnimated:true];
+}
+
+# pragma mark - Void Methods
+
+- (bool)paymentFilledOut {
+    return (self.nameText.text.length  > 0  &&
+            self.phoneText.text.length > 0  &&
+            self.paidText.text.length  > 0);
 }
 
 # pragma mark - CNContactPickerDelegate

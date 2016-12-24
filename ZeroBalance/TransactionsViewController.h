@@ -11,7 +11,7 @@
 #import "BaseViewController.h"
 #import "NewTransactionViewController.h"
 
-@interface TransactionsViewController : BaseViewController<UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, NewTransactionViewControllerDelegate>
+@interface TransactionsViewController : BaseViewController<UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate>
 
 
 @end
