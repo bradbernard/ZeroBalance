@@ -30,7 +30,7 @@
 -(void) viewDidLoad {
     [super viewDidLoad];
     
-    self.managedObjectContext = [[BaseViewController sharedManager] managedObjectContext];
+    self.managedObjectContext = [[DataController sharedManager] managedObjectContext];
 }
 
 @end
