@@ -15,6 +15,8 @@
 @interface DataController : NSObject
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, strong) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+
 
 - (void)initializeCoreData;
 + (id)sharedManager;

@@ -18,15 +18,6 @@
 
 @implementation BaseViewController
 
-+ (id)sharedManager {
-    static DataController *dataController = nil;
-    @synchronized(self) {
-        if (dataController == nil)
-            dataController = [[self alloc] init];
-    }
-    return dataController;
-}
-
 -(void) viewDidLoad {
     [super viewDidLoad];
     

@@ -171,7 +171,7 @@ UIStoryboard *storyboard = nil;
     
     NSManagedObjectContext* moc = self.managedObjectContext;
     [moc setStalenessInterval:0];
-    [self setFetchedResultsController:[[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:moc sectionNameKeyPath:@"formattedDate" cacheName:@"RootTransVC"]];
+    [self setFetchedResultsController:[[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:moc sectionNameKeyPath:@"formattedDate" cacheName:nil]];
     [self.fetchedResultsController setDelegate:self];
     
     NSError *error = nil;

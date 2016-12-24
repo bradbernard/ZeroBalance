@@ -10,6 +10,4 @@
 
 @interface BaseViewController : UIViewController
 
-+ (id)sharedManager;
-
 @end
