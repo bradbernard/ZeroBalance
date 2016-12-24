@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
+#import <BuddyBuildSDK/BuddyBuildSDK.h>
 
 @interface AppDelegate ()
 
@@ -18,6 +19,8 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [BuddyBuildSDK setup];
+    
     [Fabric with:@[[Crashlytics class]]];
     [self setDataController:[[DataController alloc] init]];
     return YES;
