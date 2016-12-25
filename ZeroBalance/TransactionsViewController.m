@@ -37,6 +37,8 @@ UIStoryboard *storyboard = nil;
     
     storyboard = [UIStoryboard storyboardWithName:storyboardName bundle: nil];
     
+    self.tableView.accessibilityLabel = @"Transactions Table";
+    
     self.title = @"Transactions";
     [self initializeFetchedResultsController];
     [self updateDeleteButtonTitle];

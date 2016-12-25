@@ -70,6 +70,8 @@ double moneyAmount = 0;
         self.rows = [[NSMutableArray alloc] init];
     }
     
+    self.tableView.accessibilityLabel = @"Payers Table";
+    
     [self navigationItems];
     [self displayDate];
     [self updateDisplayTotals];

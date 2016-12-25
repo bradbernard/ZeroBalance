@@ -47,11 +47,6 @@
                BlueprintName = "ZeroBalanceUITests"
                ReferencedContainer = "container:ZeroBalance.xcodeproj">
             </BuildableReference>
-            <SkippedTests>
-               <Test
-                  Identifier = "test_me">
-               </Test>
-            </SkippedTests>
          </TestableReference>
       </Testables>
       <MacroExpansion>

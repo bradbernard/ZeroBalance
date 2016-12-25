@@ -49,8 +49,7 @@
         NSError *error = nil;
         NSPersistentStoreCoordinator *psc = self.managedObjectContext.persistentStoreCoordinator;
         self.persistentStoreCoordinator = psc;
-        NSPersistentStore *store = [psc addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error];
-        NSAssert(store != nil, @"Error initializing PSC: %@\n%@", [error localizedDescription], [error userInfo]);
+        NSAssert([psc addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error] != nil, @"Error initializing PSC: %@\n%@", [error localizedDescription], [error userInfo]);
     });
 }
 
