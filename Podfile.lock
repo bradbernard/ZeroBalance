@@ -7,6 +7,7 @@ PODS:
   - Fabric (1.6.11)
   - HSDatePickerViewController (1.0.4)
   - IQKeyboardManager (4.0.7)
+  - MGSwipeTableCell (1.5.6)
 
 DEPENDENCIES:
   - ChameleonFramework
@@ -14,6 +15,7 @@ DEPENDENCIES:
   - Fabric
   - HSDatePickerViewController (~> 1.0)
   - IQKeyboardManager
+  - MGSwipeTableCell
 
 SPEC CHECKSUMS:
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
@@ -21,7 +23,8 @@ SPEC CHECKSUMS:
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   HSDatePickerViewController: 5a72b71f8c3b10e76f2c28a898f8572b551432a6
   IQKeyboardManager: 69002bb4fea60596b710e57d426abc00e5063630
+  MGSwipeTableCell: 616700eb0ffd1c611ba909066cb7fd739790a0a7
 
-PODFILE CHECKSUM: 761184dda578920c1a4055c2925c345326d9ccbf
+PODFILE CHECKSUM: 3e4ca4021aa5437b883b8cf4e8b927028333d3a0
 
 COCOAPODS: 1.1.1

@@ -176,6 +176,14 @@ UIStoryboard *storyboard = nil;
     }
 }
 
+# pragma mark - MGSwipeTableViewCellDelegate
+-(BOOL) swipeTableCell:(MGSwipeTableCell*) cell tappedButtonAtIndex:(NSInteger) index direction:(MGSwipeDirection)direction fromExpansion:(BOOL) fromExpansion {
+    NSLog(@"%ld", (long)index);
+    NSLog(@"%ld", (long)direction);
+    NSLog(@"%d", fromExpansion);
+    return true;
+}
+
 #pragma mark - UITableView
 
 - (void)configureCell:(TransactionTableCell*)cell atIndexPath:(NSIndexPath*)indexPath
@@ -197,6 +205,10 @@ UIStoryboard *storyboard = nil;
     } else {
         cell.peopleLabel.text = @"";
     }
+    
+    cell.rightButtons = @[[MGSwipeButton buttonWithTitle:@"Delete" backgroundColor:[UIColor redColor]],
+                                 [MGSwipeButton buttonWithTitle:@"Edit" backgroundColor:[UIColor orangeColor]]];
+    cell.delegate = self;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -204,7 +216,7 @@ UIStoryboard *storyboard = nil;
     
     TransactionTableCell *cell = (TransactionTableCell*)[tableView dequeueReusableCellWithIdentifier: cellIdentifier];
     [self configureCell:cell atIndexPath:indexPath];
-    
+
     return cell;
 }
 

@@ -10,8 +10,9 @@
 #import <ChameleonFramework/Chameleon.h>
 #import "BaseViewController.h"
 #import "NewTransactionViewController.h"
+#import "MGSwipeTableCell.h"
 
-@interface TransactionsViewController : BaseViewController<UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate>
+@interface TransactionsViewController : BaseViewController<UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, MGSwipeTableCellDelegate>
 
 
 @end

@@ -179,8 +179,6 @@
 			children = (
 				B81396F31DF661960018E699 /* NewTransactionViewController.h */,
 				B81396F41DF661960018E699 /* NewTransactionViewController.m */,
-				B80B2EDD1E061CA500FB8474 /* AddPayerViewController.h */,
-				B80B2EDE1E061CA500FB8474 /* AddPayerViewController.m */,
 			);
 			name = NewTransaction;
 			sourceTree = "<group>";
@@ -264,6 +262,7 @@
 		B830A38A1DF38CE7005688A1 /* VCs */ = {
 			isa = PBXGroup;
 			children = (
+				B884DE5D1E10558100C22566 /* AddPayer */,
 				B830A3FD1DF3AE76005688A1 /* Container */,
 				B830A3FC1DF3AE6E005688A1 /* Transactions */,
 				B81396F61DF6619F0018E699 /* NewTransaction */,
@@ -319,6 +318,15 @@
 				B830A3881DF38ADA005688A1 /* ContainerNavigationController.m */,
 			);
 			name = Container;
+			sourceTree = "<group>";
+		};
+		B884DE5D1E10558100C22566 /* AddPayer */ = {
+			isa = PBXGroup;
+			children = (
+				B80B2EDD1E061CA500FB8474 /* AddPayerViewController.h */,
+				B80B2EDE1E061CA500FB8474 /* AddPayerViewController.m */,
+			);
+			name = AddPayer;
 			sourceTree = "<group>";
 		};
 		E9EF3E7E6524943A4F38B313 /* Pods */ = {

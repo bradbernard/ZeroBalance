@@ -5,12 +5,13 @@ target 'ZeroBalance' do
   use_frameworks!
 
   # Pods for ZeroBalance
+  pod 'MGSwipeTableCell'
   pod 'IQKeyboardManager'
-  # pod 'mopub-ios-sdk'
   pod 'Fabric'
   pod 'Crashlytics'
   pod 'ChameleonFramework'
   pod 'HSDatePickerViewController', '~> 1.0'
+
 
   target 'ZeroBalanceTests' do
     inherit! :search_paths
