@@ -122,14 +122,25 @@ double moneyAmount = 0;
 # pragma mark - UITextFieldDelegate
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
-    if (textField == self.moneyText && textField.text.length  == 0) {
+    if (textField == self.moneyText && textField.text.length == 0) {
         textField.text = @"$0.00";
     }
 }
 
--(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+-(BOOL)textFieldShouldClear:(UITextField *)textField {
+    if(textField == self.moneyText) {
+        self.moneyText.text = @"$0.00";
+        return false;
+    }
     
-    self.payeeButton.enabled = [self transactionFilledOut];
+    return true;
+}
+
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    
+    if(textField != self.moneyText) {
+        return true;
+    }
     
     NSString *cleanCentString = [[textField.text componentsSeparatedByCharactersInSet: [[NSCharacterSet decimalDigitCharacterSet] invertedSet]] componentsJoinedByString:@""];
     NSInteger centValue = [cleanCentString intValue];
@@ -182,7 +193,7 @@ double moneyAmount = 0;
 
 - (void)insertTransaction {
     if(![self transactionFilledOut]) {
-        return;
+        return [self displayAlert:@"Error" message:@"Name, total, and date are required to save the transaction."];
     }
     
     if(!self.editing) {

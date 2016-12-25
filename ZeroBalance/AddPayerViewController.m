@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *phoneText;
 @property (weak, nonatomic) IBOutlet UITextField *paidText;
 @property (nonatomic, strong) NSManagedObjectContext* managedObjectContext;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *doneBarButton;
 
 @end
 
@@ -49,8 +50,8 @@ CNContactPickerViewController *contactPicker = nil;
 
 - (IBAction)savePressed:(id)sender {
     
-    if(![self paymentFilledOut]) {
-        return;
+    if(![self paymentFilledOut:nil]) {
+        return [self displayAlert:@"Error" message:@"Name and amount paid are required to save the payer."];
     }
     
     PaymentMO *payment = nil;
@@ -82,18 +83,18 @@ CNContactPickerViewController *contactPicker = nil;
 
 # pragma mark - Void Methods
 
-- (bool)paymentFilledOut {
-    return (self.nameText.text.length  > 0  &&
-            self.phoneText.text.length > 0  &&
-            self.paidText.text.length  > 0);
+- (BOOL)paymentFilledOut:(nullable NSString *)string {
+    return (self.nameText.text.length > 0  &&
+        (self.paidText.text.length > 0  || (string ? string.length > 0 : true))
+    );
 }
 
 # pragma mark - CNContactPickerDelegate
 
 - (void)contactPicker:(CNContactPickerViewController *)picker didSelectContact:(CNContact *)contact {
     
-    unsigned long firstLength = [contact.givenName length];
-    unsigned long lastLength = [contact.familyName length];
+    unsigned long firstLength = contact.givenName.length;
+    unsigned long lastLength = contact.familyName.length;
     
     if(firstLength > 0 && lastLength > 0) {
         self.nameText.text = [NSString stringWithFormat:@"%@%@%@", contact.givenName, @" ", contact.familyName];
@@ -113,9 +114,18 @@ CNContactPickerViewController *contactPicker = nil;
 # pragma mark - UITextFieldDelegate
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
-    if (textField == self.paidText && textField.text.length  == 0) {
+    if (textField == self.paidText && textField.text.length == 0) {
         textField.text = @"$0.00";
     }
+}
+
+-(BOOL)textFieldShouldClear:(UITextField *)textField {
+    if(textField == self.paidText) {
+        self.paidText.text = @"$0.00";
+        return false;
+    }
+    
+    return true;
 }
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{

@@ -24,4 +24,11 @@
     self.managedObjectContext = [[DataController sharedManager] managedObjectContext];
 }
 
+- (void)displayAlert:(NSString *)title message:(NSString*)message {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okButton = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+    [alertController addAction:okButton];
+    [self presentViewController:alertController animated:true completion:nil];
+}
+
 @end

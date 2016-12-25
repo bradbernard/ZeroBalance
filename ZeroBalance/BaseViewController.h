@@ -10,4 +10,6 @@
 
 @interface BaseViewController : UIViewController
 
+- (void)displayAlert:(NSString *)title message:(NSString*)message;
+
 @end

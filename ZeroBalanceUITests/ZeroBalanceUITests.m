@@ -32,9 +32,18 @@
     [super tearDown];
 }
 
+
 - (void)testExample {
     // Use recording to get started writing UI tests.
     // Use XCTAssert and related functions to verify your tests produce the correct results.
+    
+    XCUIApplication *app = [[XCUIApplication alloc] init];
+    [app.navigationBars[@"Transactions"].buttons[@"Add"] tap];
+    [app.textFields[@"Name"] typeText:@"Test"];
+    
+    XCUIElement *totalTextField = app.textFields[@"Total "];
+    [totalTextField tap];
+    [totalTextField typeText:@"2500"];
 }
 
 @end
