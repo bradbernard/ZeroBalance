@@ -32,7 +32,7 @@
                     <tabBarItem key="tabBarItem" systemItem="history" id="XXF-US-1zL"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="k2z-iC-QQU">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="k2z-iC-QQU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
@@ -60,15 +60,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="70" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="07P-aV-cHf" userLabel="TransactionsTable">
-                                <rect key="frame" x="-0.5" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="-1" y="0.0" width="376" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="7" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TransactionTableCell" rowHeight="70" id="4YM-1S-Qh6" customClass="TransactionTableCell">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="70"/>
+                                        <rect key="frame" x="0.0" y="28" width="376" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4YM-1S-Qh6" id="N4l-fd-Txo">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="69"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="69"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="{Name}" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="40l-cV-a7U">
@@ -126,7 +126,7 @@
                             <constraint firstItem="07P-aV-cHf" firstAttribute="height" secondItem="2oH-2i-HBN" secondAttribute="height" id="u7N-W1-dPg"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Transactions" id="xlE-na-Nb6">
+                    <navigationItem key="navigationItem" title="Transactions" prompt="Swipe rows to the left to edit/delete" id="xlE-na-Nb6">
                         <barButtonItem key="leftBarButtonItem" title="Edit" id="Qiy-Eb-gsO">
                             <connections>
                                 <action selector="editItemPressed:" destination="WZa-R5-Lfd" id="t5f-ir-JyR"/>
@@ -153,7 +153,7 @@
             <objects>
                 <navigationController id="Qss-9d-676" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="search" id="Bqk-dR-esm"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="DZb-oX-UC4">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="DZb-oX-UC4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

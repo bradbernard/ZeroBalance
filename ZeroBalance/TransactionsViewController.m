@@ -177,10 +177,32 @@ UIStoryboard *storyboard = nil;
 }
 
 # pragma mark - MGSwipeTableViewCellDelegate
+
 -(BOOL) swipeTableCell:(MGSwipeTableCell*) cell tappedButtonAtIndex:(NSInteger) index direction:(MGSwipeDirection)direction fromExpansion:(BOOL) fromExpansion {
-    NSLog(@"%ld", (long)index);
-    NSLog(@"%ld", (long)direction);
-    NSLog(@"%d", fromExpansion);
+    
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    
+    if(index == 0) {
+        
+        TransactionMO *transaction = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+        [self.managedObjectContext deleteObject:transaction];
+        
+        NSError *error = nil;
+        if ([[self managedObjectContext] save:&error] == NO) {
+            NSAssert(NO, @"Error saving context: %@\n%@", [error localizedDescription], [error userInfo]);
+        }
+        
+    } else if(index == 1) {
+                
+        TransactionMO *transaction = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+        NewTransactionViewController *viewController = (NewTransactionViewController*)[storyboard instantiateViewControllerWithIdentifier:@"NewTransactionViewController"];
+        viewController.transactionId = transaction.objectID;
+        viewController.editing = true;
+        viewController.title = @"Edit Transaction";
+        [self.navigationController pushViewController:viewController animated:true];
+        
+    }
+    
     return true;
 }
 
@@ -226,14 +248,14 @@ UIStoryboard *storyboard = nil;
         return [self updateDeleteButtonTitle];
     }
     
-    [self.tableView deselectRowAtIndexPath:indexPath animated:true];
-    
-    TransactionMO *transaction = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-    NewTransactionViewController *viewController = (NewTransactionViewController*)[storyboard instantiateViewControllerWithIdentifier:@"NewTransactionViewController"];
-    viewController.transactionId = transaction.objectID;
-    viewController.editing = true;
-    viewController.title = @"Edit Transaction";
-    [self.navigationController pushViewController:viewController animated:true];
+//    [self.tableView deselectRowAtIndexPath:indexPath animated:true];
+//    
+//    TransactionMO *transaction = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+//    NewTransactionViewController *viewController = (NewTransactionViewController*)[storyboard instantiateViewControllerWithIdentifier:@"NewTransactionViewController"];
+//    viewController.transactionId = transaction.objectID;
+//    viewController.editing = true;
+//    viewController.title = @"Edit Transaction";
+//    [self.navigationController pushViewController:viewController animated:true];
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
