@@ -262,6 +262,7 @@
 		B830A38A1DF38CE7005688A1 /* VCs */ = {
 			isa = PBXGroup;
 			children = (
+				B8BBE4581EAFC9070032ED3B /* Detail */,
 				B884DE5D1E10558100C22566 /* AddPayer */,
 				B830A3FD1DF3AE76005688A1 /* Container */,
 				B830A3FC1DF3AE6E005688A1 /* Transactions */,
@@ -327,6 +328,13 @@
 				B80B2EDE1E061CA500FB8474 /* AddPayerViewController.m */,
 			);
 			name = AddPayer;
+			sourceTree = "<group>";
+		};
+		B8BBE4581EAFC9070032ED3B /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Detail;
 			sourceTree = "<group>";
 		};
 		E9EF3E7E6524943A4F38B313 /* Pods */ = {
