@@ -37,6 +37,7 @@
 		B830A3E31DF3A46F005688A1 /* SFCompactDisplay-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B830A3E11DF3A46F005688A1 /* SFCompactDisplay-Semibold.ttf */; };
 		B830A3E41DF3A46F005688A1 /* SFCompactDisplay-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B830A3E21DF3A46F005688A1 /* SFCompactDisplay-Thin.ttf */; };
 		B830A3E61DF3A688005688A1 /* SFUIDisplay-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B830A3E51DF3A688005688A1 /* SFUIDisplay-Bold.ttf */; };
+		B8BBE45B1EAFC9070032ED3B /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8BBE45A1EAFC9070032ED3B /* DetailViewController.m */; };
 		BC23A73DDC53E3A26264CAD5 /* Pods_ZeroBalance.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2307CB63F8FFA47E963FA054 /* Pods_ZeroBalance.framework */; };
 		D3269264A5DF350BF5986EDE /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 104944D7EBEA1B079D1F7415 /* CoreMedia.framework */; };
 		D3893F77EF3F6EE2263945FF /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E67A23877CB32DDDD5364CE /* AssetsLibrary.framework */; };
@@ -110,6 +111,8 @@
 		B830A3E11DF3A46F005688A1 /* SFCompactDisplay-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFCompactDisplay-Semibold.ttf"; sourceTree = "<group>"; };
 		B830A3E21DF3A46F005688A1 /* SFCompactDisplay-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFCompactDisplay-Thin.ttf"; sourceTree = "<group>"; };
 		B830A3E51DF3A688005688A1 /* SFUIDisplay-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIDisplay-Bold.ttf"; sourceTree = "<group>"; };
+		B8BBE4591EAFC9070032ED3B /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		B8BBE45A1EAFC9070032ED3B /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		CD10FA379137924434872C41 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		CDF4948FBD72EC9D9E58BF2E /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		CE5466F5613FB87A45E5596C /* Pods_ZeroBalanceTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZeroBalanceTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -333,6 +336,8 @@
 		B8BBE4581EAFC9070032ED3B /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				B8BBE4591EAFC9070032ED3B /* DetailViewController.h */,
+				B8BBE45A1EAFC9070032ED3B /* DetailViewController.m */,
 			);
 			name = Detail;
 			sourceTree = "<group>";
@@ -662,6 +667,7 @@
 				B80B2EDF1E061CA500FB8474 /* AddPayerViewController.m in Sources */,
 				B830A3D91DF3979C005688A1 /* ZeroBalance.xcdatamodeld in Sources */,
 				B830A3DD1DF3A0CA005688A1 /* TransactionTableCell.m in Sources */,
+				B8BBE45B1EAFC9070032ED3B /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
