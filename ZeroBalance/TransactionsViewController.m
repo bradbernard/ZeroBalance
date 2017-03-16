@@ -13,6 +13,7 @@
 #import "PaymentMO+CoreDataClass.h"
 #import "TransactionMO+CoreDataClass.h"
 #import "NewTransactionViewController.h"
+#import "DetailViewController.h"
 
 @interface TransactionsViewController ()
 
@@ -87,6 +88,13 @@ UIStoryboard *storyboard = nil;
     NewTransactionViewController *viewController = (NewTransactionViewController*)[storyboard instantiateViewControllerWithIdentifier:@"NewTransactionViewController"];
     viewController.title = @"New Transaction";
     [self.navigationController pushViewController:viewController animated:true];
+}
+
+- (void)pushDetailViewController: (NSIndexPath *)indexPath {
+    DetailViewController *viewController = (DetailViewController*)[storyboard instantiateViewControllerWithIdentifier:@"DetailViewController"];
+    
+    TransactionMO *transaction = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+    viewController.title = transaction.name;
 }
 
 #pragma mark - Deletion
@@ -248,6 +256,9 @@ UIStoryboard *storyboard = nil;
         return [self updateDeleteButtonTitle];
     }
     
+    [self pushDetailViewController: indexPath];
+    
+    
 //    [self.tableView deselectRowAtIndexPath:indexPath animated:true];
 //    
 //    TransactionMO *transaction = [[self fetchedResultsController] objectAtIndexPath:indexPath];
@@ -261,7 +272,7 @@ UIStoryboard *storyboard = nil;
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if(self.tableView.editing) {
-        return [self updateDeleteButtonTitle];;
+        return [self updateDeleteButtonTitle];
     }
 }
 
