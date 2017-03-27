@@ -65,10 +65,10 @@
                                 <inset key="separatorInset" minX="7" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TransactionTableCell" rowHeight="70" id="4YM-1S-Qh6" customClass="TransactionTableCell">
-                                        <rect key="frame" x="0.0" y="28" width="376" height="70"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4YM-1S-Qh6" id="N4l-fd-Txo">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="69.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="69.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="{Name}" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="40l-cV-a7U">
@@ -417,7 +417,7 @@
         <!--Detail VC-->
         <scene sceneID="4mH-nj-1T1">
             <objects>
-                <viewController title="Detail VC" id="VXn-kD-liF" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailViewController" title="Detail VC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="VXn-kD-liF" customClass="DetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vMI-nV-M6G"/>
                         <viewControllerLayoutGuide type="bottom" id="1jw-Cw-kQi"/>
