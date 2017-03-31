@@ -95,6 +95,7 @@ UIStoryboard *storyboard = nil;
     
     TransactionMO *transaction = [[self fetchedResultsController] objectAtIndexPath:indexPath];
     viewController.title = transaction.name;
+    [self.navigationController pushViewController:viewController animated:true];
 }
 
 #pragma mark - Deletion
