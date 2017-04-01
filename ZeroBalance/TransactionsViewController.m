@@ -257,6 +257,8 @@ UIStoryboard *storyboard = nil;
         return [self updateDeleteButtonTitle];
     }
     
+    
+    [self.tableView deselectRowAtIndexPath:indexPath animated:true];
     [self pushDetailViewController: indexPath];
     
     
