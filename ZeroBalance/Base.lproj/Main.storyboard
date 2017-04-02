@@ -32,7 +32,7 @@
                     <tabBarItem key="tabBarItem" systemItem="history" id="XXF-US-1zL"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="667"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="k2z-iC-QQU">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="k2z-iC-QQU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
@@ -153,7 +153,7 @@
             <objects>
                 <navigationController id="Qss-9d-676" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="search" id="Bqk-dR-esm"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="DZb-oX-UC4">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="DZb-oX-UC4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

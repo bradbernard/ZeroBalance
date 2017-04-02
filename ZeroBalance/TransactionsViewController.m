@@ -87,14 +87,15 @@ UIStoryboard *storyboard = nil;
 - (void)presentAddTransaction {
     NewTransactionViewController *viewController = (NewTransactionViewController*)[storyboard instantiateViewControllerWithIdentifier:@"NewTransactionViewController"];
     viewController.title = @"New Transaction";
+    
     [self.navigationController pushViewController:viewController animated:true];
 }
 
 - (void)pushDetailViewController: (NSIndexPath *)indexPath {
     DetailViewController *viewController = (DetailViewController*)[storyboard instantiateViewControllerWithIdentifier:@"DetailViewController"];
-    
     TransactionMO *transaction = [[self fetchedResultsController] objectAtIndexPath:indexPath];
     viewController.title = transaction.name;
+    
     [self.navigationController pushViewController:viewController animated:true];
 }
 
