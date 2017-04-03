@@ -94,7 +94,9 @@ UIStoryboard *storyboard = nil;
 - (void)pushDetailViewController: (NSIndexPath *)indexPath {
     DetailViewController *viewController = (DetailViewController*)[storyboard instantiateViewControllerWithIdentifier:@"DetailViewController"];
     TransactionMO *transaction = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+    
     viewController.title = transaction.name;
+    viewController.transactionId = transaction.objectID;
     
     [self.navigationController pushViewController:viewController animated:true];
 }
