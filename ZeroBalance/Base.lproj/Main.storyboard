@@ -297,7 +297,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Average: {$1,000,000.00}" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sZO-8E-RSJ">
-                                <rect key="frame" x="181" y="226" width="179" height="21"/>
+                                <rect key="frame" x="181.5" y="226" width="178.5" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="i3D-QV-shl"/>
                                 </constraints>
@@ -414,10 +414,10 @@
             </objects>
             <point key="canvasLocation" x="1478" y="-298"/>
         </scene>
-        <!--Detail VC-->
+        <!--Transaction-->
         <scene sceneID="4mH-nj-1T1">
             <objects>
-                <viewController storyboardIdentifier="DetailViewController" title="Detail VC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="VXn-kD-liF" customClass="DetailViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailViewController" title="Transaction" useStoryboardIdentifierAsRestorationIdentifier="YES" id="VXn-kD-liF" customClass="DetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vMI-nV-M6G"/>
                         <viewControllerLayoutGuide type="bottom" id="1jw-Cw-kQi"/>
@@ -425,13 +425,29 @@
                     <view key="view" contentMode="scaleToFill" id="AVv-kj-EwO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Total:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VdS-UK-kyt">
+                                <rect key="frame" x="16" y="85" width="64" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="{amount}" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PcU-Jw-pke">
+                                <rect key="frame" x="88" y="85" width="271" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ggk-By-8km" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1478" y="426"/>
+            <point key="canvasLocation" x="1477.5999999999999" y="425.93703148425789"/>
         </scene>
         <!--New Payer-->
         <scene sceneID="Pcj-ux-RiU">
