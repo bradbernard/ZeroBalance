@@ -10,6 +10,8 @@
 
 @interface DetailViewController ()
 
+@property (weak, nonatomic) IBOutlet UILabel *amountLabel;
+
 @end
 
 @implementation DetailViewController
