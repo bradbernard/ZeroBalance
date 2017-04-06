@@ -11,6 +11,7 @@
 @interface DetailViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *amountLabel;
+@property (nonatomic, strong) NSManagedObjectContext* managedObjectContext;
 
 @end
 
@@ -18,6 +19,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    NSLog(@"%@", _managedObjectContext);
 }
 
 @end
