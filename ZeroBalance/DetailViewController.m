@@ -7,6 +7,7 @@
 //
 
 #import "DetailViewController.h"
+#import "TransactionMO+CoreDataClass.h"
 
 @interface DetailViewController ()
 
@@ -20,7 +21,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSLog(@"%@", _managedObjectContext);
+    if(self.transactionId != nil) {
+        TransactionMO* transaction = [self.managedObjectContext objectWithID:self.transactionId];
+        self.amountLabel.text = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithDouble:transaction.total] numberStyle:NSNumberFormatterCurrencyStyle];
+    }
 }
 
 @end
