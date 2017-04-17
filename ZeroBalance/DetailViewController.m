@@ -28,7 +28,7 @@
 }
 
 - (IBAction)sendSMSTapped:(id)sender {
-    NSLog("SMS tapped");
+    NSLog(@"SMS tapped");
 }
 
 @end
