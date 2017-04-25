@@ -8,6 +8,9 @@ PODS:
   - HSDatePickerViewController (1.0.4)
   - IQKeyboardManager (4.0.7)
   - MGSwipeTableCell (1.5.6)
+  - PNChart (0.8.9):
+    - UICountingLabel (~> 1.2.0)
+  - UICountingLabel (1.2.0)
 
 DEPENDENCIES:
   - ChameleonFramework
@@ -16,6 +19,7 @@ DEPENDENCIES:
   - HSDatePickerViewController (~> 1.0)
   - IQKeyboardManager
   - MGSwipeTableCell
+  - PNChart
 
 SPEC CHECKSUMS:
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
@@ -24,7 +28,9 @@ SPEC CHECKSUMS:
   HSDatePickerViewController: 5a72b71f8c3b10e76f2c28a898f8572b551432a6
   IQKeyboardManager: 69002bb4fea60596b710e57d426abc00e5063630
   MGSwipeTableCell: 616700eb0ffd1c611ba909066cb7fd739790a0a7
+  PNChart: 84774d225c2126ded6c93d4dbe6ae98c3a73c2d2
+  UICountingLabel: 1db4e7d023e1762171eb226d6dff47a7a84f27aa
 
-PODFILE CHECKSUM: 3e4ca4021aa5437b883b8cf4e8b927028333d3a0
+PODFILE CHECKSUM: f68a3ab3671af225552808e7a42927e1a152126f
 
 COCOAPODS: 1.1.1

@@ -11,7 +11,7 @@ target 'ZeroBalance' do
   pod 'Crashlytics'
   pod 'ChameleonFramework'
   pod 'HSDatePickerViewController', '~> 1.0'
-
+  pod 'PNChart'
 
   target 'ZeroBalanceTests' do
     inherit! :search_paths
