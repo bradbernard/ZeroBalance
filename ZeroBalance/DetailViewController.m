@@ -41,18 +41,13 @@
 - (void)createChart {
     
     TransactionMO* transaction = [self.managedObjectContext objectWithID:self.transactionId];
-    PaymentMO *payment;
     NSMutableArray *items = [[NSMutableArray alloc] init];
+    PaymentMO *payment;
     
     for (payment in transaction.payments) {
-        if(payment.paid != 0)
+        if(payment.paid == 0) continue;
         [items addObject:[PNPieChartDataItem dataItemWithValue:payment.paid color:[self generateColor] description:payment.name]];
     }
-    
-//    NSArray *items = @[[PNPieChartDataItem dataItemWithValue:10 color:PNRed],
-//                       [PNPieChartDataItem dataItemWithValue:20 color:PNBlue description:@"WWDC"],
-//                       [PNPieChartDataItem dataItemWithValue:40 color:PNGreen description:@"GOOL I/O"],
-//                       ];
     
     PNPieChart *pieChart = [[PNPieChart alloc] initWithFrame:CGRectMake(40.0, 155.0, 240.0, 240.0) items:items];
     pieChart.descriptionTextColor = [UIColor whiteColor];
