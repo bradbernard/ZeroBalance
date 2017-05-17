@@ -1,33 +1,11 @@
-# More documentation about how to customize your build
-# can be found here:
-# https://docs.fastlane.tools
 fastlane_version "1.109.0"
-
-# This value helps us track success metrics for Fastfiles
-# we automatically generate. Feel free to remove this line
-# once you get things running smoothly!
-generated_fastfile_id "8eae502d-b638-4b8c-9096-52df4f77a8fd"
-
 default_platform :ios
 
-# Fastfile actions accept additional configuration, but
-# don't worry, fastlane will prompt you for required
-# info which you can add here later
 lane :beta do
-  # cocoapods
-
-  # increment_build_number
-
-  # build your iOS app
-  gym(
-    # scheme: "YourScheme",
-    export_method: "ad-hoc"
-  )
-
-  # upload to Beta by Crashlytics
-  crashlytics(
-    # keys for organization: ShopFly
-    api_token: "e43e68af90c63067bda24d50a4a31bab2ca34bbc",
-    build_secret: "22800c1784ef4f6f20c072811730341b686d34ff535801ad526c25b739e82959"
-  )
+    increment_build_number
+    cocoapods
+    cert(username: ENV["username"])
+    sigh(username: ENV["username"], app_identifier: ENV["app_identifier"])
+    gym(scheme: ENV["scheme"])
+    crashlytics(api_token: ENV["api_token"], build_secret: ENV["build_secret"])
 end
