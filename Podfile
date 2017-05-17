@@ -8,7 +8,7 @@ target 'ZeroBalance' do
   pod 'MGSwipeTableCell'
   pod 'IQKeyboardManager'
   pod 'Fabric'
-  pod 'Crashlytics'
+  pod 'Crashlytics', '~> 3.8'
   pod 'ChameleonFramework'
   pod 'HSDatePickerViewController', '~> 1.0'
   pod 'PNChart'

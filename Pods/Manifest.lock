@@ -2,7 +2,7 @@ PODS:
   - ChameleonFramework (2.1.0):
     - ChameleonFramework/Default (= 2.1.0)
   - ChameleonFramework/Default (2.1.0)
-  - Crashlytics (3.8.3):
+  - Crashlytics (3.8.4):
     - Fabric (~> 1.6.3)
   - Fabric (1.6.11)
   - HSDatePickerViewController (1.0.4)
@@ -14,7 +14,7 @@ PODS:
 
 DEPENDENCIES:
   - ChameleonFramework
-  - Crashlytics
+  - Crashlytics (~> 3.8)
   - Fabric
   - HSDatePickerViewController (~> 1.0)
   - IQKeyboardManager
@@ -23,7 +23,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
-  Crashlytics: 2b6dbe138a42395577cfa73dfa1aa7248cadf39e
+  Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   HSDatePickerViewController: 5a72b71f8c3b10e76f2c28a898f8572b551432a6
   IQKeyboardManager: 69002bb4fea60596b710e57d426abc00e5063630
@@ -31,6 +31,6 @@ SPEC CHECKSUMS:
   PNChart: 84774d225c2126ded6c93d4dbe6ae98c3a73c2d2
   UICountingLabel: 1db4e7d023e1762171eb226d6dff47a7a84f27aa
 
-PODFILE CHECKSUM: f68a3ab3671af225552808e7a42927e1a152126f
+PODFILE CHECKSUM: cf15ad1f0a1f7d1a538bac8bc5b401871be8d51d
 
 COCOAPODS: 1.1.1
