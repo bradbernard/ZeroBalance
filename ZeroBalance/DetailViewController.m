@@ -7,18 +7,18 @@
 //
 
 #import "DetailViewController.h"
-#import "TransactionMO+CoreDataClass.h"
-#import "PaymentMO+CoreDataClass.h"
-#import "PNChart.h"
+#import "BalanceTableCell.h"
 
 @interface DetailViewController ()
 
-@property (weak, nonatomic) IBOutlet UILabel *amountLabel;
 @property (nonatomic, strong) NSManagedObjectContext* managedObjectContext;
+@property (weak, nonatomic) IBOutlet UITableView *paymentsTable;
 
 @end
 
 @implementation DetailViewController
+
+static NSString *cellIdentifier = @"BalanceTableCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -27,8 +27,16 @@
         return;
     }
     
-//        self.amountLabel.text = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithDouble:transaction.total] numberStyle:NSNumberFormatterCurrencyStyle];
+    self.transaction = (TransactionMO *)[self.managedObjectContext objectWithID:self.transactionId];
+    
+    NSString *title = self.title;
+    title = [title stringByAppendingString:@" ("];
+    title = [title stringByAppendingString:[NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithDouble:self.transaction.total] numberStyle:NSNumberFormatterCurrencyStyle]];
+    title = [title stringByAppendingString:@")"];
+    self.title = title;
+
     [self createChart];
+    [self populateTransactions];
 }
 
 - (UIColor *)generateColor {
@@ -36,6 +44,32 @@
     CGFloat saturation = ( arc4random() % 128 / 256.0 ) + 0.5;  //  0.5 to 1.0, away from white
     CGFloat brightness = ( arc4random() % 128 / 256.0 ) + 0.5;  //  0.5 to 1.0, away from black
     return [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:1];
+}
+
+- (void)populateTransactions {
+    
+    [self.rows removeAllObjects];
+    [self.paymentsTable reloadData];
+    
+    double total = self.transaction.total;
+    double avg = total / self.transaction.payments.count;
+    
+    PaymentMO *payment;
+    self.rows = [[NSMutableArray alloc] init];
+    
+    for (payment in self.transaction.payments) {
+        if(payment.paid >= avg) {
+            payment.credit = payment.paid - avg;
+        } else {
+            payment.debt = avg - payment.paid;
+        }
+        [self.rows addObject:payment];
+    }
+    
+    NSError *error = nil;
+    if ([[self managedObjectContext] save:&error] == NO) {
+        NSAssert(NO, @"Error saving context: %@\n%@", [error localizedDescription], [error userInfo]);
+    }
 }
 
 - (void)createChart {
@@ -49,7 +83,10 @@
         [items addObject:[PNPieChartDataItem dataItemWithValue:payment.paid color:[self generateColor] description:payment.name]];
     }
     
-    PNPieChart *pieChart = [[PNPieChart alloc] initWithFrame:CGRectMake(40.0, 155.0, 240.0, 240.0) items:items];
+    CGFloat width = [UIScreen mainScreen].bounds.size.width;
+    CGFloat height = [UIScreen mainScreen].bounds.size.height;
+    
+    PNPieChart *pieChart = [[PNPieChart alloc] initWithFrame:CGRectMake(width/2.75, 175, width/2, height/5) items:items];
     pieChart.descriptionTextColor = [UIColor whiteColor];
     pieChart.descriptionTextFont  = [UIFont fontWithName:@"Avenir-Medium" size:14.0];
     pieChart.showAbsoluteValues = false;
@@ -58,15 +95,54 @@
     
     pieChart.legendStyle = PNLegendItemStyleStacked;
     UIView *legend = [pieChart getLegendWithMaxWidth:200];
-    [legend setFrame:CGRectMake(330, 350, legend.frame.size.width, legend.frame.size.height)];
+    [legend setFrame:CGRectMake(15, 175, legend.frame.size.width, legend.frame.size.height)];
 
     [self.view addSubview:legend];
     [self.view addSubview:pieChart];
 }
 
-
 - (IBAction)sendSMSTapped:(id)sender {
     NSLog(@"SMS tapped");
+}
+
+#pragma mark - UITableViewDataSource
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    BalanceTableCell *cell = (BalanceTableCell*)[tableView dequeueReusableCellWithIdentifier: cellIdentifier];
+    [self configureCell:cell atIndexPath:indexPath];
+    
+    return cell;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [self.rows count];
+}
+
+#pragma mark - UITableViewDelegate
+
+- (void)configureCell:(BalanceTableCell*)cell atIndexPath:(NSIndexPath*)indexPath
+{
+    PaymentMO *payment = [self.rows objectAtIndex:indexPath.row];
+    
+    cell.nameLabel.text = payment.name;
+    cell.paidLabel.text = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithDouble:payment.paid] numberStyle:NSNumberFormatterCurrencyStyle];
+    
+    double balance = (payment.debt == 0 ? payment.credit : -payment.debt);
+    NSString *paid = [NSNumberFormatter localizedStringFromNumber:[NSNumber numberWithDouble:balance] numberStyle:NSNumberFormatterCurrencyStyle];
+    cell.balanceLabel.text = paid;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return true;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 70;
 }
 
 @end

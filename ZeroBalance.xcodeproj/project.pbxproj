@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		11FABBF21F274DB200E3ECCD /* BalanceTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 11FABBF11F274DB200E3ECCD /* BalanceTableCell.m */; };
+		11FABBF61F2759FA00E3ECCD /* ListingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11FABBF51F2759FA00E3ECCD /* ListingViewController.m */; };
+		11FABBF91F275BBE00E3ECCD /* SummaryTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 11FABBF81F275BBE00E3ECCD /* SummaryTableCell.m */; };
 		13939634C94AD1E576D87BEF /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD10FA379137924434872C41 /* CoreText.framework */; };
 		194995BF2855B7E16AF2941A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7156E5249C3DB53D5273ED44 /* SystemConfiguration.framework */; };
 		1BE31DB53AEA3DD00058E09F /* Pods_ZeroBalanceTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE5466F5613FB87A45E5596C /* Pods_ZeroBalanceTests.framework */; };
@@ -62,6 +65,12 @@
 
 /* Begin PBXFileReference section */
 		104944D7EBEA1B079D1F7415 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		11FABBF01F274DB200E3ECCD /* BalanceTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BalanceTableCell.h; sourceTree = "<group>"; };
+		11FABBF11F274DB200E3ECCD /* BalanceTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BalanceTableCell.m; sourceTree = "<group>"; };
+		11FABBF41F2759FA00E3ECCD /* ListingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListingViewController.h; sourceTree = "<group>"; };
+		11FABBF51F2759FA00E3ECCD /* ListingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListingViewController.m; sourceTree = "<group>"; };
+		11FABBF71F275BBE00E3ECCD /* SummaryTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SummaryTableCell.h; sourceTree = "<group>"; };
+		11FABBF81F275BBE00E3ECCD /* SummaryTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SummaryTableCell.m; sourceTree = "<group>"; };
 		2307CB63F8FFA47E963FA054 /* Pods_ZeroBalance.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZeroBalance.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A2DDED260D605E186DD3488 /* BuddyBuildSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BuddyBuildSDK.framework; sourceTree = "<group>"; };
 		4E580EFB74536F25B095619B /* Pods-ZeroBalance.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZeroBalance.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZeroBalance/Pods-ZeroBalance.debug.xcconfig"; sourceTree = "<group>"; };
@@ -177,6 +186,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		11FABBF31F2759DF00E3ECCD /* Listing */ = {
+			isa = PBXGroup;
+			children = (
+				11FABBF41F2759FA00E3ECCD /* ListingViewController.h */,
+				11FABBF51F2759FA00E3ECCD /* ListingViewController.m */,
+			);
+			name = Listing;
+			sourceTree = "<group>";
+		};
 		B81396F61DF6619F0018E699 /* NewTransaction */ = {
 			isa = PBXGroup;
 			children = (
@@ -265,6 +283,7 @@
 		B830A38A1DF38CE7005688A1 /* VCs */ = {
 			isa = PBXGroup;
 			children = (
+				11FABBF31F2759DF00E3ECCD /* Listing */,
 				B8BBE4581EAFC9070032ED3B /* Detail */,
 				B884DE5D1E10558100C22566 /* AddPayer */,
 				B830A3FD1DF3AE76005688A1 /* Container */,
@@ -281,6 +300,10 @@
 				B830A3DC1DF3A0CA005688A1 /* TransactionTableCell.m */,
 				B80B2EDA1E061A9600FB8474 /* PaymentTableCell.h */,
 				B80B2EDB1E061A9600FB8474 /* PaymentTableCell.m */,
+				11FABBF01F274DB200E3ECCD /* BalanceTableCell.h */,
+				11FABBF11F274DB200E3ECCD /* BalanceTableCell.m */,
+				11FABBF71F275BBE00E3ECCD /* SummaryTableCell.h */,
+				11FABBF81F275BBE00E3ECCD /* SummaryTableCell.m */,
 			);
 			name = TableCells;
 			sourceTree = "<group>";
@@ -427,7 +450,7 @@
 		B830A3431DF384D3005688A1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Brad Bernard";
 				TargetAttributes = {
 					B830A34A1DF384D3005688A1 = {
@@ -659,9 +682,12 @@
 				B81396F51DF661960018E699 /* NewTransactionViewController.m in Sources */,
 				B81396FD1DF665A40018E699 /* BaseViewController.m in Sources */,
 				B80B2EDC1E061A9600FB8474 /* PaymentTableCell.m in Sources */,
+				11FABBF21F274DB200E3ECCD /* BalanceTableCell.m in Sources */,
 				B830A3531DF384D3005688A1 /* AppDelegate.m in Sources */,
 				B830A3891DF38ADA005688A1 /* ContainerNavigationController.m in Sources */,
 				B830A3501DF384D3005688A1 /* main.m in Sources */,
+				11FABBF61F2759FA00E3ECCD /* ListingViewController.m in Sources */,
+				11FABBF91F275BBE00E3ECCD /* SummaryTableCell.m in Sources */,
 				B830A3D51DF39486005688A1 /* DataController.m in Sources */,
 				B830A3861DF38523005688A1 /* TransactionsViewController.m in Sources */,
 				B80B2EDF1E061CA500FB8474 /* AddPayerViewController.m in Sources */,
@@ -731,7 +757,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -739,7 +767,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
@@ -780,7 +812,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -788,7 +822,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;

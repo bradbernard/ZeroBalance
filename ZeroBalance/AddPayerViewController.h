@@ -11,6 +11,7 @@
 #import "TransactionMO+CoreDataClass.h"
 #import <ContactsUI/ContactsUI.h>
 #import <Contacts/Contacts.h>
+#import "DataController.h"
 
 @class AddPayerViewController;
 

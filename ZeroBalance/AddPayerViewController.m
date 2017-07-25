@@ -7,9 +7,8 @@
 //
 
 #import "AddPayerViewController.h"
-#import "DataController.h"
-#import "PaymentMO+CoreDataClass.h"
 #import "TransactionMO+CoreDataClass.h"
+#import "PaymentMO+CoreDataClass.h"
 
 @interface AddPayerViewController ()
 

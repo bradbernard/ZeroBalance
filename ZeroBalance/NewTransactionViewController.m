@@ -7,11 +7,8 @@
 //
 
 #import "NewTransactionViewController.h"
-#import "DataController.h"
 #import "PaymentMO+CoreDataClass.h"
-#import "TransactionMO+CoreDataClass.h"
-#import "PaymentTableCell.h"
-#import "AddPayerViewController.h"
+
 
 @interface NewTransactionViewController ()
 
@@ -196,6 +193,21 @@ double moneyAmount = 0;
 - (void)insertTransaction {
     if(![self transactionFilledOut]) {
         return [self displayAlert:@"Error" message:@"Name, total, and date are required to save the transaction."];
+    }
+    
+    if(self.rows.count == 0) {
+        return [self displayAlert:@"Error" message:@"Transaction must have at least one payer."];
+    }
+    
+    double total = [[[self.moneyText.text substringFromIndex:1] stringByReplacingOccurrencesOfString:@"," withString:@""] doubleValue];
+    double sum = 0;
+    
+    for(unsigned int i = 0; i < [self.rows count]; ++i) {
+        sum += [self.rows objectAtIndex:i].paid;
+    }
+    
+    if(sum > total) {
+        return [self displayAlert:@"Error" message:@"Transaction payers cannot pay more than the transaction total."];
     }
     
     if(!self.editing) {

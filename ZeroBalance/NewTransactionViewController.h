@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
 #import "HSDatePickerViewController.h"
+#import "DataController.h"
+#import "PaymentMO+CoreDataClass.h"
+#import "TransactionMO+CoreDataClass.h"
+#import "PaymentTableCell.h"
 #import "AddPayerViewController.h"
 
 @class NewTransactionViewController;

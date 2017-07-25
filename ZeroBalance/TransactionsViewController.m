@@ -6,14 +6,7 @@
 //  Copyright © 2016 Brad Bernard. All rights reserved.
 //
 
-#import <CoreData/CoreData.h>
 #import "TransactionsViewController.h"
-#import "TransactionTableCell.h"
-#import "DataController.h"
-#import "PaymentMO+CoreDataClass.h"
-#import "TransactionMO+CoreDataClass.h"
-#import "NewTransactionViewController.h"
-#import "DetailViewController.h"
 
 @interface TransactionsViewController ()
 
@@ -204,6 +197,8 @@ UIStoryboard *storyboard = nil;
             NSAssert(NO, @"Error saving context: %@\n%@", [error localizedDescription], [error userInfo]);
         }
         
+        NSLog(@"Did save");
+        
     } else if(index == 1) {
                 
         TransactionMO *transaction = [[self fetchedResultsController] objectAtIndexPath:indexPath];
@@ -260,19 +255,8 @@ UIStoryboard *storyboard = nil;
         return [self updateDeleteButtonTitle];
     }
     
-    
     [self.tableView deselectRowAtIndexPath:indexPath animated:true];
     [self pushDetailViewController: indexPath];
-    
-    
-//    [self.tableView deselectRowAtIndexPath:indexPath animated:true];
-//    
-//    TransactionMO *transaction = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-//    NewTransactionViewController *viewController = (NewTransactionViewController*)[storyboard instantiateViewControllerWithIdentifier:@"NewTransactionViewController"];
-//    viewController.transactionId = transaction.objectID;
-//    viewController.editing = true;
-//    viewController.title = @"Edit Transaction";
-//    [self.navigationController pushViewController:viewController animated:true];
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
