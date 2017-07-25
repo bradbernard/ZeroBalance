@@ -1,5 +1,5 @@
 ## ZeroBalance
-iOS application to balance payments between friends who share payments. 
+iOS application to track, record, and balance payments between friends who split payments on a single invoice. 
 
 ## About
 Built in Objective-C with CoreData to store transactions and payments between persons. Each transaction shows amounts owed to each person, average payment for a transaction, and a chart to display who paid what.
